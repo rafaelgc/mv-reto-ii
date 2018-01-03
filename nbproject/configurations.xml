@@ -1,0 +1,638 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="100">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <logicalFolder name="HeaderFiles"
+                   displayName="Header Files"
+                   projectFiles="true">
+      <logicalFolder name="ESE" displayName="ESE" projectFiles="true">
+        <logicalFolder name="Core" displayName="Core" projectFiles="true">
+          <itemPath>../ESE/include/ESE/Core/Animatable.hpp</itemPath>
+          <itemPath>../ESE/include/ESE/Core/AnimatableContainer.hpp</itemPath>
+          <itemPath>../ESE/include/ESE/Core/Application.hpp</itemPath>
+          <itemPath>../ESE/include/ESE/Core/Clock.hpp</itemPath>
+          <itemPath>../ESE/include/ESE/Core/Fonts.hpp</itemPath>
+          <itemPath>../ESE/include/ESE/Core/Layer.hpp</itemPath>
+          <itemPath>../ESE/include/ESE/Core/Log.hpp</itemPath>
+          <itemPath>../ESE/include/ESE/Core/RenderManager.hpp</itemPath>
+          <itemPath>../ESE/include/ESE/Core/ResourceManager.hpp</itemPath>
+          <itemPath>../ESE/include/ESE/Core/Scene.hpp</itemPath>
+          <itemPath>../ESE/include/ESE/Core/SceneManager.hpp</itemPath>
+          <itemPath>../ESE/include/ESE/Core/ScreenDimensions.hpp</itemPath>
+          <itemPath>../ESE/include/ESE/Core/Singleton.hpp</itemPath>
+          <itemPath>../ESE/include/ESE/Core/SoundBuffers.hpp</itemPath>
+          <itemPath>../ESE/include/ESE/Core/Textures.hpp</itemPath>
+        </logicalFolder>
+        <logicalFolder name="EntitySystem"
+                       displayName="EntitySystem"
+                       projectFiles="true">
+          <itemPath>../ESE/include/ESE/EntitySystem/Entity.hpp</itemPath>
+          <itemPath>../ESE/include/ESE/EntitySystem/System.hpp</itemPath>
+        </logicalFolder>
+        <logicalFolder name="External" displayName="External" projectFiles="true">
+          <itemPath>../ESE/include/ESE/External/pugiconfig.hpp</itemPath>
+          <itemPath>../ESE/include/ESE/External/pugixml.hpp</itemPath>
+        </logicalFolder>
+        <logicalFolder name="Mesh" displayName="Mesh" projectFiles="true">
+          <itemPath>../ESE/include/ESE/Mesh/Dijkstra.hpp</itemPath>
+          <itemPath>../ESE/include/ESE/Mesh/Mesh.hpp</itemPath>
+          <itemPath>../ESE/include/ESE/Mesh/Node.hpp</itemPath>
+          <itemPath>../ESE/include/ESE/Mesh/NodeDistance.hpp</itemPath>
+          <itemPath>../ESE/include/ESE/Mesh/NodeLink.hpp</itemPath>
+        </logicalFolder>
+        <logicalFolder name="Physics" displayName="Physics" projectFiles="true">
+          <itemPath>../ESE/include/ESE/Physics/AABBDetection.hpp</itemPath>
+          <itemPath>../ESE/include/ESE/Physics/CicleCollisionDetection.hpp</itemPath>
+        </logicalFolder>
+        <logicalFolder name="Text" displayName="Text" projectFiles="true">
+          <itemPath>../ESE/include/ESE/Text/Text.hpp</itemPath>
+        </logicalFolder>
+        <logicalFolder name="TileEngine" displayName="TileEngine" projectFiles="true">
+          <itemPath>../ESE/include/ESE/TileEngine/TileDrawable.hpp</itemPath>
+          <itemPath>../ESE/include/ESE/TileEngine/TileLoadedListener.hpp</itemPath>
+          <itemPath>../ESE/include/ESE/TileEngine/TilemapLoader.hpp</itemPath>
+          <itemPath>../ESE/include/ESE/TileEngine/TilemapRenderer.hpp</itemPath>
+        </logicalFolder>
+      </logicalFolder>
+      <itemPath>AStar.hpp</itemPath>
+      <itemPath>AStarAlgorithm.hpp</itemPath>
+      <itemPath>App.hpp</itemPath>
+      <itemPath>GameScene.hpp</itemPath>
+    </logicalFolder>
+    <logicalFolder name="ResourceFiles"
+                   displayName="Resource Files"
+                   projectFiles="true">
+    </logicalFolder>
+    <logicalFolder name="SourceFiles"
+                   displayName="Source Files"
+                   projectFiles="true">
+      <logicalFolder name="ESE" displayName="ESE" projectFiles="true">
+        <logicalFolder name="Core" displayName="Core" projectFiles="true">
+          <itemPath>../ESE/src/ESE/Core/AnimatableContainer.cpp</itemPath>
+          <itemPath>../ESE/src/ESE/Core/Application.cpp</itemPath>
+          <itemPath>../ESE/src/ESE/Core/Clock.cpp</itemPath>
+          <itemPath>../ESE/src/ESE/Core/Layer.cpp</itemPath>
+          <itemPath>../ESE/src/ESE/Core/Log.cpp</itemPath>
+          <itemPath>../ESE/src/ESE/Core/RenderManager.cpp</itemPath>
+          <itemPath>../ESE/src/ESE/Core/Scene.cpp</itemPath>
+          <itemPath>../ESE/src/ESE/Core/SceneManager.cpp</itemPath>
+          <itemPath>../ESE/src/ESE/Core/ScreenDimensions.cpp</itemPath>
+        </logicalFolder>
+        <logicalFolder name="EntitySystem"
+                       displayName="EntitySystem"
+                       projectFiles="true">
+          <itemPath>../ESE/src/ESE/EntitySystem/Entity.cpp</itemPath>
+          <itemPath>../ESE/src/ESE/EntitySystem/System.cpp</itemPath>
+        </logicalFolder>
+        <logicalFolder name="External" displayName="External" projectFiles="true">
+          <itemPath>../ESE/src/ESE/External/pugixml.cpp</itemPath>
+        </logicalFolder>
+        <logicalFolder name="Mesh" displayName="Mesh" projectFiles="true">
+          <itemPath>../ESE/src/ESE/Mesh/Dijkstra.cpp</itemPath>
+          <itemPath>../ESE/src/ESE/Mesh/Mesh.cpp</itemPath>
+          <itemPath>../ESE/src/ESE/Mesh/Node.cpp</itemPath>
+          <itemPath>../ESE/src/ESE/Mesh/NodeDistance.cpp</itemPath>
+          <itemPath>../ESE/src/ESE/Mesh/NodeLink.cpp</itemPath>
+        </logicalFolder>
+        <logicalFolder name="Physics" displayName="Physics" projectFiles="true">
+          <itemPath>../ESE/src/ESE/Physics/AABBDetection.cpp</itemPath>
+          <itemPath>../ESE/src/ESE/Physics/CircleCollisionDetection.cpp</itemPath>
+        </logicalFolder>
+        <logicalFolder name="Text" displayName="Text" projectFiles="true">
+          <itemPath>../ESE/src/ESE/Text/Text.cpp</itemPath>
+        </logicalFolder>
+        <logicalFolder name="TileEngine" displayName="TileEngine" projectFiles="true">
+          <itemPath>../ESE/src/ESE/TileEngine/TileDrawable.cpp</itemPath>
+          <itemPath>../ESE/src/ESE/TileEngine/TilemapLoader.cpp</itemPath>
+        </logicalFolder>
+      </logicalFolder>
+      <itemPath>AStar.cpp</itemPath>
+      <itemPath>AStarAlgorithm.tpp</itemPath>
+      <itemPath>App.cpp</itemPath>
+      <itemPath>GameScene.cpp</itemPath>
+      <itemPath>main.cpp</itemPath>
+    </logicalFolder>
+    <logicalFolder name="TestFiles"
+                   displayName="Test Files"
+                   projectFiles="false"
+                   kind="TEST_LOGICAL_FOLDER">
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <sourceRootList>
+    <Elem>../ESE/src</Elem>
+    <Elem>../ESE/include/ESE</Elem>
+  </sourceRootList>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Debug" type="1">
+      <toolsSet>
+        <compilerSet>GNU|GNU</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <ccTool>
+          <standard>8</standard>
+          <incDir>
+            <pElem>../ESE/include/</pElem>
+          </incDir>
+        </ccTool>
+        <linkerTool>
+          <linkerLibItems>
+            <linkerOptionItem>-lsfml-graphics</linkerOptionItem>
+            <linkerOptionItem>-lsfml-window</linkerOptionItem>
+            <linkerOptionItem>-lsfml-system</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </compileType>
+      <item path="../ESE/include/ESE/Core/Animatable.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/Core/AnimatableContainer.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/Core/Application.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/Core/Clock.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/Core/Fonts.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/Core/Layer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/Core/Log.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/Core/RenderManager.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/Core/ResourceManager.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/Core/Scene.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/Core/SceneManager.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/Core/ScreenDimensions.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/Core/Singleton.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/Core/SoundBuffers.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/Core/Textures.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/EntitySystem/Entity.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/EntitySystem/System.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/External/pugiconfig.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/External/pugixml.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/Mesh/Dijkstra.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/Mesh/Mesh.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/Mesh/Node.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/Mesh/NodeDistance.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/Mesh/NodeLink.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/Physics/AABBDetection.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/Physics/CicleCollisionDetection.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/Text/Text.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/TileEngine/TileDrawable.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/TileEngine/TileLoadedListener.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/TileEngine/TilemapLoader.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/TileEngine/TilemapRenderer.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ESE/src/ESE/Core/AnimatableContainer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../ESE/src/ESE/Core/Application.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../ESE/src/ESE/Core/Clock.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../ESE/src/ESE/Core/Layer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../ESE/src/ESE/Core/Log.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../ESE/src/ESE/Core/RenderManager.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../ESE/src/ESE/Core/Scene.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../ESE/src/ESE/Core/SceneManager.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../ESE/src/ESE/Core/ScreenDimensions.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../ESE/src/ESE/EntitySystem/Entity.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../ESE/src/ESE/EntitySystem/System.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../ESE/src/ESE/External/pugixml.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../ESE/src/ESE/Mesh/Dijkstra.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../ESE/src/ESE/Mesh/Mesh.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../ESE/src/ESE/Mesh/Node.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../ESE/src/ESE/Mesh/NodeDistance.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../ESE/src/ESE/Mesh/NodeLink.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../ESE/src/ESE/Physics/AABBDetection.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../ESE/src/ESE/Physics/CircleCollisionDetection.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../ESE/src/ESE/Text/Text.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../ESE/src/ESE/TileEngine/TileDrawable.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../ESE/src/ESE/TileEngine/TilemapLoader.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="AStar.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="AStar.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="AStarAlgorithm.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="App.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="App.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="GameScene.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="GameScene.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+    </conf>
+    <conf name="Release" type="1">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <cTool>
+          <developmentMode>5</developmentMode>
+        </cTool>
+        <ccTool>
+          <developmentMode>5</developmentMode>
+        </ccTool>
+        <fortranCompilerTool>
+          <developmentMode>5</developmentMode>
+        </fortranCompilerTool>
+        <asmTool>
+          <developmentMode>5</developmentMode>
+        </asmTool>
+      </compileType>
+      <item path="../ESE/include/ESE/Core/Animatable.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/Core/AnimatableContainer.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/Core/Application.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/Core/Clock.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/Core/Fonts.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/Core/Layer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/Core/Log.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/Core/RenderManager.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/Core/ResourceManager.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/Core/Scene.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/Core/SceneManager.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/Core/ScreenDimensions.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/Core/Singleton.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/Core/SoundBuffers.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/Core/Textures.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/EntitySystem/Entity.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/EntitySystem/System.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/External/pugiconfig.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/External/pugixml.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/Mesh/Dijkstra.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/Mesh/Mesh.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/Mesh/Node.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/Mesh/NodeDistance.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/Mesh/NodeLink.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/Physics/AABBDetection.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/Physics/CicleCollisionDetection.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/Text/Text.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/TileEngine/TileDrawable.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/TileEngine/TileLoadedListener.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/TileEngine/TilemapLoader.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/TileEngine/TilemapRenderer.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ESE/src/ESE/Core/AnimatableContainer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../ESE/src/ESE/Core/Application.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../ESE/src/ESE/Core/Clock.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../ESE/src/ESE/Core/Layer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../ESE/src/ESE/Core/Log.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../ESE/src/ESE/Core/RenderManager.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../ESE/src/ESE/Core/Scene.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../ESE/src/ESE/Core/SceneManager.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../ESE/src/ESE/Core/ScreenDimensions.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../ESE/src/ESE/EntitySystem/Entity.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../ESE/src/ESE/EntitySystem/System.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../ESE/src/ESE/External/pugixml.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../ESE/src/ESE/Mesh/Dijkstra.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../ESE/src/ESE/Mesh/Mesh.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../ESE/src/ESE/Mesh/Node.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../ESE/src/ESE/Mesh/NodeDistance.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../ESE/src/ESE/Mesh/NodeLink.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../ESE/src/ESE/Physics/AABBDetection.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../ESE/src/ESE/Physics/CircleCollisionDetection.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../ESE/src/ESE/Text/Text.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../ESE/src/ESE/TileEngine/TileDrawable.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../ESE/src/ESE/TileEngine/TilemapLoader.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="AStar.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="AStar.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="AStarAlgorithm.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="AStarAlgorithm.tpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="App.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="App.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="GameScene.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="GameScene.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>
