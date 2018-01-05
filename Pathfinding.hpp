@@ -11,11 +11,10 @@
  * Created on January 2, 2018, 8:15 PM
  */
 
-#ifndef ASTARALGORITHM_HPP
-#define ASTARALGORITHM_HPP
+#ifndef PATHFINDING_HPP
+#define PATHFINDING_HPP
 
 #include <vector>
-#include <set>
 
 template <class NodeType>
 class DiscoveredNode {
@@ -53,14 +52,6 @@ class DiscoveredNode {
         return other.node == this->node;
     }
     
-    //inline bool operator!=(const DiscoveredNode& other) const 
-    
-    /*inline bool operator<(const DiscoveredNode& other) const {
-        if (other.node == node) {
-            return false;
-        }
-        return f() < other.f();
-    }*/
 };
 
 class INode {
@@ -74,7 +65,6 @@ public:
     virtual std::vector<NodeType> getAdjacents(const NodeType& node) const = 0;
     virtual float cost(const NodeType& node1, const NodeType& node2) const = 0;
     virtual float estimate(const NodeType &node1, const NodeType& node2) const = 0;
-    virtual void test() const = 0;
 };
 
 template <class NodeType>
@@ -95,7 +85,7 @@ private:
 
 };
 
-#include "AStarAlgorithm.tpp"
+#include "Pathfinding.tpp"
 
 #endif /* ASTARALGORITHM_HPP */
 

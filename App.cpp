@@ -22,7 +22,7 @@ App::App() : gameScene(&this->window) {
     gameScene.setup();
     
     this->getSceneManager()->addScene(gameScene);
-    this->getSceneManager()->activateSceneAndDeactivateTheRest("GameScene");
+    this->getSceneManager()->switchTo("GameScene");
 }
 
 App::~App() {

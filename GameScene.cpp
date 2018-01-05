@@ -12,8 +12,9 @@
  */
 
 #include "GameScene.hpp"
+#include "Enemy.hpp"
 
-GameScene::GameScene(sf::RenderWindow * window) : mesh(WIDTH, HEIGHT, map[0]), pathfinding(mesh), pathfinding2(WIDTH, HEIGHT, map[0]), ESE::Scene("GameScene", window) {
+GameScene::GameScene(sf::RenderWindow * window) : mesh(WIDTH, HEIGHT, map[0]), pathfinding(mesh), player(*this->window), /*pathfinding2(WIDTH, HEIGHT, map[0]), */ESE::Scene("GameScene", window) {
     
 }
 
@@ -30,7 +31,7 @@ void GameScene::setup() {
     }
     
     tiles[0].setSize(tileSize);
-    tiles[0].setFillColor(sf::Color(0, 200, 0));
+    tiles[0].setFillColor(sf::Color(0, 120, 0));
     
     tiles[1].setSize(tileSize);
     tiles[1].setFillColor(sf::Color(100, 100, 0));
@@ -43,13 +44,31 @@ void GameScene::setup() {
     character.setPosition(character.getRadius(), character.getRadius());
     character.setOrigin(character.getRadius(), character.getRadius());
     
-    finished = true;
+    //enemy.setPosition(sf::Vector2f(200, 200));
+    
+    for (int i = 0; i < 2; i++) {
+        Enemy enemy;
+        enemy.setPosition(sf::Vector2f(rand() % window->getSize().x, rand() % window->getSize().y));
+        
+        enemies.push_back(enemy);
+    }
+    
+    pathfindingClock.restart();
     
 }
 
 void GameScene::manageEvents(float deltaTime) {
     
-    if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Right)) {
+    player.manageEvents(deltaTime);
+    
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Middle)) {
+        int cx = sf::Mouse::getPosition(*this->window).x / (tiles[0].getSize().x);
+        int cy = sf::Mouse::getPosition(*this->window).y / (tiles[0].getSize().y);
+
+        map[cy][cx] = 1;
+    }
+    
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::R)) {
         int cx = sf::Mouse::getPosition(*this->window).x / (tiles[0].getSize().x);
         int cy = sf::Mouse::getPosition(*this->window).y / (tiles[0].getSize().y);
 
@@ -58,91 +77,31 @@ void GameScene::manageEvents(float deltaTime) {
     
     while (this->window->pollEvent(this->events)) {
         this->checkIfWindowClosed();
-        
-        if (events.type == sf::Event::MouseButtonPressed)
-        {
-            if (events.mouseButton.button == sf::Mouse::Left) {
-                int cx = events.mouseButton.x / (tiles[0].getSize().x);
-                int cy = events.mouseButton.y / (tiles[0].getSize().y);
-                
-                //std::cout << "Running original..." << std::endl;
-                
-                float millis1 = 0;
-                float millis2 = 0;
-                for (int i = 0; i < 100; i++) {
-                    auto begin = std::chrono::high_resolution_clock::now();
-                    try {
-                        pathfinding2.run(
-                        character.getPosition().x / tiles[0].getSize().x, 
-                        character.getPosition().y / tiles[0].getSize().y,
-                        cx, cy);
-                    } catch (std::exception e) {}
-                    auto end = std::chrono::high_resolution_clock::now();
-
-                    millis1 += std::chrono::duration_cast<std::chrono::nanoseconds>(end-begin).count() / 1000000.f;
-
-                    //std::cout << "Original: " << std::chrono::duration_cast<std::chrono::nanoseconds>(end-begin).count() / 1000000.f << " with " << success << std::endl;
-                    //std::cout << "Running current..." << std::endl;
-                    begin = std::chrono::high_resolution_clock::now();
-                    try {
-                    pathfinding.getPath(
-                        GridNode(character.getPosition().x / tiles[0].getSize().x,
-                            character.getPosition().y / tiles[0].getSize().y),
-                        GridNode(cx, cy));
-                    } catch (std::exception e) {}
-                    end = std::chrono::high_resolution_clock::now();
-
-                    millis2 += std::chrono::duration_cast<std::chrono::nanoseconds>(end-begin).count() / 1000000.f;
-
-                }
-                std::cout << millis1 / 100 << " vs " << millis2 / 100 << " Diff> " << (millis2 / millis1) * 100 << std::endl;
-                
-                try {
-                    characterPath = pathfinding.getPath(
-                            GridNode(character.getPosition().x / tiles[0].getSize().x,
-                                character.getPosition().y / tiles[0].getSize().y),
-                            GridNode(cx, cy));
-                
-                    for (int i = 0; i < HEIGHT; i++) {
-                        for (int j = 0; j < WIDTH; j++) {
-                            if (map[i][j] == 2) map[i][j] = 0;
-                        }
-                    }
-                    for (int i = 0; i < characterPath.size(); i++) {
-                        map[characterPath[i].getPosition().y][characterPath[i].getPosition().x] = 2;
-                    }
-
-                    if (characterPath.size() > 1) {
-                        currentTarget = 1;
-                        finished = false;
-                        calcMovement();
-                    }
-                }
-                catch (std::exception e) {
-                }
-                
-                
-            }
-            
-        }
     }
 }
 
 void GameScene::logic(float deltaTime) {
+    player.advanceTime(deltaTime);
+    for (auto &enemy : enemies) {
+        enemy.advanceTime(deltaTime);
+    }
     
-    if (!finished) {
-        //std::cout << "Xd " << mX << std::endl;
-        character.move(deltaMovement.x * 100 * deltaTime, deltaMovement.y * 100 * deltaTime);
+    if (pathfindingClock.getElapsedTime().asSeconds() > 1) {
         
-        if (arrivedCurrentTarget()) {
-            currentTarget++;
-            if (currentTarget >= characterPath.size()) {
-                finished = true;
+        try {
+            for (auto &enemy : enemies) {
+                std::vector<GridNode> path = 
+                pathfinding.getPath(GridNode(enemy.getPosition().x / tileSize.x, enemy.getPosition().y / tileSize.y),
+                    GridNode(player.getPosition().x / tileSize.x, player.getPosition().y / tileSize.y));
+            
+                enemy.setPath(path, tileSize);
             }
-            else {
-                calcMovement();
-            }
+            
+        } catch (std::exception e) {
+            
         }
+        
+        pathfindingClock.restart();
     }
     
 }
@@ -155,28 +114,10 @@ void GameScene::render() {
         }
     }
     
-    draw(character);
-}
-
-void GameScene::calcMovement() {
-    deltaMovement.x = this->characterPath[currentTarget].getPosition().x * this->tileSize.x + this->tileSize.x / 2 - character.getPosition().x;
-    deltaMovement.y = this->characterPath[currentTarget].getPosition().y * this->tileSize.y + this->tileSize.y / 2 - character.getPosition().y;
-    
-    float h = std::sqrt(deltaMovement.x * deltaMovement.x + deltaMovement.y * deltaMovement.y);
-    
-    deltaMovement /= h;
-}
-
-sf::Vector2i GameScene::getCharacterTilePosition() {
-    return sf::Vector2i(character.getPosition().x / tileSize.x, character.getPosition().y / tileSize.y);
-}
-
-bool GameScene::arrivedCurrentTarget() {
-    float dx = character.getPosition().x - (this->characterPath[currentTarget].getPosition().x * tileSize.x + tileSize.x / 2);
-    float dy = character.getPosition().y - (this->characterPath[currentTarget].getPosition().y * tileSize.y + tileSize.y / 2);
-    
-    if (std::sqrt(dx * dx + dy * dy) < 10) {
-        return true;
+    for (auto &enemy : enemies) {
+        draw(enemy);
     }
-    return false;
+    
+    draw(player);
+    //draw(character);
 }

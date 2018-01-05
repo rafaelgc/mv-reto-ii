@@ -52,11 +52,19 @@
           <itemPath>../ESE/include/ESE/TileEngine/TilemapLoader.hpp</itemPath>
           <itemPath>../ESE/include/ESE/TileEngine/TilemapRenderer.hpp</itemPath>
         </logicalFolder>
+        <itemPath>Pathfinding.hpp</itemPath>
+        <itemPath>../ESE/include/ESE/AI/Pathfinding.hpp</itemPath>
+        <itemPath>../ESE/include/ESE/AI/Pathfinding.tpp</itemPath>
       </logicalFolder>
-      <itemPath>AStar.hpp</itemPath>
-      <itemPath>AStarAlgorithm.hpp</itemPath>
+      <itemPath>Actor.hpp</itemPath>
       <itemPath>App.hpp</itemPath>
+      <itemPath>Enemy.hpp</itemPath>
       <itemPath>GameScene.hpp</itemPath>
+      <itemPath>GridMesh.hpp</itemPath>
+      <itemPath>GridNode.hpp</itemPath>
+      <itemPath>Player.hpp</itemPath>
+      <itemPath>Vector2f.hpp</itemPath>
+      <itemPath>Vector3f.hpp</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -105,10 +113,16 @@
           <itemPath>../ESE/src/ESE/TileEngine/TilemapLoader.cpp</itemPath>
         </logicalFolder>
       </logicalFolder>
-      <itemPath>AStar.cpp</itemPath>
-      <itemPath>AStarAlgorithm.tpp</itemPath>
+      <itemPath>Actor.cpp</itemPath>
       <itemPath>App.cpp</itemPath>
+      <itemPath>Enemy.cpp</itemPath>
       <itemPath>GameScene.cpp</itemPath>
+      <itemPath>GridMesh.cpp</itemPath>
+      <itemPath>GridNode.cpp</itemPath>
+      <itemPath>Pathfinding.tpp</itemPath>
+      <itemPath>Player.cpp</itemPath>
+      <itemPath>Vector2f.cpp</itemPath>
+      <itemPath>Vector3f.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -147,9 +161,20 @@
             <linkerOptionItem>-lsfml-graphics</linkerOptionItem>
             <linkerOptionItem>-lsfml-window</linkerOptionItem>
             <linkerOptionItem>-lsfml-system</linkerOptionItem>
+            <linkerOptionItem>-lGL</linkerOptionItem>
           </linkerLibItems>
         </linkerTool>
       </compileType>
+      <item path="../ESE/include/ESE/AI/Pathfinding.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/AI/Pathfinding.tpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
       <item path="../ESE/include/ESE/Core/Animatable.hpp"
             ex="false"
             tool="3"
@@ -364,19 +389,43 @@
             tool="1"
             flavor2="0">
       </item>
-      <item path="AStar.cpp" ex="false" tool="1" flavor2="0">
+      <item path="Actor.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="AStar.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="AStarAlgorithm.hpp" ex="false" tool="3" flavor2="0">
+      <item path="Actor.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="App.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="App.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Enemy.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Enemy.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="GameScene.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="GameScene.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="GridMesh.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="GridMesh.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="GridNode.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="GridNode.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Pathfinding.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Player.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Player.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Vector2f.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Vector2f.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Vector3f.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Vector3f.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -401,6 +450,16 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
+      <item path="../ESE/include/ESE/AI/Pathfinding.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/AI/Pathfinding.tpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
       <item path="../ESE/include/ESE/Core/Animatable.hpp"
             ex="false"
             tool="3"
@@ -615,21 +674,45 @@
             tool="1"
             flavor2="0">
       </item>
-      <item path="AStar.cpp" ex="false" tool="1" flavor2="0">
+      <item path="Actor.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="AStar.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="AStarAlgorithm.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="AStarAlgorithm.tpp" ex="false" tool="1" flavor2="0">
+      <item path="Actor.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="App.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="App.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Enemy.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Enemy.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="GameScene.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="GameScene.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="GridMesh.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="GridMesh.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="GridNode.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="GridNode.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Pathfinding.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Pathfinding.tpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Player.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Player.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Vector2f.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Vector2f.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Vector3f.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Vector3f.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
