@@ -16,6 +16,10 @@
 
 #include "Vector2f.hpp"
 #include "Actor.hpp"
+#include <SFML/Graphics/Sprite.hpp>
+#include <SFML/Audio/Sound.hpp>
+
+class GameScene;
 
 class Trail {
 public:
@@ -27,21 +31,42 @@ public:
 
 class Player : public Actor {
 public:
-    Player(sf::RenderWindow & renderWindow);
+    Player(sf::RenderWindow & renderWindow, GameScene& gameScene);
     virtual ~Player();
+    
+    void setup();
     
     void draw(sf::RenderTarget&, sf::RenderStates) const;
     void advanceTime(float deltaTime);
     void manageEvents(float deltaTime);
 private:
-    sf::CircleShape circle;
-    sf::RectangleShape rect;
     
     bool lMouseBtnReleased;
     sf::Clock pressedTime;
     sf::Vector2i pressedPos;
     
+    Vector2f lookAt;
+    
     float speed;
+    bool moving;
+    
+    /// DISPARO ///
+    
+    sf::Clock lastShoot, shootSpriteClock;
+    bool shooting;
+    sf::Sprite shootSprite;
+    sf::Sound shotSound;
+    
+    /// ANIMACION ///
+    int currentFrame, currentFeetFrame;
+    sf::Clock animationClock, feetAnimationClock;
+    std::vector<sf::Texture*>* currentAnimation;
+    std::vector<sf::Texture*>* currentFeetAnimation;
+    std::vector<sf::Texture*> rifleMovingTextures;
+    std::vector<sf::Texture*> rifleShootingTextures;
+    std::vector<sf::Texture*> idleTextures;
+    std::vector<sf::Texture*> feetWalkingTextures;
+    sf::Sprite playerSprite, feetSprite;
     
     /// TELETRANSPORTE ///
     sf::RectangleShape movementRect;
@@ -58,10 +83,12 @@ private:
     std::vector<Trail> trails;
     int trailIndex;
     sf::Clock trailGenerationClock;
-    float fadeTime;
+    float fadeTime; // Tiempo ejn el que se desvanece cada parte de la estela.
     float trailGeneration;
     
     sf::RenderWindow& renderWindow;
+    GameScene& gameScene;
+    
 };
 
 #endif /* CHARACTER_HPP */

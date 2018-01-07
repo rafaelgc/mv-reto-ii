@@ -21,21 +21,19 @@
 
 #include "Player.hpp"
 #include "Vector2f.hpp"
+#include "ESE/Core/Textures.hpp"
+#include "GameScene.hpp"
+#include "ESE/Core/SoundBuffers.hpp"
 
 #include <iostream>
+#include <SFML/Graphics/Sprite.hpp>
 
-Player::Player(sf::RenderWindow& renderWindow) : renderWindow(renderWindow), triangle(10, 3) {
+Player::Player(sf::RenderWindow& renderWindow, GameScene& gameScene) : renderWindow(renderWindow), gameScene(gameScene), triangle(10, 3) {
+    
     speed = 150.f;
     teleportSpeed = 1550.f;
     maxTeleport = 400.f;
     teleportDistance = 0.f;
-    
-    circle.setRadius(16);
-    circle.setOrigin(16, 16);
-    
-    rect.setSize(sf::Vector2f(4, 16));
-    rect.setOrigin(2, 0);
-    rect.setFillColor(sf::Color(100, 100, 100));
     
     lMouseBtnReleased = true;
     
@@ -58,31 +56,102 @@ Player::Player(sf::RenderWindow& renderWindow) : renderWindow(renderWindow), tri
 Player::~Player() {
 }
 
-void Player::draw(sf::RenderTarget& rt, sf::RenderStates rs) const {
-    sf::CircleShape trailCircle = circle;
-    for (int i = 0; i < trailIndex; i++) {
-        if (trails[i].visible) {
-            float alpha = 100 * (1 - trails[i].clock.getElapsedTime().asSeconds() / fadeTime);
-            
-            trailCircle.setFillColor(sf::Color(255, 255, 255, alpha));
-            trailCircle.setPosition(trails[i].pos);
-            rt.draw(trailCircle, rs);
-        }
+void Player::setup() {
+    currentFrame = 0;
+    currentFeetFrame = 0;
+    
+    for (int i = 0; i <= 19; i++) {
+        idleTextures.push_back((ESE::Textures::instance().getResource("survivor_rifle_idle_" + std::to_string(i))));
+        rifleMovingTextures.push_back((ESE::Textures::instance().getResource("survivor_rifle_move_" + std::to_string(i))));
+        feetWalkingTextures.push_back((ESE::Textures::instance().getResource("survivor_walk_" + std::to_string(i))));
     }
     
-    rt.draw(circle, rs);
-    rt.draw(rect, rs);
+    for (int i = 0; i <= 2; i++) {
+        rifleShootingTextures.push_back((ESE::Textures::instance().getResource("survivor_shoot_rifle_" + std::to_string(i))));
+    }
     
+    currentAnimation = &idleTextures;
+    currentFeetAnimation = &feetWalkingTextures;
+       
+    playerSprite.setTexture(*currentAnimation->at(currentFrame));
+    playerSprite.setScale(0.4, 0.4);
+    playerSprite.setOrigin(96, 119);
+    
+    animationClock.restart();
+    feetAnimationClock.restart();
+    
+    feetSprite.setTexture(*currentFeetAnimation->at(currentFeetFrame));
+    feetSprite.setScale(0.4, 0.4);
+    feetSprite.setOrigin(87, 62);
+    
+    moving = false;
+    shooting = false;
+    
+    shootSprite.setTexture(*ESE::Textures::instance().getResource("shoot_fire"));
+    shootSprite.setOrigin(-750, 0);
+    shootSprite.setScale(0.1, 0.1);
+    
+    shotSound.setBuffer(*ESE::SoundBuffers::instance().getResource("shot"));
+    
+    lastShoot.restart();
+}
+
+void Player::draw(sf::RenderTarget& rt, sf::RenderStates rs) const {
     if (!lMouseBtnReleased) {
         rt.draw(movementRect, rs);
         rt.draw(triangle), rs;
     }
     
+    sf::Sprite trailSprite = playerSprite;
+    for (int i = 0; i < trailIndex; i++) {
+        if (trails[i].visible) {
+            float alpha = 100 * (1 - trails[i].clock.getElapsedTime().asSeconds() / fadeTime);
+            
+            trailSprite.setColor(sf::Color(255, 255, 255, alpha));
+            trailSprite.setPosition(trails[i].pos);
+            rt.draw(trailSprite, rs);
+        }
+    }
+    
+    if (moving) {
+        rt.draw(feetSprite, rs);
+    }
+    
+    rt.draw(playerSprite, rs);
+    
+    if (shooting && shootSpriteClock.getElapsedTime().asSeconds() < 0.1) {
+        rt.draw(shootSprite, rs);
+    }
+    
 }
 
 void Player::advanceTime(float deltaTime) {
-    circle.setPosition(position.x, position.y);
-    rect.setPosition(position.x, position.y);
+    
+    playerSprite.setPosition(position);
+    feetSprite.setPosition(position);
+    shootSprite.setPosition(position);
+    
+    if (shootSpriteClock.getElapsedTime().asSeconds() > 0.1) {
+        shootSprite.setColor(sf::Color(255, 255, 255, 100 + rand() % 100));
+        shootSpriteClock.restart();
+    }
+    
+    if (animationClock.getElapsedTime().asSeconds() > (shooting ? 0.05 : 0.1)) {
+        currentFrame++;
+        
+        if (currentFrame >= currentAnimation->size()) { currentFrame = 0; }
+        
+        playerSprite.setTexture(*currentAnimation->at(currentFrame));
+        animationClock.restart();
+    }
+    
+    if (feetAnimationClock.getElapsedTime().asSeconds() > 0.02) {
+        currentFeetFrame++;
+        if (currentFeetFrame == 20) { currentFeetFrame = 0; }
+        feetSprite.setTexture(*currentFeetAnimation->at(currentFeetFrame));
+        
+        feetAnimationClock.restart();
+    }
     
     if (teleporting) {
         float currDistance = teleportingClock.getElapsedTime().asSeconds() * teleportSpeed;
@@ -122,28 +191,80 @@ void Player::manageEvents(float deltaTime) {
     Vector2f b(position.x, position.y);
 
     //Para calcular el ángulo del ratón respecto al jugador.
-    Vector2f m = a.minus(b);
-    float angle = atan2(-m.getX(), m.getY()) * 57.29;
+    lookAt = a.minus(b);
+    float angle = atan2(-lookAt.getX(), lookAt.getY()) * 57.29;
     
-    circle.setRotation(angle);
-    rect.setRotation(angle);
+    playerSprite.setRotation(angle + 90);
+    feetSprite.setRotation(angle + 90);
+    shootSprite.setRotation(angle + 90);
+    
+    moving = false;
     
     if (!teleporting && lMouseBtnReleased) {
+        
+        if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+            if (lastShoot.getElapsedTime().asSeconds() > 0.1) {
+                for (Enemy& enemy : gameScene.getEnemies()) {
+                    Vector2f playerEnemy(enemy.getPosition().x, enemy.getPosition().y);
+                    playerEnemy = playerEnemy.minus(Vector2f(position.x, position.y));
+
+                    float projection = playerEnemy.dot(lookAt) / lookAt.length();
+
+                    // Nota: sin calcular el valor absoluto de fabs()
+                    // se dispara tanto de frente como de espaldas.
+                    Vector2f vProjection = lookAt.normalized().mult(fabs(projection));
+
+                    float distance = Vector2f(position.x, position.y).plus(vProjection).minus(Vector2f(enemy.getPosition().x, enemy.getPosition().y)).length();
+
+                    if (distance < 20) {
+                        enemy.giveShot(20, lookAt);
+                    }
+
+                }
+                lastShoot.restart();
+                
+                shotSound.play();
+            }
+            
+            shooting = true;
+        }
+        else {
+            shooting = false;
+        }
+        
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
             position.y -= speed * deltaTime;
+            
+            moving = true;
         }
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
             position.x -= speed * deltaTime;
+            
+            moving = true;
         }
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
             position.y += speed * deltaTime;
+            
+            moving = true;
         }
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
             position.x += speed * deltaTime;
+            
+            moving = true;
         }
+    }
+    
+    if (shooting) {
+        currentAnimation = &rifleShootingTextures;
+    }
+    else if (moving) {
+        currentAnimation = &rifleMovingTextures;
+    }
+    else {
+        currentAnimation = &idleTextures;
     }
     
     if (sf::Mouse::isButtonPressed(sf::Mouse::Right)) {

@@ -15,22 +15,33 @@
 #define VECTOR2F_HPP
 
 #include "Vector3f.hpp"
+#include <SFML/System/Vector2.hpp>
 
 class Vector2f {
     public:
     Vector2f();
     Vector2f(float x, float y);
+    Vector2f(const sf::Vector2f& v);
     
     float getX() const;
     float getY() const;
     
+    float length() const;
+    
+    /// MODIFICADORES ///
     void setX(float x);
     void setY(float y);
     void set(float x, float y);
     
-    float length() const;
-    
     void normalize();
+    
+    Vector2f& add(const Vector2f& other);
+    Vector2f& multiply(float num);
+    Vector2f& multiply(float x, float y);
+    
+    Vector2f& rotate(float angle);
+    
+    /// NO MODIFICADORES ///
     Vector2f normalized() const;
     
     Vector3f cross(const Vector2f& other) const;
@@ -41,6 +52,11 @@ class Vector2f {
     Vector2f minus(const Vector2f& other) const;
     
     Vector2f mult(float s) const;
+    Vector2f mult(float x, float y) const;
+    
+    Vector2f rotated(float angle) const;
+    
+    sf::Vector2f toSfml() const;
     
     private:
     float x, y;

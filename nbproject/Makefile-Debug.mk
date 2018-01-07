@@ -35,7 +35,6 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
-	${OBJECTDIR}/_ext/ba21678e/Pathfinding.o \
 	${OBJECTDIR}/_ext/c1b4e769/AnimatableContainer.o \
 	${OBJECTDIR}/_ext/c1b4e769/Application.o \
 	${OBJECTDIR}/_ext/c1b4e769/Clock.o \
@@ -60,10 +59,13 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/e895b6da/TilemapLoader.o \
 	${OBJECTDIR}/Actor.o \
 	${OBJECTDIR}/App.o \
+	${OBJECTDIR}/BloodDrop.o \
 	${OBJECTDIR}/Enemy.o \
 	${OBJECTDIR}/GameScene.o \
 	${OBJECTDIR}/GridMesh.o \
 	${OBJECTDIR}/GridNode.o \
+	${OBJECTDIR}/Particle.o \
+	${OBJECTDIR}/ParticleManager.o \
 	${OBJECTDIR}/Player.o \
 	${OBJECTDIR}/Vector2f.o \
 	${OBJECTDIR}/Vector3f.o \
@@ -84,7 +86,7 @@ FFLAGS=
 ASFLAGS=
 
 # Link Libraries and Options
-LDLIBSOPTIONS=-lsfml-graphics -lsfml-window -lsfml-system -lGL
+LDLIBSOPTIONS=-lsfml-graphics -lsfml-window -lsfml-system -lGL -lsfml-audio
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
@@ -93,11 +95,6 @@ LDLIBSOPTIONS=-lsfml-graphics -lsfml-window -lsfml-system -lGL
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/pathfinding: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/pathfinding ${OBJECTFILES} ${LDLIBSOPTIONS}
-
-${OBJECTDIR}/_ext/ba21678e/Pathfinding.o: ../ESE/include/ESE/AI/Pathfinding.tpp
-	${MKDIR} -p ${OBJECTDIR}/_ext/ba21678e
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -I../ESE/include/ -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/ba21678e/Pathfinding.o ../ESE/include/ESE/AI/Pathfinding.tpp
 
 ${OBJECTDIR}/_ext/c1b4e769/AnimatableContainer.o: ../ESE/src/ESE/Core/AnimatableContainer.cpp
 	${MKDIR} -p ${OBJECTDIR}/_ext/c1b4e769
@@ -219,6 +216,11 @@ ${OBJECTDIR}/App.o: App.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I../ESE/include/ -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/App.o App.cpp
 
+${OBJECTDIR}/BloodDrop.o: BloodDrop.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I../ESE/include/ -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/BloodDrop.o BloodDrop.cpp
+
 ${OBJECTDIR}/Enemy.o: Enemy.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
@@ -238,6 +240,16 @@ ${OBJECTDIR}/GridNode.o: GridNode.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I../ESE/include/ -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/GridNode.o GridNode.cpp
+
+${OBJECTDIR}/Particle.o: Particle.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I../ESE/include/ -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Particle.o Particle.cpp
+
+${OBJECTDIR}/ParticleManager.o: ParticleManager.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I../ESE/include/ -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ParticleManager.o ParticleManager.cpp
 
 ${OBJECTDIR}/Player.o: Player.cpp
 	${MKDIR} -p ${OBJECTDIR}

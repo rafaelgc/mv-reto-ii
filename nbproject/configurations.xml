@@ -5,6 +5,10 @@
                    displayName="Header Files"
                    projectFiles="true">
       <logicalFolder name="ESE" displayName="ESE" projectFiles="true">
+        <logicalFolder name="AI" displayName="AI" projectFiles="true">
+          <itemPath>../ESE/include/ESE/AI/Pathfinding.hpp</itemPath>
+          <itemPath>../ESE/include/ESE/AI/Pathfinding.tpp</itemPath>
+        </logicalFolder>
         <logicalFolder name="Core" displayName="Core" projectFiles="true">
           <itemPath>../ESE/include/ESE/Core/Animatable.hpp</itemPath>
           <itemPath>../ESE/include/ESE/Core/AnimatableContainer.hpp</itemPath>
@@ -52,16 +56,16 @@
           <itemPath>../ESE/include/ESE/TileEngine/TilemapLoader.hpp</itemPath>
           <itemPath>../ESE/include/ESE/TileEngine/TilemapRenderer.hpp</itemPath>
         </logicalFolder>
-        <itemPath>Pathfinding.hpp</itemPath>
-        <itemPath>../ESE/include/ESE/AI/Pathfinding.hpp</itemPath>
-        <itemPath>../ESE/include/ESE/AI/Pathfinding.tpp</itemPath>
       </logicalFolder>
       <itemPath>Actor.hpp</itemPath>
       <itemPath>App.hpp</itemPath>
+      <itemPath>BloodDrop.hpp</itemPath>
       <itemPath>Enemy.hpp</itemPath>
       <itemPath>GameScene.hpp</itemPath>
       <itemPath>GridMesh.hpp</itemPath>
       <itemPath>GridNode.hpp</itemPath>
+      <itemPath>Particle.hpp</itemPath>
+      <itemPath>ParticleManager.hpp</itemPath>
       <itemPath>Player.hpp</itemPath>
       <itemPath>Vector2f.hpp</itemPath>
       <itemPath>Vector3f.hpp</itemPath>
@@ -115,10 +119,13 @@
       </logicalFolder>
       <itemPath>Actor.cpp</itemPath>
       <itemPath>App.cpp</itemPath>
+      <itemPath>BloodDrop.cpp</itemPath>
       <itemPath>Enemy.cpp</itemPath>
       <itemPath>GameScene.cpp</itemPath>
       <itemPath>GridMesh.cpp</itemPath>
       <itemPath>GridNode.cpp</itemPath>
+      <itemPath>Particle.cpp</itemPath>
+      <itemPath>ParticleManager.cpp</itemPath>
       <itemPath>Pathfinding.tpp</itemPath>
       <itemPath>Player.cpp</itemPath>
       <itemPath>Vector2f.cpp</itemPath>
@@ -162,17 +169,13 @@
             <linkerOptionItem>-lsfml-window</linkerOptionItem>
             <linkerOptionItem>-lsfml-system</linkerOptionItem>
             <linkerOptionItem>-lGL</linkerOptionItem>
+            <linkerOptionItem>-lsfml-audio</linkerOptionItem>
           </linkerLibItems>
         </linkerTool>
       </compileType>
       <item path="../ESE/include/ESE/AI/Pathfinding.hpp"
             ex="false"
             tool="3"
-            flavor2="0">
-      </item>
-      <item path="../ESE/include/ESE/AI/Pathfinding.tpp"
-            ex="false"
-            tool="1"
             flavor2="0">
       </item>
       <item path="../ESE/include/ESE/Core/Animatable.hpp"
@@ -397,6 +400,10 @@
       </item>
       <item path="App.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="BloodDrop.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="BloodDrop.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Enemy.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Enemy.hpp" ex="false" tool="3" flavor2="0">
@@ -413,7 +420,13 @@
       </item>
       <item path="GridNode.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Pathfinding.hpp" ex="false" tool="3" flavor2="0">
+      <item path="Particle.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Particle.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ParticleManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ParticleManager.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Player.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -682,6 +695,10 @@
       </item>
       <item path="App.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="BloodDrop.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="BloodDrop.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Enemy.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Enemy.hpp" ex="false" tool="3" flavor2="0">
@@ -698,7 +715,13 @@
       </item>
       <item path="GridNode.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Pathfinding.hpp" ex="false" tool="3" flavor2="0">
+      <item path="Particle.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Particle.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ParticleManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ParticleManager.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Pathfinding.tpp" ex="false" tool="1" flavor2="0">
       </item>

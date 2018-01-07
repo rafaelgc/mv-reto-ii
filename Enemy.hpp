@@ -15,34 +15,54 @@
 #define ENEMY_HPP
 
 #include "Actor.hpp"
-#include <SFML/Graphics/CircleShape.hpp>
 #include <SFML/Graphics/RectangleShape.hpp>
+#include <SFML/Graphics/Sprite.hpp>
+
 #include "GridNode.hpp"
 #include "Vector2f.hpp"
 
+#include "ParticleManager.hpp"
+#include "BloodDrop.hpp"
+
 class Enemy : public Actor {
 public:
-    Enemy();
+    Enemy(ParticleManager & particleManager);
     virtual ~Enemy();
+    
+    void setup();
     
     void draw(sf::RenderTarget&, sf::RenderStates) const override;
     void advanceTime(float deltaTime) override;
     
     void setPath(std::vector<GridNode> path, sf::Vector2f tileSize);
-private:
-    sf::CircleShape circle;
-    sf::RectangleShape rect, movementRect;
     
-    //Movimiento
+    bool damage(float amount);
+    bool giveShot(float damage, const Vector2f& sense);
+private:
+    sf::RectangleShape lifeBar;
+    
+    /// Para la sangre ///
+    ParticleManager& particleManager;
+    
+    /// Movimiento ///
     int currentTarget;
     bool finished;
     std::vector<GridNode> path;
     sf::Vector2f tileSize;
     Vector2f deltaMovement;
-    float angle;
+    float angle, targetAngle;
     
     void calcMovement();
     bool arrivedCurrentTarget();
+    
+    float fixAngle(float angle);
+    
+    /// ANIMACION ///
+    std::vector<sf::Texture*> walkingTextures;
+    
+    int animationFrame;
+    sf::Sprite animation;
+    sf::Clock animationClock;
 };
 
 #endif /* ENEMY_HPP */

@@ -60,10 +60,13 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/e895b6da/TilemapLoader.o \
 	${OBJECTDIR}/Actor.o \
 	${OBJECTDIR}/App.o \
+	${OBJECTDIR}/BloodDrop.o \
 	${OBJECTDIR}/Enemy.o \
 	${OBJECTDIR}/GameScene.o \
 	${OBJECTDIR}/GridMesh.o \
 	${OBJECTDIR}/GridNode.o \
+	${OBJECTDIR}/Particle.o \
+	${OBJECTDIR}/ParticleManager.o \
 	${OBJECTDIR}/Pathfinding.o \
 	${OBJECTDIR}/Player.o \
 	${OBJECTDIR}/Vector2f.o \
@@ -220,6 +223,11 @@ ${OBJECTDIR}/App.o: App.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/App.o App.cpp
 
+${OBJECTDIR}/BloodDrop.o: BloodDrop.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/BloodDrop.o BloodDrop.cpp
+
 ${OBJECTDIR}/Enemy.o: Enemy.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
@@ -239,6 +247,16 @@ ${OBJECTDIR}/GridNode.o: GridNode.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/GridNode.o GridNode.cpp
+
+${OBJECTDIR}/Particle.o: Particle.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Particle.o Particle.cpp
+
+${OBJECTDIR}/ParticleManager.o: ParticleManager.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ParticleManager.o ParticleManager.cpp
 
 ${OBJECTDIR}/Pathfinding.o: Pathfinding.tpp
 	${MKDIR} -p ${OBJECTDIR}

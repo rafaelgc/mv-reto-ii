@@ -15,12 +15,11 @@
 #define GAMESCENE_HPP
 
 #include <ESE/Core/Scene.hpp>
-//#include "AStar.hpp"
+#include <ESE/AI/Pathfinding.hpp>
 
 #include "Player.hpp"
 #include "Enemy.hpp"
 
-#include "Pathfinding.hpp"
 #include "GridMesh.hpp"
 #include "GridNode.hpp"
 
@@ -36,6 +35,8 @@ public:
     void logic(float deltaTime);
     void render();
     
+    void addRandomEnemy(int side = -1);
+    std::vector<Enemy>& getEnemies();
 private:
     static const int WIDTH = 20;
     static const int HEIGHT = 15;
@@ -43,15 +44,17 @@ private:
     sf::Vector2f tileSize;
     
     sf::RectangleShape tiles[3];
-    sf::CircleShape character;
     std::vector<GridNode> characterPath;
     
     Player player;
     std::vector<Enemy> enemies;
+    sf::Clock enemiesSpawnClock;
     GridMesh mesh;
     
-    AStarAlgorithm<GridNode> pathfinding;
+    ESE::Pathfinding<GridNode> pathfinding;
     sf::Clock pathfindingClock;
+    
+    ParticleManager particleManager;
 };
 
 #endif /* GAMESCENE_HPP */

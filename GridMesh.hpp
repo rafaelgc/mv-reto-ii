@@ -14,10 +14,10 @@
 #ifndef GRIDMESH_HPP
 #define GRIDMESH_HPP
 
-#include "Pathfinding.hpp"
+#include <ESE/AI/Pathfinding.hpp>
 #include "GridNode.hpp"
 
-class GridMesh : public IMesh<GridNode> {
+class GridMesh : public ESE::IMesh<GridNode> {
 private:
     int *map, width, height;
 public:

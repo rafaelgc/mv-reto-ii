@@ -28,8 +28,12 @@ public:
     void setPosition(const sf::Vector2f&);
     const sf::Vector2f getPosition() const;
     
+    bool damage(float amount);
+    bool isAlive() const;
+    
 protected:
     sf::Vector2f position;
+    float life;
 };
 
 #endif /* ACTOR_HPP */

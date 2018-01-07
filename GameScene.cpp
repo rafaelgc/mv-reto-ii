@@ -13,8 +13,32 @@
 
 #include "GameScene.hpp"
 #include "Enemy.hpp"
+#include "ESE/Core/Textures.hpp"
+#include "ESE/Core/SoundBuffers.hpp"
+#include <ESE/Core/Textures.hpp>
 
-GameScene::GameScene(sf::RenderWindow * window) : mesh(WIDTH, HEIGHT, map[0]), pathfinding(mesh), player(*this->window), /*pathfinding2(WIDTH, HEIGHT, map[0]), */ESE::Scene("GameScene", window) {
+GameScene::GameScene(sf::RenderWindow * window) : mesh(WIDTH, HEIGHT, map[0]), pathfinding(mesh), player(*this->window, *this), /*pathfinding2(WIDTH, HEIGHT, map[0]), */ESE::Scene("GameScene", window) {
+    
+    ESE::Textures::instance().loadFromFile("shoot_fire", "images/shoot.png");
+    
+    ESE::Textures::instance().loadFromFile("survivor_idle_feet", "images/feet/idle/survivor-idle_0.png");
+    for (int i = 0; i <= 19; i++) {
+        ESE::Textures::instance().loadFromFile("survivor_rifle_idle_" + std::to_string(i) ,"images/rifle/idle/survivor-idle_rifle_" + std::to_string(i) + ".png");
+        ESE::Textures::instance().loadFromFile("survivor_rifle_move_" + std::to_string(i) ,"images/rifle/move/survivor-move_rifle_" + std::to_string(i) + ".png");
+        
+        ESE::Textures::instance().loadFromFile("survivor_walk_" + std::to_string(i) ,"images/feet/run/survivor-run_" + std::to_string(i) + ".png");
+    }
+    
+    for (int i = 0; i <= 2; i++) {
+        ESE::Textures::instance().loadFromFile("survivor_shoot_rifle_" + std::to_string(i), "images/rifle/shoot/survivor-shoot_rifle_" + std::to_string(i) + ".png");
+    }
+    
+    for (int i = 0; i <= 16; i++) {
+        ESE::Textures::instance().loadFromFile("zombie_" + std::to_string(i), "images/zombie_walking/skeleton-move_" + std::to_string(i) + ".png");
+    }
+    
+    ESE::SoundBuffers::instance().loadFromFile("shot", "sounds/ren.ogg");
+    
     
 }
 
@@ -22,6 +46,9 @@ GameScene::~GameScene() {
 }
 
 void GameScene::setup() {
+    
+    player.setup();
+    
     tileSize = sf::Vector2f(window->getSize().x / WIDTH, window->getSize().y / HEIGHT);
     
     for (int y = 0; y < HEIGHT; y++) {
@@ -39,19 +66,15 @@ void GameScene::setup() {
     tiles[2].setSize(tileSize);
     tiles[2].setFillColor(sf::Color(0, 150, 0));
     
-    character.setRadius(tileSize.x / 2);
-    character.setFillColor(sf::Color::White);
-    character.setPosition(character.getRadius(), character.getRadius());
-    character.setOrigin(character.getRadius(), character.getRadius());
-    
-    //enemy.setPosition(sf::Vector2f(200, 200));
-    
-    for (int i = 0; i < 2; i++) {
-        Enemy enemy;
+    /*for (int i = 0; i < 1; i++) {
+        Enemy enemy(particleManager);
         enemy.setPosition(sf::Vector2f(rand() % window->getSize().x, rand() % window->getSize().y));
+        enemy.setup();
         
         enemies.push_back(enemy);
-    }
+    }*/
+    addRandomEnemy(0);
+    
     
     pathfindingClock.restart();
     
@@ -82,9 +105,16 @@ void GameScene::manageEvents(float deltaTime) {
 
 void GameScene::logic(float deltaTime) {
     player.advanceTime(deltaTime);
+    
+    if (enemiesSpawnClock.getElapsedTime().asSeconds() > 5) {
+        addRandomEnemy();
+        enemiesSpawnClock.restart();
+    }
+    
     for (auto &enemy : enemies) {
         enemy.advanceTime(deltaTime);
     }
+    
     
     if (pathfindingClock.getElapsedTime().asSeconds() > 1) {
         
@@ -104,6 +134,8 @@ void GameScene::logic(float deltaTime) {
         pathfindingClock.restart();
     }
     
+    particleManager.advanceTime(deltaTime);
+   
 }
 
 void GameScene::render() {
@@ -119,5 +151,40 @@ void GameScene::render() {
     }
     
     draw(player);
-    //draw(character);
+    
+    draw(particleManager);
+}
+
+std::vector<Enemy>& GameScene::getEnemies() {
+    return enemies;
+}
+
+void GameScene::addRandomEnemy(int pside) {
+    std::cout << pside << std::endl;
+    int side = (pside != -1) ? 0 : rand() % 3;
+    
+    Enemy e(particleManager);
+    e.setup();
+    
+    
+    //Aparece arriba izda.
+    if (side == 0) {
+        std::cout << "Arriba izda" << std::endl;
+        e.setPosition(sf::Vector2f(0, 0));
+    }
+    else if (side == 1) {
+        //Arriba dcha.
+        e.setPosition(sf::Vector2f(window->getSize().x, 0));
+    }
+    else if (side == 2) {
+        //Abajo dcha.
+        e.setPosition(sf::Vector2f(window->getSize().x, window->getSize().y));
+    }
+    else {
+        //Abajo izda.
+        e.setPosition(sf::Vector2f(0, window->getSize().y));
+        std::cout << "Abajo izda" << std::endl;
+    }
+    
+    enemies.push_back(e);
 }
