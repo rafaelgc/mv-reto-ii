@@ -5,13 +5,12 @@
         <data xmlns="http://www.netbeans.org/ns/make-project/1">
             <name>Pathfinding</name>
             <c-extensions/>
-            <cpp-extensions>cpp,tpp</cpp-extensions>
+            <cpp-extensions>cpp</cpp-extensions>
             <header-extensions>hpp</header-extensions>
             <sourceEncoding>UTF-8</sourceEncoding>
             <make-dep-projects/>
             <sourceRootList>
-                <sourceRootElem>../ESE/src</sourceRootElem>
-                <sourceRootElem>../ESE/include/ESE</sourceRootElem>
+                <sourceRootElem>../ESE</sourceRootElem>
             </sourceRootList>
             <confList>
                 <confElem>

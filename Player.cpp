@@ -18,6 +18,7 @@
 #include <SFML/Window/Mouse.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/OpenGL.hpp>
+#include <cmath>
 
 #include "Player.hpp"
 #include "Vector2f.hpp"
@@ -31,7 +32,7 @@
 Player::Player(sf::RenderWindow& renderWindow, GameScene& gameScene) : renderWindow(renderWindow), gameScene(gameScene), triangle(10, 3) {
     
     speed = 150.f;
-    teleportSpeed = 1550.f;
+    teleportSpeed = 1500.f;
     maxTeleport = 400.f;
     teleportDistance = 0.f;
     
@@ -77,6 +78,9 @@ void Player::setup() {
     playerSprite.setScale(0.4, 0.4);
     playerSprite.setOrigin(96, 119);
     
+    shadowPlayerSprite = playerSprite;
+    shadowPlayerSprite.setColor(sf::Color(0, 0, 0, 100));
+    
     animationClock.restart();
     feetAnimationClock.restart();
     
@@ -92,7 +96,7 @@ void Player::setup() {
     shootSprite.setScale(0.1, 0.1);
     
     shotSound.setBuffer(*ESE::SoundBuffers::instance().getResource("shot"));
-    
+    shotSound.setVolume(10);
     lastShoot.restart();
 }
 
@@ -102,10 +106,12 @@ void Player::draw(sf::RenderTarget& rt, sf::RenderStates rs) const {
         rt.draw(triangle), rs;
     }
     
+    rt.draw(shadowPlayerSprite, rs);
+    
     sf::Sprite trailSprite = playerSprite;
     for (int i = 0; i < trailIndex; i++) {
         if (trails[i].visible) {
-            float alpha = 100 * (1 - trails[i].clock.getElapsedTime().asSeconds() / fadeTime);
+            float alpha = 100 * (1 - std::min(trails[i].clock.getElapsedTime().asSeconds() / fadeTime, 1.f));
             
             trailSprite.setColor(sf::Color(255, 255, 255, alpha));
             trailSprite.setPosition(trails[i].pos);
@@ -126,8 +132,9 @@ void Player::draw(sf::RenderTarget& rt, sf::RenderStates rs) const {
 }
 
 void Player::advanceTime(float deltaTime) {
-    
     playerSprite.setPosition(position);
+    shadowPlayerSprite.setPosition(position + sf::Vector2f(20, 20));
+    
     feetSprite.setPosition(position);
     shootSprite.setPosition(position);
     
@@ -142,6 +149,7 @@ void Player::advanceTime(float deltaTime) {
         if (currentFrame >= currentAnimation->size()) { currentFrame = 0; }
         
         playerSprite.setTexture(*currentAnimation->at(currentFrame));
+        shadowPlayerSprite.setTexture(*currentAnimation->at(currentFrame));
         animationClock.restart();
     }
     
@@ -185,16 +193,25 @@ void Player::advanceTime(float deltaTime) {
     
 }
 
-void Player::manageEvents(float deltaTime) {
-    sf::Vector2i currMousePos = sf::Mouse::getPosition(renderWindow);
+void Player::manageEvents(float deltaTime) {\
+    sf::Vector2f currMousePos = gameScene.getWindow().mapPixelToCoords(sf::Mouse::getPosition(renderWindow)); // Posición del ratón respecto al mundo.
+    
+    
     Vector2f a(currMousePos.x, currMousePos.y);
     Vector2f b(position.x, position.y);
 
-    //Para calcular el ángulo del ratón respecto al jugador.
+    /// ROTACIÓN DEL JUGADOR ///
     lookAt = a.minus(b);
-    float angle = atan2(-lookAt.getX(), lookAt.getY()) * 57.29;
+    float angle = std::atan2(-lookAt.getX(), lookAt.getY()) * 57.29;
     
+    /// ACTUALIZACIÓN DE LA POSICION DE LA CAMARA ///
+    this->gameScene.getOrigin().x = position.x + (currMousePos.x - position.x) / 4;
+    this->gameScene.getOrigin().y = position.y + (currMousePos.y - position.y) / 4;
+    
+    /// APLICAR CAMBIOS A LOS SPRITES ///
     playerSprite.setRotation(angle + 90);
+    shadowPlayerSprite.setRotation(angle + 90);
+    
     feetSprite.setRotation(angle + 90);
     shootSprite.setRotation(angle + 90);
     
@@ -204,8 +221,9 @@ void Player::manageEvents(float deltaTime) {
         
         if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
             if (lastShoot.getElapsedTime().asSeconds() > 0.1) {
-                for (Enemy& enemy : gameScene.getEnemies()) {
-                    Vector2f playerEnemy(enemy.getPosition().x, enemy.getPosition().y);
+                
+                for (Enemy* enemy : gameScene.getEnemies()) {
+                    Vector2f playerEnemy(enemy->getPosition().x, enemy->getPosition().y);
                     playerEnemy = playerEnemy.minus(Vector2f(position.x, position.y));
 
                     float projection = playerEnemy.dot(lookAt) / lookAt.length();
@@ -214,10 +232,10 @@ void Player::manageEvents(float deltaTime) {
                     // se dispara tanto de frente como de espaldas.
                     Vector2f vProjection = lookAt.normalized().mult(fabs(projection));
 
-                    float distance = Vector2f(position.x, position.y).plus(vProjection).minus(Vector2f(enemy.getPosition().x, enemy.getPosition().y)).length();
+                    float distance = Vector2f(position.x, position.y).plus(vProjection).minus(Vector2f(enemy->getPosition().x, enemy->getPosition().y)).length();
 
-                    if (distance < 20) {
-                        enemy.giveShot(20, lookAt);
+                    if (distance < 30) {
+                        enemy->giveShot(20, lookAt);
                     }
 
                 }
@@ -234,25 +252,33 @@ void Player::manageEvents(float deltaTime) {
         
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
             position.y -= speed * deltaTime;
-            
+            if (!gameScene.isValidPosition(sf::Vector2f(position))) {
+                position.y += speed * deltaTime;
+            }
             moving = true;
         }
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
             position.x -= speed * deltaTime;
-            
+            if (!gameScene.isValidPosition(sf::Vector2f(position))) {
+                position.x += speed * deltaTime;
+            }
             moving = true;
         }
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
             position.y += speed * deltaTime;
-            
+            if (!gameScene.isValidPosition(sf::Vector2f(position))) {
+                position.y -= speed * deltaTime;
+            }
             moving = true;
         }
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
             position.x += speed * deltaTime;
-            
+            if (!gameScene.isValidPosition(sf::Vector2f(position))) {
+                position.x -= speed * deltaTime;
+            }
             moving = true;
         }
     }
@@ -269,7 +295,7 @@ void Player::manageEvents(float deltaTime) {
     
     if (sf::Mouse::isButtonPressed(sf::Mouse::Right)) {
         if (lMouseBtnReleased) {
-            pressedPos = sf::Mouse::getPosition(renderWindow);
+            pressedPos = this->gameScene.getWindow().mapPixelToCoords(sf::Mouse::getPosition(renderWindow));
             
             Vector2f a(pressedPos.x, pressedPos.y);
             Vector2f b(position.x, position.y);
@@ -306,14 +332,16 @@ void Player::manageEvents(float deltaTime) {
     }
     else {
         if (!lMouseBtnReleased && !teleporting) {
-            
-            teleporting = true;
-            teleportingClock.restart();
-            
-            trailIndex = 0;
-            trailGenerationClock.restart();
-            
-            originalPosition.set(position.x, position.y);
+            //Comprobar que la posición de destino sea válida.
+            if (gameScene.isValidPosition(position + teleportVector.mult(teleportDistance).toSfml())) {
+                teleporting = true;
+                teleportingClock.restart();
+
+                trailIndex = 0;
+                trailGenerationClock.restart();
+
+                originalPosition.set(position.x, position.y);
+            }
         }
         lMouseBtnReleased = true;
     }

@@ -105,7 +105,6 @@ Vector2f& Vector2f::rotate(float angle) {
 
 Vector2f Vector2f::rotated(float angle) const {
     angle /= (180 / M_PI);
-    float cx = x;
     
     return Vector2f(cos(angle) * x - sin(angle) * y, sin(angle) * x + cos(angle) * y);
 }

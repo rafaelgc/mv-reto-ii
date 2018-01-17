@@ -38,6 +38,11 @@ public:
     
     bool damage(float amount);
     bool giveShot(float damage, const Vector2f& sense);
+    
+    void setAngleTarget(float angle) {
+        this->targetAngle = angle;
+    }
+    
 private:
     sf::RectangleShape lifeBar;
     
@@ -57,11 +62,12 @@ private:
     
     float fixAngle(float angle);
     
+    
     /// ANIMACION ///
     std::vector<sf::Texture*> walkingTextures;
     
     int animationFrame;
-    sf::Sprite animation;
+    sf::Sprite animation, shadowAnimation;
     sf::Clock animationClock;
 };
 

@@ -18,13 +18,14 @@
 #include "BloodDrop.hpp"
 #include "Vector2f.hpp"
 
-BloodDrop::BloodDrop(const Vector2f& position, const Vector2f& speed) : Particle(position, speed) {
+BloodDrop::BloodDrop(const Vector2f& position, const Vector2f& speed, float alphaFactor) : Particle(position, speed) {
     time.restart();
     rnd = (rand() % 100) / 100.0;
     circle.setFillColor(sf::Color::Red);
-    circle.setRadius(1);
+    circle.setRadius(2);
     
     alpha = 255;
+    this->alphaFactor = alphaFactor;
 }
 
 BloodDrop::~BloodDrop() {
@@ -37,9 +38,9 @@ void BloodDrop::draw(sf::RenderTarget& rt, sf::RenderStates rs) const {
 void BloodDrop::advanceTime(float deltaTime) {
     Particle::advanceTime(deltaTime);
     
-    circle.setFillColor(sf::Color(130, 0, 0, alpha));
-    alpha -= deltaTime * 1000;
+    alpha -= deltaTime * alphaFactor;
     if (alpha < 0) { alpha = 0; }
+    circle.setFillColor(sf::Color(130, 0, 0, alpha));
     
     circle.setPosition(position.toSfml());
 }

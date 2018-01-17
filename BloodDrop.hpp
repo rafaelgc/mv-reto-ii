@@ -20,7 +20,7 @@
 class BloodDrop : public Particle {
 public:
     BloodDrop();
-    BloodDrop(const Vector2f& position, const Vector2f& speed);
+    BloodDrop(const Vector2f& position, const Vector2f& speed, float alphaFactor = 1000);
     virtual ~BloodDrop();
     
     void draw(sf::RenderTarget&, sf::RenderStates) const override;
@@ -30,7 +30,7 @@ public:
 private:
     sf::CircleShape circle;
     sf::Clock time;
-    float rnd, alpha;
+    float rnd, alpha, alphaFactor;
 };
 
 #endif /* BLOODDROP_HPP */

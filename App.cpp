@@ -15,9 +15,9 @@
 
 #include "App.hpp"
 
-App::App() : gameScene(&this->window) {
+App::App() : gameScene(this->window) {
     //getWindow().create();
-    window.create(sf::VideoMode(800, 600), "Pathfinding");
+    window.create(sf::VideoMode(800, 600), "mediavida-reto-i");
     
     gameScene.setup();
     

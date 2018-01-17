@@ -27,6 +27,8 @@ Enemy::Enemy(ParticleManager& particleManager) : particleManager(particleManager
     
     lifeBar.setSize(sf::Vector2f(50, 3));
     lifeBar.setFillColor(sf::Color::Red);
+    
+    angle = 0.0;
 }
 
 Enemy::~Enemy() {
@@ -42,10 +44,14 @@ void Enemy::setup() {
     
     animation.scale(0.35, 0.35);
     animation.setOrigin(107, 169);
+    
+    shadowAnimation = animation;
+    shadowAnimation.setColor(sf::Color(0, 0, 0, 100));
 }
 
 void Enemy::draw(sf::RenderTarget& rt, sf::RenderStates rs) const {
     if (!isAlive()) return;
+    rt.draw(shadowAnimation);
     rt.draw(animation, rs);
     rt.draw(lifeBar, rs);
 }
@@ -67,43 +73,48 @@ void Enemy::advanceTime(float deltaTime) {
         }
     }
     
+    
+    
     /// ACTUALIZACION DE LA ANIMACION ///
     if (animationClock.getElapsedTime().asSeconds() > 0.1) {
         animationFrame++;
         if (animationFrame >= walkingTextures.size()) { animationFrame = 0; }
         animation.setTexture(*walkingTextures[animationFrame]);
+        shadowAnimation.setTexture(*walkingTextures[animationFrame]);
         
         animationClock.restart();
     }
     
-    /// ACTUALIZACION DE LA POSICION Y ROTACION ///
-    if (fabs(angle - targetAngle) > 2) {
-        angle = fixAngle(angle);
-        targetAngle = fixAngle(targetAngle);
-
-        if(angle < targetAngle) {
-            if(abs(angle - targetAngle) < 180) {
-                angle += 180 * deltaTime;
-            }
-            else {
-                angle -= 180 * deltaTime;
-            }
+    /// DETERMINAR EL SENTIDO DE GIRO ///
+    targetAngle = fixAngle(targetAngle);
+    angle = fixAngle(angle);
+    if (targetAngle > angle) {
+        if (targetAngle - angle < 180) {
+            /// Antihorario
+            angle += 180 * deltaTime;
         }
-
         else {
-            if(abs(angle - targetAngle) < 180) {
-                angle -= 180 * deltaTime;
-            }
-            else {
-                angle += 180 * deltaTime;
-            }
+            /// Horario
+            angle -= 180 * deltaTime;
         }
-           
-        animation.setRotation(angle + 90);
+    }
+    else {
+        if (angle - targetAngle < 180) {
+            /// Antihorario
+            angle -= 180 * deltaTime;
+        }
+        else {
+            /// Horario
+            angle += 180 * deltaTime;
+        }
     }
     
+    animation.setRotation(angle + 90);
+    shadowAnimation.setRotation(angle + 90);
+    
     animation.setPosition(position);
-    lifeBar.setPosition(position);
+    shadowAnimation.setPosition(position + sf::Vector2f(20, 20));
+    lifeBar.setPosition(position - sf::Vector2f(lifeBar.getSize().x / 2, 40));
     
 }
 
@@ -122,6 +133,9 @@ void Enemy::setPath(std::vector<GridNode> path, sf::Vector2f tileSize) {
         finished = false;
         calcMovement();
     }
+    else {
+        finished = true;
+    }
 }
 
 void Enemy::calcMovement() {
@@ -129,7 +143,9 @@ void Enemy::calcMovement() {
     deltaMovement.setY(this->path[currentTarget].getPosition().y * this->tileSize.y + this->tileSize.y / 2 - getPosition().y);
     deltaMovement.normalize();
     
-    targetAngle = atan2(-deltaMovement.getX(), deltaMovement.getY()) * (180 / M_PI);
+    targetAngle = fixAngle(atan2(-deltaMovement.getX(), deltaMovement.getY()) * (180 / M_PI));
+    
+    //std::cout << "Calc angle: " << targetAngle << std::endl;
 }
 
 bool Enemy::arrivedCurrentTarget() {
@@ -152,7 +168,39 @@ bool Enemy::damage(float amount) {
 }
 
 bool Enemy::giveShot(float d, const Vector2f& sense) {
-    bool r = damage(d);
+    bool dead = damage(d);
+    
+    if (dead) {
+        /// Explosión de sangre.
+        
+        Vector2f sense(1, 0);
+        for (int i = 0; i < 360; i++) {
+            Vector2f s = sense.rotated(i).mult(500 * (rand() % 100) / 100);
+            particleManager.addParticle(
+                new BloodDrop(
+                    Vector2f(position), 
+                    s
+                )
+            );
+            s.mult(0.5);
+            particleManager.addParticle(
+                new BloodDrop(
+                    Vector2f(position), 
+                    s, 2000
+                )
+            );
+            
+            s.mult(0.5);
+            particleManager.addParticle(
+                new BloodDrop(
+                    Vector2f(position), 
+                    s, 2000
+                )
+            );
+        }
+        
+        return dead;
+    }
     
     std::default_random_engine generator;
     std::normal_distribution<float> distribution(45.0,5.0);
@@ -168,5 +216,18 @@ bool Enemy::giveShot(float d, const Vector2f& sense) {
         );
     }
     
-    return r;
+    std::normal_distribution<float> distribution2(45.0,15.0);
+    for (int i = 0; i < 20; i++) {
+        float rotation = distribution2(generator);
+        Vector2f senseN = sense.normalized().mult(500 + rand() % 300).mult(-1);
+        particleManager.addParticle(
+            new BloodDrop(
+                    Vector2f(position), 
+                    senseN.rotated(rotation - 45),
+                    2000
+            )
+        );
+    }
+    
+    return dead;
 }

@@ -18,6 +18,7 @@
           <itemPath>../ESE/include/ESE/Core/Layer.hpp</itemPath>
           <itemPath>../ESE/include/ESE/Core/Log.hpp</itemPath>
           <itemPath>../ESE/include/ESE/Core/RenderManager.hpp</itemPath>
+          <itemPath>../ESE/include/ESE/Core/ResourceLoader.hpp</itemPath>
           <itemPath>../ESE/include/ESE/Core/ResourceManager.hpp</itemPath>
           <itemPath>../ESE/include/ESE/Core/Scene.hpp</itemPath>
           <itemPath>../ESE/include/ESE/Core/SceneManager.hpp</itemPath>
@@ -51,10 +52,19 @@
           <itemPath>../ESE/include/ESE/Text/Text.hpp</itemPath>
         </logicalFolder>
         <logicalFolder name="TileEngine" displayName="TileEngine" projectFiles="true">
-          <itemPath>../ESE/include/ESE/TileEngine/TileDrawable.hpp</itemPath>
-          <itemPath>../ESE/include/ESE/TileEngine/TileLoadedListener.hpp</itemPath>
-          <itemPath>../ESE/include/ESE/TileEngine/TilemapLoader.hpp</itemPath>
+          <logicalFolder name="TiledLoader" displayName="TiledLoader" projectFiles="true">
+            <itemPath>../ESE/include/ESE/TileEngine/TiledLoader/FileNotFoundException.hpp</itemPath>
+            <itemPath>../ESE/include/ESE/TileEngine/TiledLoader/Layer.hpp</itemPath>
+            <itemPath>../ESE/include/ESE/TileEngine/TiledLoader/Map.hpp</itemPath>
+            <itemPath>../ESE/include/ESE/TileEngine/TiledLoader/Object.hpp</itemPath>
+            <itemPath>../ESE/include/ESE/TileEngine/TiledLoader/ObjectLayer.hpp</itemPath>
+            <itemPath>../ESE/include/ESE/TileEngine/TiledLoader/Tile.hpp</itemPath>
+            <itemPath>../ESE/include/ESE/TileEngine/TiledLoader/TiledLoader.hpp</itemPath>
+          </logicalFolder>
+          <itemPath>../ESE/include/ESE/TileEngine/TileSprite.hpp</itemPath>
+          <itemPath>../ESE/include/ESE/TileEngine/TilemapLayer.hpp</itemPath>
           <itemPath>../ESE/include/ESE/TileEngine/TilemapRenderer.hpp</itemPath>
+          <itemPath>../ESE/include/ESE/TileEngine/Tileset.hpp</itemPath>
         </logicalFolder>
       </logicalFolder>
       <itemPath>Actor.hpp</itemPath>
@@ -67,8 +77,12 @@
       <itemPath>Particle.hpp</itemPath>
       <itemPath>ParticleManager.hpp</itemPath>
       <itemPath>Player.hpp</itemPath>
+      <itemPath>Spawn.hpp</itemPath>
+      <itemPath>Task.hpp</itemPath>
+      <itemPath>TaskPool.hpp</itemPath>
       <itemPath>Vector2f.hpp</itemPath>
       <itemPath>Vector3f.hpp</itemPath>
+      <itemPath>Worker.hpp</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -113,8 +127,16 @@
           <itemPath>../ESE/src/ESE/Text/Text.cpp</itemPath>
         </logicalFolder>
         <logicalFolder name="TileEngine" displayName="TileEngine" projectFiles="true">
-          <itemPath>../ESE/src/ESE/TileEngine/TileDrawable.cpp</itemPath>
-          <itemPath>../ESE/src/ESE/TileEngine/TilemapLoader.cpp</itemPath>
+          <logicalFolder name="TiledLoader" displayName="TiledLoader" projectFiles="true">
+            <itemPath>../ESE/src/ESE/TileEngine/TiledLoader/Layer.cpp</itemPath>
+            <itemPath>../ESE/src/ESE/TileEngine/TiledLoader/Map.cpp</itemPath>
+            <itemPath>../ESE/src/ESE/TileEngine/TiledLoader/Object.cpp</itemPath>
+            <itemPath>../ESE/src/ESE/TileEngine/TiledLoader/ObjectLayer.cpp</itemPath>
+            <itemPath>../ESE/src/ESE/TileEngine/TiledLoader/Tile.cpp</itemPath>
+            <itemPath>../ESE/src/ESE/TileEngine/TiledLoader/TiledLoader.cpp</itemPath>
+          </logicalFolder>
+          <itemPath>../ESE/src/ESE/TileEngine/TileSprite.cpp</itemPath>
+          <itemPath>../ESE/src/ESE/TileEngine/Tileset.cpp</itemPath>
         </logicalFolder>
       </logicalFolder>
       <itemPath>Actor.cpp</itemPath>
@@ -126,10 +148,13 @@
       <itemPath>GridNode.cpp</itemPath>
       <itemPath>Particle.cpp</itemPath>
       <itemPath>ParticleManager.cpp</itemPath>
-      <itemPath>Pathfinding.tpp</itemPath>
       <itemPath>Player.cpp</itemPath>
+      <itemPath>Spawn.cpp</itemPath>
+      <itemPath>Task.cpp</itemPath>
+      <itemPath>TaskPool.cpp</itemPath>
       <itemPath>Vector2f.cpp</itemPath>
       <itemPath>Vector3f.cpp</itemPath>
+      <itemPath>Worker.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -145,8 +170,7 @@
     </logicalFolder>
   </logicalFolder>
   <sourceRootList>
-    <Elem>../ESE/src</Elem>
-    <Elem>../ESE/include/ESE</Elem>
+    <Elem>../ESE</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -162,6 +186,7 @@
           <incDir>
             <pElem>../ESE/include/</pElem>
           </incDir>
+          <commandLine>-pthread</commandLine>
         </ccTool>
         <linkerTool>
           <linkerLibItems>
@@ -202,6 +227,11 @@
       <item path="../ESE/include/ESE/Core/Log.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="../ESE/include/ESE/Core/RenderManager.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/Core/ResourceLoader.hpp"
             ex="false"
             tool="3"
             flavor2="0">
@@ -289,22 +319,57 @@
       </item>
       <item path="../ESE/include/ESE/Text/Text.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="../ESE/include/ESE/TileEngine/TileDrawable.hpp"
+      <item path="../ESE/include/ESE/TileEngine/TileSprite.hpp"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../ESE/include/ESE/TileEngine/TileLoadedListener.hpp"
+      <item path="../ESE/include/ESE/TileEngine/TiledLoader/FileNotFoundException.hpp"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../ESE/include/ESE/TileEngine/TilemapLoader.hpp"
+      <item path="../ESE/include/ESE/TileEngine/TiledLoader/Layer.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/TileEngine/TiledLoader/Map.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/TileEngine/TiledLoader/Object.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/TileEngine/TiledLoader/ObjectLayer.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/TileEngine/TiledLoader/Tile.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/TileEngine/TiledLoader/TiledLoader.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/TileEngine/TilemapLayer.hpp"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
       <item path="../ESE/include/ESE/TileEngine/TilemapRenderer.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/TileEngine/Tileset.hpp"
             ex="false"
             tool="3"
             flavor2="0">
@@ -382,12 +447,42 @@
       </item>
       <item path="../ESE/src/ESE/Text/Text.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="../ESE/src/ESE/TileEngine/TileDrawable.cpp"
+      <item path="../ESE/src/ESE/TileEngine/TileSprite.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../ESE/src/ESE/TileEngine/TilemapLoader.cpp"
+      <item path="../ESE/src/ESE/TileEngine/TiledLoader/Layer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../ESE/src/ESE/TileEngine/TiledLoader/Map.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../ESE/src/ESE/TileEngine/TiledLoader/Object.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../ESE/src/ESE/TileEngine/TiledLoader/ObjectLayer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../ESE/src/ESE/TileEngine/TiledLoader/Tile.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../ESE/src/ESE/TileEngine/TiledLoader/TiledLoader.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../ESE/src/ESE/TileEngine/Tileset.cpp"
             ex="false"
             tool="1"
             flavor2="0">
@@ -432,6 +527,18 @@
       </item>
       <item path="Player.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Spawn.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Spawn.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Task.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Task.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TaskPool.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="TaskPool.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Vector2f.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Vector2f.hpp" ex="false" tool="3" flavor2="0">
@@ -439,6 +546,10 @@
       <item path="Vector3f.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Vector3f.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Worker.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Worker.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -501,6 +612,11 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="../ESE/include/ESE/Core/ResourceLoader.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="../ESE/include/ESE/Core/ResourceManager.hpp"
             ex="false"
             tool="3"
@@ -584,22 +700,57 @@
       </item>
       <item path="../ESE/include/ESE/Text/Text.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="../ESE/include/ESE/TileEngine/TileDrawable.hpp"
+      <item path="../ESE/include/ESE/TileEngine/TileSprite.hpp"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../ESE/include/ESE/TileEngine/TileLoadedListener.hpp"
+      <item path="../ESE/include/ESE/TileEngine/TiledLoader/FileNotFoundException.hpp"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../ESE/include/ESE/TileEngine/TilemapLoader.hpp"
+      <item path="../ESE/include/ESE/TileEngine/TiledLoader/Layer.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/TileEngine/TiledLoader/Map.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/TileEngine/TiledLoader/Object.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/TileEngine/TiledLoader/ObjectLayer.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/TileEngine/TiledLoader/Tile.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/TileEngine/TiledLoader/TiledLoader.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/TileEngine/TilemapLayer.hpp"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
       <item path="../ESE/include/ESE/TileEngine/TilemapRenderer.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/TileEngine/Tileset.hpp"
             ex="false"
             tool="3"
             flavor2="0">
@@ -677,12 +828,42 @@
       </item>
       <item path="../ESE/src/ESE/Text/Text.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="../ESE/src/ESE/TileEngine/TileDrawable.cpp"
+      <item path="../ESE/src/ESE/TileEngine/TileSprite.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../ESE/src/ESE/TileEngine/TilemapLoader.cpp"
+      <item path="../ESE/src/ESE/TileEngine/TiledLoader/Layer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../ESE/src/ESE/TileEngine/TiledLoader/Map.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../ESE/src/ESE/TileEngine/TiledLoader/Object.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../ESE/src/ESE/TileEngine/TiledLoader/ObjectLayer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../ESE/src/ESE/TileEngine/TiledLoader/Tile.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../ESE/src/ESE/TileEngine/TiledLoader/TiledLoader.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../ESE/src/ESE/TileEngine/Tileset.cpp"
             ex="false"
             tool="1"
             flavor2="0">
@@ -723,11 +904,21 @@
       </item>
       <item path="ParticleManager.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Pathfinding.tpp" ex="false" tool="1" flavor2="0">
-      </item>
       <item path="Player.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Player.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Spawn.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Spawn.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Task.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Task.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TaskPool.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="TaskPool.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Vector2f.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -736,6 +927,10 @@
       <item path="Vector3f.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Vector3f.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Worker.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Worker.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>

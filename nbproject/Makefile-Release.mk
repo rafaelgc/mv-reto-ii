@@ -56,8 +56,14 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/7f27223d/AABBDetection.o \
 	${OBJECTDIR}/_ext/7f27223d/CircleCollisionDetection.o \
 	${OBJECTDIR}/_ext/c1bc7cf7/Text.o \
-	${OBJECTDIR}/_ext/e895b6da/TileDrawable.o \
-	${OBJECTDIR}/_ext/e895b6da/TilemapLoader.o \
+	${OBJECTDIR}/_ext/e895b6da/TileSprite.o \
+	${OBJECTDIR}/_ext/24ae7354/Layer.o \
+	${OBJECTDIR}/_ext/24ae7354/Map.o \
+	${OBJECTDIR}/_ext/24ae7354/Object.o \
+	${OBJECTDIR}/_ext/24ae7354/ObjectLayer.o \
+	${OBJECTDIR}/_ext/24ae7354/Tile.o \
+	${OBJECTDIR}/_ext/24ae7354/TiledLoader.o \
+	${OBJECTDIR}/_ext/e895b6da/Tileset.o \
 	${OBJECTDIR}/Actor.o \
 	${OBJECTDIR}/App.o \
 	${OBJECTDIR}/BloodDrop.o \
@@ -67,10 +73,13 @@ OBJECTFILES= \
 	${OBJECTDIR}/GridNode.o \
 	${OBJECTDIR}/Particle.o \
 	${OBJECTDIR}/ParticleManager.o \
-	${OBJECTDIR}/Pathfinding.o \
 	${OBJECTDIR}/Player.o \
+	${OBJECTDIR}/Spawn.o \
+	${OBJECTDIR}/Task.o \
+	${OBJECTDIR}/TaskPool.o \
 	${OBJECTDIR}/Vector2f.o \
 	${OBJECTDIR}/Vector3f.o \
+	${OBJECTDIR}/Worker.o \
 	${OBJECTDIR}/main.o
 
 
@@ -92,11 +101,11 @@ LDLIBSOPTIONS=
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
-	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/pathfinding
+	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/mv-reto-i
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/pathfinding: ${OBJECTFILES}
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/mv-reto-i: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/pathfinding ${OBJECTFILES} ${LDLIBSOPTIONS}
+	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/mv-reto-i ${OBJECTFILES} ${LDLIBSOPTIONS}
 
 ${OBJECTDIR}/_ext/ba21678e/Pathfinding.o: ../ESE/include/ESE/AI/Pathfinding.tpp
 	${MKDIR} -p ${OBJECTDIR}/_ext/ba21678e
@@ -203,15 +212,45 @@ ${OBJECTDIR}/_ext/c1bc7cf7/Text.o: ../ESE/src/ESE/Text/Text.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/c1bc7cf7/Text.o ../ESE/src/ESE/Text/Text.cpp
 
-${OBJECTDIR}/_ext/e895b6da/TileDrawable.o: ../ESE/src/ESE/TileEngine/TileDrawable.cpp
+${OBJECTDIR}/_ext/e895b6da/TileSprite.o: ../ESE/src/ESE/TileEngine/TileSprite.cpp
 	${MKDIR} -p ${OBJECTDIR}/_ext/e895b6da
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/e895b6da/TileDrawable.o ../ESE/src/ESE/TileEngine/TileDrawable.cpp
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/e895b6da/TileSprite.o ../ESE/src/ESE/TileEngine/TileSprite.cpp
 
-${OBJECTDIR}/_ext/e895b6da/TilemapLoader.o: ../ESE/src/ESE/TileEngine/TilemapLoader.cpp
+${OBJECTDIR}/_ext/24ae7354/Layer.o: ../ESE/src/ESE/TileEngine/TiledLoader/Layer.cpp
+	${MKDIR} -p ${OBJECTDIR}/_ext/24ae7354
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/24ae7354/Layer.o ../ESE/src/ESE/TileEngine/TiledLoader/Layer.cpp
+
+${OBJECTDIR}/_ext/24ae7354/Map.o: ../ESE/src/ESE/TileEngine/TiledLoader/Map.cpp
+	${MKDIR} -p ${OBJECTDIR}/_ext/24ae7354
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/24ae7354/Map.o ../ESE/src/ESE/TileEngine/TiledLoader/Map.cpp
+
+${OBJECTDIR}/_ext/24ae7354/Object.o: ../ESE/src/ESE/TileEngine/TiledLoader/Object.cpp
+	${MKDIR} -p ${OBJECTDIR}/_ext/24ae7354
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/24ae7354/Object.o ../ESE/src/ESE/TileEngine/TiledLoader/Object.cpp
+
+${OBJECTDIR}/_ext/24ae7354/ObjectLayer.o: ../ESE/src/ESE/TileEngine/TiledLoader/ObjectLayer.cpp
+	${MKDIR} -p ${OBJECTDIR}/_ext/24ae7354
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/24ae7354/ObjectLayer.o ../ESE/src/ESE/TileEngine/TiledLoader/ObjectLayer.cpp
+
+${OBJECTDIR}/_ext/24ae7354/Tile.o: ../ESE/src/ESE/TileEngine/TiledLoader/Tile.cpp
+	${MKDIR} -p ${OBJECTDIR}/_ext/24ae7354
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/24ae7354/Tile.o ../ESE/src/ESE/TileEngine/TiledLoader/Tile.cpp
+
+${OBJECTDIR}/_ext/24ae7354/TiledLoader.o: ../ESE/src/ESE/TileEngine/TiledLoader/TiledLoader.cpp
+	${MKDIR} -p ${OBJECTDIR}/_ext/24ae7354
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/24ae7354/TiledLoader.o ../ESE/src/ESE/TileEngine/TiledLoader/TiledLoader.cpp
+
+${OBJECTDIR}/_ext/e895b6da/Tileset.o: ../ESE/src/ESE/TileEngine/Tileset.cpp
 	${MKDIR} -p ${OBJECTDIR}/_ext/e895b6da
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/e895b6da/TilemapLoader.o ../ESE/src/ESE/TileEngine/TilemapLoader.cpp
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/e895b6da/Tileset.o ../ESE/src/ESE/TileEngine/Tileset.cpp
 
 ${OBJECTDIR}/Actor.o: Actor.cpp
 	${MKDIR} -p ${OBJECTDIR}
@@ -258,15 +297,25 @@ ${OBJECTDIR}/ParticleManager.o: ParticleManager.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ParticleManager.o ParticleManager.cpp
 
-${OBJECTDIR}/Pathfinding.o: Pathfinding.tpp
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Pathfinding.o Pathfinding.tpp
-
 ${OBJECTDIR}/Player.o: Player.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Player.o Player.cpp
+
+${OBJECTDIR}/Spawn.o: Spawn.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Spawn.o Spawn.cpp
+
+${OBJECTDIR}/Task.o: Task.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Task.o Task.cpp
+
+${OBJECTDIR}/TaskPool.o: TaskPool.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TaskPool.o TaskPool.cpp
 
 ${OBJECTDIR}/Vector2f.o: Vector2f.cpp
 	${MKDIR} -p ${OBJECTDIR}
@@ -277,6 +326,11 @@ ${OBJECTDIR}/Vector3f.o: Vector3f.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Vector3f.o Vector3f.cpp
+
+${OBJECTDIR}/Worker.o: Worker.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Worker.o Worker.cpp
 
 ${OBJECTDIR}/main.o: main.cpp
 	${MKDIR} -p ${OBJECTDIR}

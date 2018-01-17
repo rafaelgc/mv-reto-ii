@@ -17,15 +17,31 @@
 #include <ESE/Core/Scene.hpp>
 #include <ESE/AI/Pathfinding.hpp>
 
+#include <ESE/TileEngine/TilemapRenderer.hpp>
+#include <ESE/TileEngine/TiledLoader/TiledLoader.hpp>
+
 #include "Player.hpp"
+#include "Spawn.hpp"
 #include "Enemy.hpp"
 
 #include "GridMesh.hpp"
 #include "GridNode.hpp"
+#include "Spawn.hpp"
 
-class GameScene : public ESE::Scene {
+
+class Tile : public ESE::TileSprite {
+protected:
+    int type;
 public:
-    GameScene(sf::RenderWindow *windwow);
+    Tile() { type = 0; };
+    void setType(int type) { this->type = type; }
+    int getType() { return type; }
+    
+};
+
+class GameScene : public ESE::Scene, public ESE::IMesh<GridNode>, public ESE::Tiled::TiledLoader {
+public:
+    GameScene(sf::RenderWindow& windwow);
     GameScene(const GameScene& orig);
     virtual ~GameScene();
     
@@ -35,26 +51,59 @@ public:
     void logic(float deltaTime);
     void render();
     
-    void addRandomEnemy(int side = -1);
-    std::vector<Enemy>& getEnemies();
-private:
-    static const int WIDTH = 20;
-    static const int HEIGHT = 15;
-    int map[HEIGHT][WIDTH];
-    sf::Vector2f tileSize;
+    std::vector<Enemy*>& getEnemies();
+    Player& getPlayer();
     
-    sf::RectangleShape tiles[3];
-    std::vector<GridNode> characterPath;
+    sf::IntRect getWorldDimensions() const;
+    sf::IntRect getVisibleArea() const;
+    bool isValidPosition(const sf::Vector2f&) const;
+    
+    sf::Vector2f& getOrigin();
+    
+    ParticleManager& getParticleManager();
+    
+protected:
+    void fixCamera();
+    
+    /// MESH ///
+    /// Hay que implementar estos métodos para poder ejecutar el
+    /// algoritmo de búsqueda.
+    std::vector<GridNode> getAdjacents(const GridNode& node) const;
+    float cost(const GridNode& node1, const GridNode& node2) const;
+    float estimate(const GridNode &node1, const GridNode& node2) const;
+    
+    /// TILEMAP LOADER ///
+    void sizeLoaded(sf::Vector2u mapSize, const sf::Vector2u& tileSize);
+    void layerLoaded(ESE::Tiled::Layer);
+    void objectLayerLoaded(ESE::Tiled::ObjectLayer objectGroup);
+    
+private:
+    // Punto central de la cámara. La clase Player se encarga de
+    // mantenerla centrada en el jugador.
+    sf::Vector2f origin;
     
     Player player;
-    std::vector<Enemy> enemies;
-    sf::Clock enemiesSpawnClock;
-    GridMesh mesh;
+    
+    // Enemigos
+    std::vector<Enemy*> enemies;
+    Spawn sp;
+    std::vector<Spawn> spawnPoints;
     
     ESE::Pathfinding<GridNode> pathfinding;
     sf::Clock pathfindingClock;
     
     ParticleManager particleManager;
+    
+    ESE::TilemapRenderer<Tile> tilemap;
+    ESE::TilemapLayer<Tile>* buildingsLayer;
+    sf::Texture tilesetTexture;
+    ESE::Tileset tileset;
+    
+    sf::IntRect worldDimensions;
+    sf::Vector2u tileSize;
+    
+    /// TILEMAP LOADER ///
+    ESE::TilemapLayer<Tile> currentLayer;
 };
 
 #endif /* GAMESCENE_HPP */

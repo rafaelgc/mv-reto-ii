@@ -43,7 +43,7 @@ private:
     
     bool lMouseBtnReleased;
     sf::Clock pressedTime;
-    sf::Vector2i pressedPos;
+    sf::Vector2f pressedPos;
     
     Vector2f lookAt;
     
@@ -67,6 +67,7 @@ private:
     std::vector<sf::Texture*> idleTextures;
     std::vector<sf::Texture*> feetWalkingTextures;
     sf::Sprite playerSprite, feetSprite;
+    sf::Sprite shadowPlayerSprite;
     
     /// TELETRANSPORTE ///
     sf::RectangleShape movementRect;
