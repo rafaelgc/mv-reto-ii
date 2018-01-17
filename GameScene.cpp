@@ -16,15 +16,14 @@
 #include "ESE/Core/Textures.hpp"
 #include "ESE/Core/SoundBuffers.hpp"
 #include "ESE/Core/ResourceLoader.hpp"
+#include "TaskPool.hpp"
 #include <ESE/Core/Textures.hpp>
 #include <cmath>
 #include <ESE/TileEngine/TiledLoader/TiledLoader.hpp>
 
 GameScene::GameScene(sf::RenderWindow& window) : pathfinding(*this), player(*this->window, *this), ESE::Scene("GameScene", window), sp(*this) {
     /// CARGA DE RECURSOS ///
-    std::cout << "previo" << std::endl;
     ESE::ResourceLoader::load("resources.res");
-    std::cout << "post" << std::endl;
     
     ESE::Textures::instance().loadFromFile("shoot_fire", "images/shoot.png");
     
@@ -60,6 +59,10 @@ GameScene::~GameScene() {
     for (Enemy* e : enemies) {
         delete e;
     }
+    
+    taskPool.stop();
+    
+    taskPool.join();
 }
 
 void GameScene::setup() {
@@ -67,6 +70,8 @@ void GameScene::setup() {
     player.setup();
     
     pathfindingClock.restart();
+    
+    taskPool.addTask(*this);
     
 }
 
@@ -81,15 +86,12 @@ void GameScene::manageEvents(float deltaTime) {
 
     }
     
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::R)) {
-        /*int cx = sf::Mouse::getPosition(*this->window).x / (tiles[0].getSize().x);
-        int cy = sf::Mouse::getPosition(*this->window).y / (tiles[0].getSize().y);
-
-        map[cy][cx] = 1;*/
-    }
-    
     while (this->window->pollEvent(this->events)) {
-        this->checkIfWindowClosed();
+        if (events.type == sf::Event::Closed) {
+            ESE::SceneManager::instance().deactivateAllScenes();
+            
+            
+        }
     }
 }
 
@@ -116,26 +118,7 @@ void GameScene::logic(float deltaTime) {
         }
     }
     
-    /// El algoritmo de búsqueda se ejecuta periódicamente
-    /// para asegurar que los zombies si dirijan a una posición
-    /// actualizada del enemigo.
-    if (pathfindingClock.getElapsedTime().asSeconds() > 1) {
-        for (auto &enemy : enemies) {
-            try {
-                std::vector<GridNode> path = 
-                pathfinding.getPath(GridNode(enemy->getPosition().x / 32, enemy->getPosition().y / 32),
-                    GridNode(player.getPosition().x / 32, player.getPosition().y / 32));
-
-                enemy->setPath(path, sf::Vector2f(32, 32));
-
-            } catch (std::exception e) {
-                //El objetivo es inalcanzable.
-                enemy->setPath(std::vector<GridNode>(), sf::Vector2f(32, 32));
-            }
-        }
-        
-        pathfindingClock.restart();
-    }
+    
     
     /// Puntos de aparición de los enemigos
     for (auto& spawn : this->spawnPoints) {
@@ -163,6 +146,34 @@ void GameScene::render() {
     draw(player);
     
     draw(particleManager);
+}
+
+bool GameScene::work() {
+    /// El algoritmo de búsqueda se ejecuta periódicamente
+    /// para asegurar que los zombies si dirijan a una posición
+    /// actualizada del enemigo.
+    //std::cout << "Run task" << std::endl;
+    //if (pathfindingClock.getElapsedTime().asSeconds() > 1) {
+        std::cout << "Run algorithm" << std::endl;
+        for (auto &enemy : enemies) {
+            try {
+                std::vector<GridNode> path = 
+                pathfinding.getPath(GridNode(enemy->getPosition().x / 32, enemy->getPosition().y / 32),
+                    GridNode(player.getPosition().x / 32, player.getPosition().y / 32));
+
+                enemy->setPath(path, sf::Vector2f(32, 32));
+
+            } catch (std::exception e) {
+                //El objetivo es inalcanzable.
+                enemy->setPath(std::vector<GridNode>(), sf::Vector2f(32, 32));
+            }
+        }
+        
+    //    pathfindingClock.restart();
+    //}
+        std::this_thread::sleep_for(std::chrono::seconds(1));
+    
+    return false;
 }
 
 std::vector<Enemy*>& GameScene::getEnemies() {

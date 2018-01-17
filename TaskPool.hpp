@@ -26,13 +26,13 @@
 class TaskPool {
 public:
     TaskPool();
-    //TaskPool(const TaskPool& orig);
     virtual ~TaskPool();
     
     void addTask(Task& task);
     
     void work();
     void join();
+    void stop();
 protected:
 private:
     std::queue<Task*> pendantTasks;
@@ -44,6 +44,8 @@ private:
     
     std::condition_variable cv;
     std::unique_lock<std::mutex> uniqueLock;
+    
+    bool stopped;
 };
 
 #endif /* TASKPOOL_HPP */

@@ -27,7 +27,8 @@
 #include "GridMesh.hpp"
 #include "GridNode.hpp"
 #include "Spawn.hpp"
-
+#include "Task.hpp"
+#include "TaskPool.hpp"
 
 class Tile : public ESE::TileSprite {
 protected:
@@ -39,7 +40,7 @@ public:
     
 };
 
-class GameScene : public ESE::Scene, public ESE::IMesh<GridNode>, public ESE::Tiled::TiledLoader {
+class GameScene : public ESE::Scene, public ESE::IMesh<GridNode>, public ESE::Tiled::TiledLoader, public Task {
 public:
     GameScene(sf::RenderWindow& windwow);
     GameScene(const GameScene& orig);
@@ -64,6 +65,9 @@ public:
     
 protected:
     void fixCamera();
+    
+    /// TASK PARA EJECUTAR EL PATHFINDING EN OTRO HILO ///
+    bool work();
     
     /// MESH ///
     /// Hay que implementar estos métodos para poder ejecutar el
@@ -91,6 +95,7 @@ private:
     
     ESE::Pathfinding<GridNode> pathfinding;
     sf::Clock pathfindingClock;
+    TaskPool taskPool;
     
     ParticleManager particleManager;
     
@@ -104,6 +109,7 @@ private:
     
     /// TILEMAP LOADER ///
     ESE::TilemapLayer<Tile> currentLayer;
+    
 };
 
 #endif /* GAMESCENE_HPP */

@@ -28,6 +28,7 @@ public:
     bool isFree() const;
     void work();
     void join();
+    void stop();
     
 private:
     std::thread thread;
@@ -37,6 +38,8 @@ private:
     std::condition_variable cv;
     std::condition_variable *poolCv;
     std::unique_lock<std::mutex> uniqueLock;
+    
+    bool stopped;
 };
 
 #endif /* WORKER_HPP */

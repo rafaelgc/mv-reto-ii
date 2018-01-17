@@ -21,6 +21,7 @@ Worker::Worker(std::condition_variable& poolCv) : uniqueLock(mtx) {
     task = nullptr;
     this->poolCv = &poolCv;
     thread = std::thread(&Worker::work, this);
+    stopped = false;
 }
 
 Worker::~Worker() {
@@ -41,23 +42,29 @@ bool Worker::isFree() const {
 }
 
 void Worker::work() {
-    while (true) {
-        //std::cout << "Waiting" << std::endl;
+    while (!stopped) {
         
         if (!isFree()) {
-            //std::cout << "Run" << std::endl;
             if (this->task->work()) {
                 task = nullptr;
+                // Cuando la tarea ha terminado de ejecutarse (ha devuelto true)
+                // se notifica al pool para que sepa que puede mener aquí una
+                // nueva tarea.
                 if (poolCv) {
                     poolCv->notify_all();
+                    
+                    cv.wait(uniqueLock);
                 }
             }
         }
         
-        cv.wait(uniqueLock);
     }
 }
 
 void Worker::join() {
     thread.join();
+}
+
+void Worker::stop() {
+    stopped = true;
 }
