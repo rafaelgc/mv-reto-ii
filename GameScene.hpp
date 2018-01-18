@@ -20,6 +20,9 @@
 #include <ESE/TileEngine/TilemapRenderer.hpp>
 #include <ESE/TileEngine/TiledLoader/TiledLoader.hpp>
 
+#include <ESE/Concurrency/TaskPool.hpp>
+#include <ESE/Concurrency/Task.hpp>
+
 #include "Player.hpp"
 #include "Spawn.hpp"
 #include "Enemy.hpp"
@@ -27,8 +30,6 @@
 #include "GridMesh.hpp"
 #include "GridNode.hpp"
 #include "Spawn.hpp"
-#include "Task.hpp"
-#include "TaskPool.hpp"
 
 class Tile : public ESE::TileSprite {
 protected:
@@ -40,7 +41,7 @@ public:
     
 };
 
-class GameScene : public ESE::Scene, public ESE::IMesh<GridNode>, public ESE::Tiled::TiledLoader, public Task {
+class GameScene : public ESE::Scene, public ESE::IMesh<GridNode>, public ESE::Tiled::TiledLoader, public ESE::Task {
 public:
     GameScene(sf::RenderWindow& windwow);
     GameScene(const GameScene& orig);
@@ -95,7 +96,7 @@ private:
     
     ESE::Pathfinding<GridNode> pathfinding;
     sf::Clock pathfindingClock;
-    TaskPool taskPool;
+    ESE::TaskPool taskPool;
     
     ParticleManager particleManager;
     

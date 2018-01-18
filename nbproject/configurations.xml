@@ -9,6 +9,11 @@
           <itemPath>../ESE/include/ESE/AI/Pathfinding.hpp</itemPath>
           <itemPath>../ESE/include/ESE/AI/Pathfinding.tpp</itemPath>
         </logicalFolder>
+        <logicalFolder name="Concurrency" displayName="Concurrency" projectFiles="true">
+          <itemPath>../ESE/include/ESE/Concurrency/Task.hpp</itemPath>
+          <itemPath>../ESE/include/ESE/Concurrency/TaskPool.hpp</itemPath>
+          <itemPath>../ESE/include/ESE/Concurrency/Worker.hpp</itemPath>
+        </logicalFolder>
         <logicalFolder name="Core" displayName="Core" projectFiles="true">
           <itemPath>../ESE/include/ESE/Core/Animatable.hpp</itemPath>
           <itemPath>../ESE/include/ESE/Core/AnimatableContainer.hpp</itemPath>
@@ -79,11 +84,8 @@
       <itemPath>ParticleManager.hpp</itemPath>
       <itemPath>Player.hpp</itemPath>
       <itemPath>Spawn.hpp</itemPath>
-      <itemPath>Task.hpp</itemPath>
-      <itemPath>TaskPool.hpp</itemPath>
       <itemPath>Vector2f.hpp</itemPath>
       <itemPath>Vector3f.hpp</itemPath>
-      <itemPath>Worker.hpp</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -93,6 +95,11 @@
                    displayName="Source Files"
                    projectFiles="true">
       <logicalFolder name="ESE" displayName="ESE" projectFiles="true">
+        <logicalFolder name="Concurrency" displayName="Concurrency" projectFiles="true">
+          <itemPath>../ESE/src/ESE/Concurrency/Task.cpp</itemPath>
+          <itemPath>../ESE/src/ESE/Concurrency/TaskPool.cpp</itemPath>
+          <itemPath>../ESE/src/ESE/Concurrency/Worker.cpp</itemPath>
+        </logicalFolder>
         <logicalFolder name="Core" displayName="Core" projectFiles="true">
           <itemPath>../ESE/src/ESE/Core/AnimatableContainer.cpp</itemPath>
           <itemPath>../ESE/src/ESE/Core/Application.cpp</itemPath>
@@ -152,11 +159,8 @@
       <itemPath>ParticleManager.cpp</itemPath>
       <itemPath>Player.cpp</itemPath>
       <itemPath>Spawn.cpp</itemPath>
-      <itemPath>Task.cpp</itemPath>
-      <itemPath>TaskPool.cpp</itemPath>
       <itemPath>Vector2f.cpp</itemPath>
       <itemPath>Vector3f.cpp</itemPath>
-      <itemPath>Worker.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -205,6 +209,21 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="../ESE/include/ESE/Concurrency/Task.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/Concurrency/TaskPool.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/Concurrency/Worker.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="../ESE/include/ESE/Core/Animatable.hpp"
             ex="false"
             tool="3"
@@ -381,6 +400,21 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="../ESE/src/ESE/Concurrency/Task.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../ESE/src/ESE/Concurrency/TaskPool.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../ESE/src/ESE/Concurrency/Worker.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
       <item path="../ESE/src/ESE/Core/AnimatableContainer.cpp"
             ex="false"
             tool="1"
@@ -543,14 +577,6 @@
       </item>
       <item path="Spawn.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Task.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Task.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="TaskPool.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="TaskPool.hpp" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="Vector2f.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Vector2f.hpp" ex="false" tool="3" flavor2="0">
@@ -558,10 +584,6 @@
       <item path="Vector3f.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Vector3f.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Worker.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Worker.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -596,6 +618,21 @@
             tool="1"
             flavor2="0">
       </item>
+      <item path="../ESE/include/ESE/Concurrency/Task.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/Concurrency/TaskPool.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/Concurrency/Worker.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="../ESE/include/ESE/Core/Animatable.hpp"
             ex="false"
             tool="3"
@@ -772,6 +809,21 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="../ESE/src/ESE/Concurrency/Task.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../ESE/src/ESE/Concurrency/TaskPool.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../ESE/src/ESE/Concurrency/Worker.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
       <item path="../ESE/src/ESE/Core/AnimatableContainer.cpp"
             ex="false"
             tool="1"
@@ -934,14 +986,6 @@
       </item>
       <item path="Spawn.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Task.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Task.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="TaskPool.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="TaskPool.hpp" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="Vector2f.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Vector2f.hpp" ex="false" tool="3" flavor2="0">
@@ -949,10 +993,6 @@
       <item path="Vector3f.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Vector3f.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Worker.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Worker.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>

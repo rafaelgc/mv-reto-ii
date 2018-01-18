@@ -36,6 +36,9 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/_ext/ba21678e/Pathfinding.o \
+	${OBJECTDIR}/_ext/4c082089/Task.o \
+	${OBJECTDIR}/_ext/4c082089/TaskPool.o \
+	${OBJECTDIR}/_ext/4c082089/Worker.o \
 	${OBJECTDIR}/_ext/c1b4e769/AnimatableContainer.o \
 	${OBJECTDIR}/_ext/c1b4e769/Application.o \
 	${OBJECTDIR}/_ext/c1b4e769/Clock.o \
@@ -76,11 +79,8 @@ OBJECTFILES= \
 	${OBJECTDIR}/ParticleManager.o \
 	${OBJECTDIR}/Player.o \
 	${OBJECTDIR}/Spawn.o \
-	${OBJECTDIR}/Task.o \
-	${OBJECTDIR}/TaskPool.o \
 	${OBJECTDIR}/Vector2f.o \
 	${OBJECTDIR}/Vector3f.o \
-	${OBJECTDIR}/Worker.o \
 	${OBJECTDIR}/main.o
 
 
@@ -112,6 +112,21 @@ ${OBJECTDIR}/_ext/ba21678e/Pathfinding.o: ../ESE/include/ESE/AI/Pathfinding.tpp
 	${MKDIR} -p ${OBJECTDIR}/_ext/ba21678e
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/ba21678e/Pathfinding.o ../ESE/include/ESE/AI/Pathfinding.tpp
+
+${OBJECTDIR}/_ext/4c082089/Task.o: ../ESE/src/ESE/Concurrency/Task.cpp
+	${MKDIR} -p ${OBJECTDIR}/_ext/4c082089
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/4c082089/Task.o ../ESE/src/ESE/Concurrency/Task.cpp
+
+${OBJECTDIR}/_ext/4c082089/TaskPool.o: ../ESE/src/ESE/Concurrency/TaskPool.cpp
+	${MKDIR} -p ${OBJECTDIR}/_ext/4c082089
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/4c082089/TaskPool.o ../ESE/src/ESE/Concurrency/TaskPool.cpp
+
+${OBJECTDIR}/_ext/4c082089/Worker.o: ../ESE/src/ESE/Concurrency/Worker.cpp
+	${MKDIR} -p ${OBJECTDIR}/_ext/4c082089
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/4c082089/Worker.o ../ESE/src/ESE/Concurrency/Worker.cpp
 
 ${OBJECTDIR}/_ext/c1b4e769/AnimatableContainer.o: ../ESE/src/ESE/Core/AnimatableContainer.cpp
 	${MKDIR} -p ${OBJECTDIR}/_ext/c1b4e769
@@ -313,16 +328,6 @@ ${OBJECTDIR}/Spawn.o: Spawn.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Spawn.o Spawn.cpp
 
-${OBJECTDIR}/Task.o: Task.cpp
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Task.o Task.cpp
-
-${OBJECTDIR}/TaskPool.o: TaskPool.cpp
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TaskPool.o TaskPool.cpp
-
 ${OBJECTDIR}/Vector2f.o: Vector2f.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
@@ -332,11 +337,6 @@ ${OBJECTDIR}/Vector3f.o: Vector3f.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Vector3f.o Vector3f.cpp
-
-${OBJECTDIR}/Worker.o: Worker.cpp
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Worker.o Worker.cpp
 
 ${OBJECTDIR}/main.o: main.cpp
 	${MKDIR} -p ${OBJECTDIR}

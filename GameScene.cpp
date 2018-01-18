@@ -16,7 +16,6 @@
 #include "ESE/Core/Textures.hpp"
 #include "ESE/Core/SoundBuffers.hpp"
 #include "ESE/Core/ResourceLoader.hpp"
-#include "TaskPool.hpp"
 #include <ESE/Core/Textures.hpp>
 #include <cmath>
 #include <ESE/TileEngine/TiledLoader/TiledLoader.hpp>
