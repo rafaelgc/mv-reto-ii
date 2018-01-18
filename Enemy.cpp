@@ -15,11 +15,10 @@
 #include <SFML/Graphics/Shape.hpp>
 #include <random>
 #include <SFML/Graphics/Sprite.hpp>
-#include <ESE/Core/Textures.hpp>
-
+#include <Zelta/Core/Textures.hpp>
+#include <Zelta/Math/Vector2f.hpp>
 #include "Enemy.hpp"
-#include "Vector2f.hpp"
-#include "ESE/Core/ResourceManager.hpp"
+#include <Zelta/Core/ResourceManager.hpp>
 
 Enemy::Enemy(ParticleManager& particleManager) : particleManager(particleManager) {
     finished = true;
@@ -36,7 +35,7 @@ Enemy::~Enemy() {
 
 void Enemy::setup() {
     for (int i = 0; i <= 16; i++) {
-        walkingTextures.push_back(ESE::Textures::instance().getResource("zombie_" + std::to_string(i)));
+        walkingTextures.push_back(zt::Textures::instance().getResource("zombie_" + std::to_string(i)));
     }
     
     animationFrame = 0;
@@ -144,8 +143,6 @@ void Enemy::calcMovement() {
     deltaMovement.normalize();
     
     targetAngle = fixAngle(atan2(-deltaMovement.getX(), deltaMovement.getY()) * (180 / M_PI));
-    
-    //std::cout << "Calc angle: " << targetAngle << std::endl;
 }
 
 bool Enemy::arrivedCurrentTarget() {
@@ -167,25 +164,25 @@ bool Enemy::damage(float amount) {
     return r;
 }
 
-bool Enemy::giveShot(float d, const Vector2f& sense) {
+bool Enemy::giveShot(float d, const zt::Vector2f& sense) {
     bool dead = damage(d);
     
     if (dead) {
         /// Explosión de sangre.
         
-        Vector2f sense(1, 0);
+        zt::Vector2f sense(1, 0);
         for (int i = 0; i < 360; i++) {
-            Vector2f s = sense.rotated(i).mult(500 * (rand() % 100) / 100);
+            zt::Vector2f s = sense.rotated(i).mult(500 * (rand() % 100) / 100);
             particleManager.addParticle(
                 new BloodDrop(
-                    Vector2f(position), 
+                    zt::Vector2f(position), 
                     s
                 )
             );
             s.mult(0.5);
             particleManager.addParticle(
                 new BloodDrop(
-                    Vector2f(position), 
+                    zt::Vector2f(position), 
                     s, 2000
                 )
             );
@@ -193,7 +190,7 @@ bool Enemy::giveShot(float d, const Vector2f& sense) {
             s.mult(0.5);
             particleManager.addParticle(
                 new BloodDrop(
-                    Vector2f(position), 
+                    zt::Vector2f(position), 
                     s, 2000
                 )
             );
@@ -207,10 +204,10 @@ bool Enemy::giveShot(float d, const Vector2f& sense) {
     
     for (int i = 0; i < 50; i++) {
         float rotation = distribution(generator);
-        Vector2f senseN = sense.normalized().mult(500 + rand() % 300);
+        zt::Vector2f senseN = sense.normalized().mult(500 + rand() % 300);
         particleManager.addParticle(
             new BloodDrop(
-                    Vector2f(position), 
+                    zt::Vector2f(position), 
                     senseN.rotated(rotation - 45)
             )
         );
@@ -219,10 +216,10 @@ bool Enemy::giveShot(float d, const Vector2f& sense) {
     std::normal_distribution<float> distribution2(45.0,15.0);
     for (int i = 0; i < 20; i++) {
         float rotation = distribution2(generator);
-        Vector2f senseN = sense.normalized().mult(500 + rand() % 300).mult(-1);
+        zt::Vector2f senseN = sense.normalized().mult(500 + rand() % 300).mult(-1);
         particleManager.addParticle(
             new BloodDrop(
-                    Vector2f(position), 
+                    zt::Vector2f(position), 
                     senseN.rotated(rotation - 45),
                     2000
             )

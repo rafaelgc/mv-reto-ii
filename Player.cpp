@@ -21,10 +21,10 @@
 #include <cmath>
 
 #include "Player.hpp"
-#include "Vector2f.hpp"
-#include "ESE/Core/Textures.hpp"
+#include <Zelta/Math/Vector2f.hpp>
+#include "Zelta/Core/Textures.hpp"
 #include "GameScene.hpp"
-#include "ESE/Core/SoundBuffers.hpp"
+#include "Zelta/Core/SoundBuffers.hpp"
 
 #include <iostream>
 #include <SFML/Graphics/Sprite.hpp>
@@ -62,13 +62,13 @@ void Player::setup() {
     currentFeetFrame = 0;
     
     for (int i = 0; i <= 19; i++) {
-        idleTextures.push_back((ESE::Textures::instance().getResource("survivor_rifle_idle_" + std::to_string(i))));
-        rifleMovingTextures.push_back((ESE::Textures::instance().getResource("survivor_rifle_move_" + std::to_string(i))));
-        feetWalkingTextures.push_back((ESE::Textures::instance().getResource("survivor_walk_" + std::to_string(i))));
+        idleTextures.push_back((zt::Textures::instance().getResource("survivor_rifle_idle_" + std::to_string(i))));
+        rifleMovingTextures.push_back((zt::Textures::instance().getResource("survivor_rifle_move_" + std::to_string(i))));
+        feetWalkingTextures.push_back((zt::Textures::instance().getResource("survivor_walk_" + std::to_string(i))));
     }
     
     for (int i = 0; i <= 2; i++) {
-        rifleShootingTextures.push_back((ESE::Textures::instance().getResource("survivor_shoot_rifle_" + std::to_string(i))));
+        rifleShootingTextures.push_back((zt::Textures::instance().getResource("survivor_shoot_rifle_" + std::to_string(i))));
     }
     
     currentAnimation = &idleTextures;
@@ -91,11 +91,11 @@ void Player::setup() {
     moving = false;
     shooting = false;
     
-    shootSprite.setTexture(*ESE::Textures::instance().getResource("shoot_fire"));
+    shootSprite.setTexture(*zt::Textures::instance().getResource("shoot_fire"));
     shootSprite.setOrigin(-750, 0);
     shootSprite.setScale(0.1, 0.1);
     
-    shotSound.setBuffer(*ESE::SoundBuffers::instance().getResource("shot"));
+    shotSound.setBuffer(*zt::SoundBuffers::instance().getResource("shot"));
     shotSound.setVolume(10);
     lastShoot.restart();
 }
@@ -165,7 +165,7 @@ void Player::advanceTime(float deltaTime) {
         float currDistance = teleportingClock.getElapsedTime().asSeconds() * teleportSpeed;
         float progress = currDistance / teleportDistance;
         if (progress <= 1) {
-            Vector2f newPos = originalPosition.plus(teleportVector.mult(currDistance));
+            zt::Vector2f newPos = originalPosition.plus(teleportVector.mult(currDistance));
             this->position.x = newPos.getX();
             this->position.y = newPos.getY();
         }
@@ -197,8 +197,8 @@ void Player::manageEvents(float deltaTime) {\
     sf::Vector2f currMousePos = gameScene.getWindow().mapPixelToCoords(sf::Mouse::getPosition(renderWindow)); // Posición del ratón respecto al mundo.
     
     
-    Vector2f a(currMousePos.x, currMousePos.y);
-    Vector2f b(position.x, position.y);
+    zt::Vector2f a(currMousePos.x, currMousePos.y);
+    zt::Vector2f b(position.x, position.y);
 
     /// ROTACIÓN DEL JUGADOR ///
     lookAt = a.minus(b);
@@ -223,16 +223,16 @@ void Player::manageEvents(float deltaTime) {\
             if (lastShoot.getElapsedTime().asSeconds() > 0.1) {
                 
                 for (Enemy* enemy : gameScene.getEnemies()) {
-                    Vector2f playerEnemy(enemy->getPosition().x, enemy->getPosition().y);
-                    playerEnemy = playerEnemy.minus(Vector2f(position.x, position.y));
+                    zt::Vector2f playerEnemy(enemy->getPosition().x, enemy->getPosition().y);
+                    playerEnemy = playerEnemy.minus(zt::Vector2f(position.x, position.y));
 
                     float projection = playerEnemy.dot(lookAt) / lookAt.length();
 
                     // Nota: sin calcular el valor absoluto de fabs()
                     // se dispara tanto de frente como de espaldas.
-                    Vector2f vProjection = lookAt.normalized().mult(fabs(projection));
+                    zt::Vector2f vProjection = lookAt.normalized().mult(fabs(projection));
 
-                    float distance = Vector2f(position.x, position.y).plus(vProjection).minus(Vector2f(enemy->getPosition().x, enemy->getPosition().y)).length();
+                    float distance = zt::Vector2f(position.x, position.y).plus(vProjection).minus(zt::Vector2f(enemy->getPosition().x, enemy->getPosition().y)).length();
 
                     if (distance < 30) {
                         enemy->giveShot(20, lookAt);
@@ -297,8 +297,8 @@ void Player::manageEvents(float deltaTime) {\
         if (lMouseBtnReleased) {
             pressedPos = this->gameScene.getWindow().mapPixelToCoords(sf::Mouse::getPosition(renderWindow));
             
-            Vector2f a(pressedPos.x, pressedPos.y);
-            Vector2f b(position.x, position.y);
+            zt::Vector2f a(pressedPos.x, pressedPos.y);
+            zt::Vector2f b(position.x, position.y);
             
             teleportVector = a.minus(b).normalized();
             
@@ -313,8 +313,8 @@ void Player::manageEvents(float deltaTime) {\
             pressedTime.restart();
         }
         
-        Vector2f a(pressedPos.x, pressedPos.y);
-        Vector2f b(position.x, position.y);
+        zt::Vector2f a(pressedPos.x, pressedPos.y);
+        zt::Vector2f b(position.x, position.y);
         
         
         movementRect.setSize(sf::Vector2f(movementRect.getSize().x, teleportDistance));
@@ -323,7 +323,7 @@ void Player::manageEvents(float deltaTime) {\
         //Actualizar la posición en función de la del jugador.
         movementRect.setPosition(position);
         
-        Vector2f v(position.x, position.y);
+        zt::Vector2f v(position.x, position.y);
         v = v.plus(teleportVector.mult(teleportDistance));
         triangle.setPosition(v.getX(), v.getY());
         triangle.setFillColor(sf::Color(255 * (teleportDistance / maxTeleport), 255 * (1 -(teleportDistance / maxTeleport)), 0));

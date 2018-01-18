@@ -17,11 +17,11 @@
 #include <SFML/System/Vector2.hpp>
 #include <SFML/System/Clock.hpp>
 
-#include <ESE/Core/Animatable.hpp>
+#include <Zelta/Core/Animatable.hpp>
 
 class GameScene;
 
-class Spawn : ESE::Animatable {
+class Spawn : zt::Animatable {
 public:
     Spawn(GameScene& gameScene);
     virtual ~Spawn();

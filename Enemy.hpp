@@ -19,7 +19,7 @@
 #include <SFML/Graphics/Sprite.hpp>
 
 #include "GridNode.hpp"
-#include "Vector2f.hpp"
+#include <Zelta/Math/Vector2f.hpp>
 
 #include "ParticleManager.hpp"
 #include "BloodDrop.hpp"
@@ -37,7 +37,7 @@ public:
     void setPath(std::vector<GridNode> path, sf::Vector2f tileSize);
     
     bool damage(float amount);
-    bool giveShot(float damage, const Vector2f& sense);
+    bool giveShot(float damage, const zt::Vector2f& sense);
     
     void setAngleTarget(float angle) {
         this->targetAngle = angle;
@@ -54,7 +54,7 @@ private:
     bool finished;
     std::vector<GridNode> path;
     sf::Vector2f tileSize;
-    Vector2f deltaMovement;
+    zt::Vector2f deltaMovement;
     float angle, targetAngle;
     
     void calcMovement();

@@ -14,7 +14,7 @@
 #ifndef CHARACTER_HPP
 #define CHARACTER_HPP
 
-#include "Vector2f.hpp"
+#include <Zelta/Math/Vector2f.hpp>
 #include "Actor.hpp"
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Audio/Sound.hpp>
@@ -45,7 +45,7 @@ private:
     sf::Clock pressedTime;
     sf::Vector2f pressedPos;
     
-    Vector2f lookAt;
+    zt::Vector2f lookAt;
     
     float speed;
     bool moving;
@@ -72,12 +72,12 @@ private:
     /// TELETRANSPORTE ///
     sf::RectangleShape movementRect;
     sf::CircleShape triangle;
-    Vector2f originalPosition; // Posición del jugador al inicial el teletransporte.
+    zt::Vector2f originalPosition; // Posición del jugador al inicial el teletransporte.
     sf::Clock teleportingClock; //Se inicia al iniciar el teletransporte.
     float teleportSpeed; //Velocidad de teletransporte.
     float maxTeleport; //Máxima distancia de teletransporte.
     float teleportDistance; //Distancia a la que se teletransporta.
-    Vector2f teleportVector; //Vector unitario con la dirección del telegransporte.
+    zt::Vector2f teleportVector; //Vector unitario con la dirección del telegransporte.
     bool teleporting;
     
     /// ESTELA DE TELETRANSPORTE ///

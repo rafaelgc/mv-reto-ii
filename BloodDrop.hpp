@@ -20,7 +20,7 @@
 class BloodDrop : public Particle {
 public:
     BloodDrop();
-    BloodDrop(const Vector2f& position, const Vector2f& speed, float alphaFactor = 1000);
+    BloodDrop(const zt::Vector2f& position, const zt::Vector2f& speed, float alphaFactor = 1000);
     virtual ~BloodDrop();
     
     void draw(sf::RenderTarget&, sf::RenderStates) const override;

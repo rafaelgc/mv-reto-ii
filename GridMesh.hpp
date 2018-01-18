@@ -14,10 +14,10 @@
 #ifndef GRIDMESH_HPP
 #define GRIDMESH_HPP
 
-#include <ESE/AI/Pathfinding.hpp>
+#include <Zelta/AI/Pathfinding.hpp>
 #include "GridNode.hpp"
 
-class GridMesh : public ESE::IMesh<GridNode> {
+class GridMesh : public zt::IMesh<GridNode> {
 private:
     int *map, width, height;
 public:

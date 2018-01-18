@@ -14,14 +14,14 @@
 #ifndef GAMESCENE_HPP
 #define GAMESCENE_HPP
 
-#include <ESE/Core/Scene.hpp>
-#include <ESE/AI/Pathfinding.hpp>
+#include <Zelta/Core/Scene.hpp>
+#include <Zelta/AI/Pathfinding.hpp>
 
-#include <ESE/TileEngine/TilemapRenderer.hpp>
-#include <ESE/TileEngine/TiledLoader/TiledLoader.hpp>
+#include <Zelta/TileEngine/TilemapRenderer.hpp>
+#include <Zelta/TileEngine/TiledLoader/TiledLoader.hpp>
 
-#include <ESE/Concurrency/TaskPool.hpp>
-#include <ESE/Concurrency/Task.hpp>
+#include <Zelta/Concurrency/TaskPool.hpp>
+#include <Zelta/Concurrency/Task.hpp>
 
 #include "Player.hpp"
 #include "Spawn.hpp"
@@ -31,7 +31,7 @@
 #include "GridNode.hpp"
 #include "Spawn.hpp"
 
-class Tile : public ESE::TileSprite {
+class Tile : public zt::TileSprite {
 protected:
     int type;
 public:
@@ -41,7 +41,7 @@ public:
     
 };
 
-class GameScene : public ESE::Scene, public ESE::IMesh<GridNode>, public ESE::Tiled::TiledLoader, public ESE::Task {
+class GameScene : public zt::Scene, public zt::IMesh<GridNode>, public zt::Tiled::TiledLoader, public zt::Task {
 public:
     GameScene(sf::RenderWindow& windwow);
     GameScene(const GameScene& orig);
@@ -79,8 +79,8 @@ protected:
     
     /// TILEMAP LOADER ///
     void sizeLoaded(sf::Vector2u mapSize, const sf::Vector2u& tileSize);
-    void layerLoaded(ESE::Tiled::Layer);
-    void objectLayerLoaded(ESE::Tiled::ObjectLayer objectGroup);
+    void layerLoaded(zt::Tiled::Layer);
+    void objectLayerLoaded(zt::Tiled::ObjectLayer objectGroup);
     
 private:
     // Punto central de la cámara. La clase Player se encarga de
@@ -94,22 +94,22 @@ private:
     Spawn sp;
     std::vector<Spawn> spawnPoints;
     
-    ESE::Pathfinding<GridNode> pathfinding;
+    zt::Pathfinding<GridNode> pathfinding;
     sf::Clock pathfindingClock;
-    ESE::TaskPool taskPool;
+    zt::TaskPool taskPool;
     
     ParticleManager particleManager;
     
-    ESE::TilemapRenderer<Tile> tilemap;
-    ESE::TilemapLayer<Tile>* buildingsLayer;
+    zt::TilemapRenderer<Tile> tilemap;
+    zt::TilemapLayer<Tile>* buildingsLayer;
     sf::Texture tilesetTexture;
-    ESE::Tileset tileset;
+    zt::Tileset tileset;
     
     sf::IntRect worldDimensions;
     sf::Vector2u tileSize;
     
     /// TILEMAP LOADER ///
-    ESE::TilemapLayer<Tile> currentLayer;
+    zt::TilemapLayer<Tile> currentLayer;
     
 };
 

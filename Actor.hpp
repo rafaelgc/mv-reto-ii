@@ -14,10 +14,10 @@
 #ifndef ACTOR_HPP
 #define ACTOR_HPP
 
-#include <ESE/Core/Animatable.hpp>
+#include <Zelta/Core/Animatable.hpp>
 #include <SFML/Graphics/Drawable.hpp>
 
-class Actor : public sf::Drawable, public ESE::Animatable {
+class Actor : public sf::Drawable, public zt::Animatable {
 public:
     Actor();
     virtual ~Actor();

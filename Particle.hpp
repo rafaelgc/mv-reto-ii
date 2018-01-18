@@ -14,28 +14,28 @@
 #ifndef PARTICLE_HPP
 #define PARTICLE_HPP
 
-#include <ESE/Core/Animatable.hpp>
+#include <Zelta/Core/Animatable.hpp>
 #include <SFML/Graphics/Drawable.hpp>
 
-#include "Vector2f.hpp"
+#include <Zelta/Math/Vector2f.hpp>
 
-class Particle : public sf::Drawable, public ESE::Animatable{
+class Particle : public sf::Drawable, public zt::Animatable{
 public:
     Particle();
-    Particle(const Vector2f& position, const Vector2f& speed);
+    Particle(const zt::Vector2f& position, const zt::Vector2f& speed);
     virtual ~Particle();
     
     virtual void draw(sf::RenderTarget&, sf::RenderStates) const = 0;
     virtual void advanceTime(float deltaTime) override;
     
-    virtual void setPosition(const Vector2f& position);
-    virtual const Vector2f& getPosition() const;
+    virtual void setPosition(const zt::Vector2f& position);
+    virtual const zt::Vector2f& getPosition() const;
     
     virtual bool isRemovable() const = 0;
     
 protected:
-    Vector2f position;
-    Vector2f speed;
+    zt::Vector2f position;
+    zt::Vector2f speed;
 };
 
 #endif /* PARTICLE_HPP */

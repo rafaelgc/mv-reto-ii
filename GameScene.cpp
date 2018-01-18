@@ -13,18 +13,18 @@
 
 #include "GameScene.hpp"
 #include "Enemy.hpp"
-#include "ESE/Core/Textures.hpp"
-#include "ESE/Core/SoundBuffers.hpp"
-#include "ESE/Core/ResourceLoader.hpp"
-#include <ESE/Core/Textures.hpp>
+#include "Zelta/Core/Textures.hpp"
+#include "Zelta/Core/SoundBuffers.hpp"
+#include "Zelta/Core/ResourceLoader.hpp"
+#include <Zelta/Core/Textures.hpp>
 #include <cmath>
-#include <ESE/TileEngine/TiledLoader/TiledLoader.hpp>
+#include <Zelta/TileEngine/TiledLoader/TiledLoader.hpp>
 
-GameScene::GameScene(sf::RenderWindow& window) : pathfinding(*this), player(*this->window, *this), ESE::Scene("GameScene", window), sp(*this) {
+GameScene::GameScene(sf::RenderWindow& window) : pathfinding(*this), player(*this->window, *this), zt::Scene("GameScene", window), sp(*this) {
     /// CARGA DE RECURSOS ///
-    ESE::Textures::instance();
-    ESE::SoundBuffers::instance();
-    ESE::ResourceLoader::load("resources.res");
+    zt::Textures::instance();
+    zt::SoundBuffers::instance();
+    zt::ResourceLoader::load("resources.res");
    
     this->loadFromFile("maps/default.tmx");
 
@@ -68,7 +68,7 @@ void GameScene::manageEvents(float deltaTime) {
     
     while (this->window->pollEvent(this->events)) {
         if (events.type == sf::Event::Closed) {
-            ESE::SceneManager::instance().deactivateAllScenes();
+            zt::SceneManager::instance().deactivateAllScenes();
             
             
         }
@@ -277,15 +277,15 @@ void GameScene::sizeLoaded(sf::Vector2u mapSize, const sf::Vector2u& tileSize) {
     worldDimensions.height = mapSize.y * tileSize.y;
 }
   
-void GameScene::layerLoaded(ESE::Tiled::Layer layer) {
+void GameScene::layerLoaded(zt::Tiled::Layer layer) {
     
-    currentLayer = ESE::TilemapLayer<Tile>(tileset);
+    currentLayer = zt::TilemapLayer<Tile>(tileset);
     currentLayer.setName(layer.getName());
     currentLayer.setSize(tilemap.getSize());
     
     for (int y = 0; y < layer.getHeight(); y++) {
         for (int x = 0; x < layer.getWidth(); x++) {
-            ESE::Tiled::Tile t = layer.at(x, y);
+            zt::Tiled::Tile t = layer.at(x, y);
             if (t.getGID() > 0) {
                 std::pair<int, Tile*> p = currentLayer.addTile(t.getGID(), sf::Vector2u(x, y));
                 p.second->setType(t.getGID());
@@ -296,7 +296,7 @@ void GameScene::layerLoaded(ESE::Tiled::Layer layer) {
     tilemap.addLayer(currentLayer);
 }
 
-void GameScene::objectLayerLoaded(ESE::Tiled::ObjectLayer objectGroup) {
+void GameScene::objectLayerLoaded(zt::Tiled::ObjectLayer objectGroup) {
     if (objectGroup.getName() == L"Spawns") {
         for (int i = 0; i < objectGroup.size(); i++) {
             

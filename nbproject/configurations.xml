@@ -4,73 +4,77 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
-      <logicalFolder name="ESE" displayName="ESE" projectFiles="true">
+      <logicalFolder name="Zelta" displayName="Zelta" projectFiles="true">
         <logicalFolder name="AI" displayName="AI" projectFiles="true">
-          <itemPath>../ESE/include/ESE/AI/Pathfinding.hpp</itemPath>
-          <itemPath>../ESE/include/ESE/AI/Pathfinding.tpp</itemPath>
+          <itemPath>../ZeltaLib/include/Zelta/AI/Pathfinding.hpp</itemPath>
+          <itemPath>../ZeltaLib/include/Zelta/AI/Pathfinding.tpp</itemPath>
         </logicalFolder>
         <logicalFolder name="Concurrency" displayName="Concurrency" projectFiles="true">
-          <itemPath>../ESE/include/ESE/Concurrency/Task.hpp</itemPath>
-          <itemPath>../ESE/include/ESE/Concurrency/TaskPool.hpp</itemPath>
-          <itemPath>../ESE/include/ESE/Concurrency/Worker.hpp</itemPath>
+          <itemPath>../ZeltaLib/include/Zelta/Concurrency/Task.hpp</itemPath>
+          <itemPath>../ZeltaLib/include/Zelta/Concurrency/TaskPool.hpp</itemPath>
+          <itemPath>../ZeltaLib/include/Zelta/Concurrency/Worker.hpp</itemPath>
         </logicalFolder>
         <logicalFolder name="Core" displayName="Core" projectFiles="true">
-          <itemPath>../ESE/include/ESE/Core/Animatable.hpp</itemPath>
-          <itemPath>../ESE/include/ESE/Core/AnimatableContainer.hpp</itemPath>
-          <itemPath>../ESE/include/ESE/Core/Application.hpp</itemPath>
-          <itemPath>../ESE/include/ESE/Core/Clock.hpp</itemPath>
-          <itemPath>../ESE/include/ESE/Core/Fonts.hpp</itemPath>
-          <itemPath>../ESE/include/ESE/Core/Layer.hpp</itemPath>
-          <itemPath>../ESE/include/ESE/Core/Loadable.hpp</itemPath>
-          <itemPath>../ESE/include/ESE/Core/Log.hpp</itemPath>
-          <itemPath>../ESE/include/ESE/Core/RenderManager.hpp</itemPath>
-          <itemPath>../ESE/include/ESE/Core/ResourceLoader.hpp</itemPath>
-          <itemPath>../ESE/include/ESE/Core/ResourceManager.hpp</itemPath>
-          <itemPath>../ESE/include/ESE/Core/Scene.hpp</itemPath>
-          <itemPath>../ESE/include/ESE/Core/SceneManager.hpp</itemPath>
-          <itemPath>../ESE/include/ESE/Core/ScreenDimensions.hpp</itemPath>
-          <itemPath>../ESE/include/ESE/Core/Singleton.hpp</itemPath>
-          <itemPath>../ESE/include/ESE/Core/SoundBuffers.hpp</itemPath>
-          <itemPath>../ESE/include/ESE/Core/Textures.hpp</itemPath>
+          <itemPath>../ZeltaLib/include/Zelta/Core/Animatable.hpp</itemPath>
+          <itemPath>../ZeltaLib/include/Zelta/Core/AnimatableContainer.hpp</itemPath>
+          <itemPath>../ZeltaLib/include/Zelta/Core/Application.hpp</itemPath>
+          <itemPath>../ZeltaLib/include/Zelta/Core/Clock.hpp</itemPath>
+          <itemPath>../ZeltaLib/include/Zelta/Core/Fonts.hpp</itemPath>
+          <itemPath>../ZeltaLib/include/Zelta/Core/Layer.hpp</itemPath>
+          <itemPath>../ZeltaLib/include/Zelta/Core/Loadable.hpp</itemPath>
+          <itemPath>../ZeltaLib/include/Zelta/Core/Log.hpp</itemPath>
+          <itemPath>../ZeltaLib/include/Zelta/Core/RenderManager.hpp</itemPath>
+          <itemPath>../ZeltaLib/include/Zelta/Core/ResourceLoader.hpp</itemPath>
+          <itemPath>../ZeltaLib/include/Zelta/Core/ResourceManager.hpp</itemPath>
+          <itemPath>../ZeltaLib/include/Zelta/Core/Scene.hpp</itemPath>
+          <itemPath>../ZeltaLib/include/Zelta/Core/SceneManager.hpp</itemPath>
+          <itemPath>../ZeltaLib/include/Zelta/Core/ScreenDimensions.hpp</itemPath>
+          <itemPath>../ZeltaLib/include/Zelta/Core/Singleton.hpp</itemPath>
+          <itemPath>../ZeltaLib/include/Zelta/Core/SoundBuffers.hpp</itemPath>
+          <itemPath>../ZeltaLib/include/Zelta/Core/Textures.hpp</itemPath>
         </logicalFolder>
         <logicalFolder name="EntitySystem"
                        displayName="EntitySystem"
                        projectFiles="true">
-          <itemPath>../ESE/include/ESE/EntitySystem/Entity.hpp</itemPath>
-          <itemPath>../ESE/include/ESE/EntitySystem/System.hpp</itemPath>
+          <itemPath>../ZeltaLib/include/Zelta/EntitySystem/Entity.hpp</itemPath>
+          <itemPath>../ZeltaLib/include/Zelta/EntitySystem/System.hpp</itemPath>
         </logicalFolder>
         <logicalFolder name="External" displayName="External" projectFiles="true">
-          <itemPath>../ESE/include/ESE/External/pugiconfig.hpp</itemPath>
-          <itemPath>../ESE/include/ESE/External/pugixml.hpp</itemPath>
+          <itemPath>../ZeltaLib/include/Zelta/External/pugiconfig.hpp</itemPath>
+          <itemPath>../ZeltaLib/include/Zelta/External/pugixml.hpp</itemPath>
+        </logicalFolder>
+        <logicalFolder name="Math" displayName="Math" projectFiles="true">
+          <itemPath>../ZeltaLib/include/Zelta/Math/Vector2f.hpp</itemPath>
+          <itemPath>../ZeltaLib/include/Zelta/Math/Vector3f.hpp</itemPath>
         </logicalFolder>
         <logicalFolder name="Mesh" displayName="Mesh" projectFiles="true">
-          <itemPath>../ESE/include/ESE/Mesh/Dijkstra.hpp</itemPath>
-          <itemPath>../ESE/include/ESE/Mesh/Mesh.hpp</itemPath>
-          <itemPath>../ESE/include/ESE/Mesh/Node.hpp</itemPath>
-          <itemPath>../ESE/include/ESE/Mesh/NodeDistance.hpp</itemPath>
-          <itemPath>../ESE/include/ESE/Mesh/NodeLink.hpp</itemPath>
+          <itemPath>../ZeltaLib/include/Zelta/Mesh/Dijkstra.hpp</itemPath>
+          <itemPath>../ZeltaLib/include/Zelta/Mesh/Mesh.hpp</itemPath>
+          <itemPath>../ZeltaLib/include/Zelta/Mesh/Node.hpp</itemPath>
+          <itemPath>../ZeltaLib/include/Zelta/Mesh/NodeDistance.hpp</itemPath>
+          <itemPath>../ZeltaLib/include/Zelta/Mesh/NodeLink.hpp</itemPath>
         </logicalFolder>
         <logicalFolder name="Physics" displayName="Physics" projectFiles="true">
-          <itemPath>../ESE/include/ESE/Physics/AABBDetection.hpp</itemPath>
-          <itemPath>../ESE/include/ESE/Physics/CicleCollisionDetection.hpp</itemPath>
+          <itemPath>../ZeltaLib/include/Zelta/Physics/AABBDetection.hpp</itemPath>
+          <itemPath>../ZeltaLib/include/Zelta/Physics/CicleCollisionDetection.hpp</itemPath>
         </logicalFolder>
         <logicalFolder name="Text" displayName="Text" projectFiles="true">
-          <itemPath>../ESE/include/ESE/Text/Text.hpp</itemPath>
+          <itemPath>../ZeltaLib/include/Zelta/Text/Text.hpp</itemPath>
         </logicalFolder>
         <logicalFolder name="TileEngine" displayName="TileEngine" projectFiles="true">
           <logicalFolder name="TiledLoader" displayName="TiledLoader" projectFiles="true">
-            <itemPath>../ESE/include/ESE/TileEngine/TiledLoader/FileNotFoundException.hpp</itemPath>
-            <itemPath>../ESE/include/ESE/TileEngine/TiledLoader/Layer.hpp</itemPath>
-            <itemPath>../ESE/include/ESE/TileEngine/TiledLoader/Map.hpp</itemPath>
-            <itemPath>../ESE/include/ESE/TileEngine/TiledLoader/Object.hpp</itemPath>
-            <itemPath>../ESE/include/ESE/TileEngine/TiledLoader/ObjectLayer.hpp</itemPath>
-            <itemPath>../ESE/include/ESE/TileEngine/TiledLoader/Tile.hpp</itemPath>
-            <itemPath>../ESE/include/ESE/TileEngine/TiledLoader/TiledLoader.hpp</itemPath>
+            <itemPath>../ZeltaLib/include/Zelta/TileEngine/TiledLoader/FileNotFoundException.hpp</itemPath>
+            <itemPath>../ZeltaLib/include/Zelta/TileEngine/TiledLoader/Layer.hpp</itemPath>
+            <itemPath>../ZeltaLib/include/Zelta/TileEngine/TiledLoader/Map.hpp</itemPath>
+            <itemPath>../ZeltaLib/include/Zelta/TileEngine/TiledLoader/Object.hpp</itemPath>
+            <itemPath>../ZeltaLib/include/Zelta/TileEngine/TiledLoader/ObjectLayer.hpp</itemPath>
+            <itemPath>../ZeltaLib/include/Zelta/TileEngine/TiledLoader/Tile.hpp</itemPath>
+            <itemPath>../ZeltaLib/include/Zelta/TileEngine/TiledLoader/TiledLoader.hpp</itemPath>
           </logicalFolder>
-          <itemPath>../ESE/include/ESE/TileEngine/TileSprite.hpp</itemPath>
-          <itemPath>../ESE/include/ESE/TileEngine/TilemapLayer.hpp</itemPath>
-          <itemPath>../ESE/include/ESE/TileEngine/TilemapRenderer.hpp</itemPath>
-          <itemPath>../ESE/include/ESE/TileEngine/Tileset.hpp</itemPath>
+          <itemPath>../ZeltaLib/include/Zelta/TileEngine/TileSprite.hpp</itemPath>
+          <itemPath>../ZeltaLib/include/Zelta/TileEngine/TilemapLayer.hpp</itemPath>
+          <itemPath>../ZeltaLib/include/Zelta/TileEngine/TilemapRenderer.hpp</itemPath>
+          <itemPath>../ZeltaLib/include/Zelta/TileEngine/Tileset.hpp</itemPath>
         </logicalFolder>
       </logicalFolder>
       <itemPath>Actor.hpp</itemPath>
@@ -84,8 +88,6 @@
       <itemPath>ParticleManager.hpp</itemPath>
       <itemPath>Player.hpp</itemPath>
       <itemPath>Spawn.hpp</itemPath>
-      <itemPath>Vector2f.hpp</itemPath>
-      <itemPath>Vector3f.hpp</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -94,58 +96,62 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
-      <logicalFolder name="ESE" displayName="ESE" projectFiles="true">
+      <logicalFolder name="Zelta" displayName="Zelta" projectFiles="true">
         <logicalFolder name="Concurrency" displayName="Concurrency" projectFiles="true">
-          <itemPath>../ESE/src/ESE/Concurrency/Task.cpp</itemPath>
-          <itemPath>../ESE/src/ESE/Concurrency/TaskPool.cpp</itemPath>
-          <itemPath>../ESE/src/ESE/Concurrency/Worker.cpp</itemPath>
+          <itemPath>../ZeltaLib/src/Zelta/Concurrency/Task.cpp</itemPath>
+          <itemPath>../ZeltaLib/src/Zelta/Concurrency/TaskPool.cpp</itemPath>
+          <itemPath>../ZeltaLib/src/Zelta/Concurrency/Worker.cpp</itemPath>
         </logicalFolder>
         <logicalFolder name="Core" displayName="Core" projectFiles="true">
-          <itemPath>../ESE/src/ESE/Core/AnimatableContainer.cpp</itemPath>
-          <itemPath>../ESE/src/ESE/Core/Application.cpp</itemPath>
-          <itemPath>../ESE/src/ESE/Core/Clock.cpp</itemPath>
-          <itemPath>../ESE/src/ESE/Core/Layer.cpp</itemPath>
-          <itemPath>../ESE/src/ESE/Core/Log.cpp</itemPath>
-          <itemPath>../ESE/src/ESE/Core/RenderManager.cpp</itemPath>
-          <itemPath>../ESE/src/ESE/Core/ResourceLoader.cpp</itemPath>
-          <itemPath>../ESE/src/ESE/Core/Scene.cpp</itemPath>
-          <itemPath>../ESE/src/ESE/Core/SceneManager.cpp</itemPath>
-          <itemPath>../ESE/src/ESE/Core/ScreenDimensions.cpp</itemPath>
+          <itemPath>../ZeltaLib/src/Zelta/Core/AnimatableContainer.cpp</itemPath>
+          <itemPath>../ZeltaLib/src/Zelta/Core/Application.cpp</itemPath>
+          <itemPath>../ZeltaLib/src/Zelta/Core/Clock.cpp</itemPath>
+          <itemPath>../ZeltaLib/src/Zelta/Core/Layer.cpp</itemPath>
+          <itemPath>../ZeltaLib/src/Zelta/Core/Log.cpp</itemPath>
+          <itemPath>../ZeltaLib/src/Zelta/Core/RenderManager.cpp</itemPath>
+          <itemPath>../ZeltaLib/src/Zelta/Core/ResourceLoader.cpp</itemPath>
+          <itemPath>../ZeltaLib/src/Zelta/Core/Scene.cpp</itemPath>
+          <itemPath>../ZeltaLib/src/Zelta/Core/SceneManager.cpp</itemPath>
+          <itemPath>../ZeltaLib/src/Zelta/Core/ScreenDimensions.cpp</itemPath>
         </logicalFolder>
         <logicalFolder name="EntitySystem"
                        displayName="EntitySystem"
                        projectFiles="true">
-          <itemPath>../ESE/src/ESE/EntitySystem/Entity.cpp</itemPath>
-          <itemPath>../ESE/src/ESE/EntitySystem/System.cpp</itemPath>
+          <itemPath>../ZeltaLib/src/Zelta/EntitySystem/Entity.cpp</itemPath>
+          <itemPath>../ZeltaLib/src/Zelta/EntitySystem/System.cpp</itemPath>
         </logicalFolder>
         <logicalFolder name="External" displayName="External" projectFiles="true">
-          <itemPath>../ESE/src/ESE/External/pugixml.cpp</itemPath>
+          <itemPath>../ZeltaLib/src/Zelta/External/pugixml.cpp</itemPath>
+        </logicalFolder>
+        <logicalFolder name="Math" displayName="Math" projectFiles="true">
+          <itemPath>../ZeltaLib/src/Zelta/Math/Vector2f.cpp</itemPath>
+          <itemPath>../ZeltaLib/src/Zelta/Math/Vector3f.cpp</itemPath>
         </logicalFolder>
         <logicalFolder name="Mesh" displayName="Mesh" projectFiles="true">
-          <itemPath>../ESE/src/ESE/Mesh/Dijkstra.cpp</itemPath>
-          <itemPath>../ESE/src/ESE/Mesh/Mesh.cpp</itemPath>
-          <itemPath>../ESE/src/ESE/Mesh/Node.cpp</itemPath>
-          <itemPath>../ESE/src/ESE/Mesh/NodeDistance.cpp</itemPath>
-          <itemPath>../ESE/src/ESE/Mesh/NodeLink.cpp</itemPath>
+          <itemPath>../ZeltaLib/src/Zelta/Mesh/Dijkstra.cpp</itemPath>
+          <itemPath>../ZeltaLib/src/Zelta/Mesh/Mesh.cpp</itemPath>
+          <itemPath>../ZeltaLib/src/Zelta/Mesh/Node.cpp</itemPath>
+          <itemPath>../ZeltaLib/src/Zelta/Mesh/NodeDistance.cpp</itemPath>
+          <itemPath>../ZeltaLib/src/Zelta/Mesh/NodeLink.cpp</itemPath>
         </logicalFolder>
         <logicalFolder name="Physics" displayName="Physics" projectFiles="true">
-          <itemPath>../ESE/src/ESE/Physics/AABBDetection.cpp</itemPath>
-          <itemPath>../ESE/src/ESE/Physics/CircleCollisionDetection.cpp</itemPath>
+          <itemPath>../ZeltaLib/src/Zelta/Physics/AABBDetection.cpp</itemPath>
+          <itemPath>../ZeltaLib/src/Zelta/Physics/CircleCollisionDetection.cpp</itemPath>
         </logicalFolder>
         <logicalFolder name="Text" displayName="Text" projectFiles="true">
-          <itemPath>../ESE/src/ESE/Text/Text.cpp</itemPath>
+          <itemPath>../ZeltaLib/src/Zelta/Text/Text.cpp</itemPath>
         </logicalFolder>
         <logicalFolder name="TileEngine" displayName="TileEngine" projectFiles="true">
           <logicalFolder name="TiledLoader" displayName="TiledLoader" projectFiles="true">
-            <itemPath>../ESE/src/ESE/TileEngine/TiledLoader/Layer.cpp</itemPath>
-            <itemPath>../ESE/src/ESE/TileEngine/TiledLoader/Map.cpp</itemPath>
-            <itemPath>../ESE/src/ESE/TileEngine/TiledLoader/Object.cpp</itemPath>
-            <itemPath>../ESE/src/ESE/TileEngine/TiledLoader/ObjectLayer.cpp</itemPath>
-            <itemPath>../ESE/src/ESE/TileEngine/TiledLoader/Tile.cpp</itemPath>
-            <itemPath>../ESE/src/ESE/TileEngine/TiledLoader/TiledLoader.cpp</itemPath>
+            <itemPath>../ZeltaLib/src/Zelta/TileEngine/TiledLoader/Layer.cpp</itemPath>
+            <itemPath>../ZeltaLib/src/Zelta/TileEngine/TiledLoader/Map.cpp</itemPath>
+            <itemPath>../ZeltaLib/src/Zelta/TileEngine/TiledLoader/Object.cpp</itemPath>
+            <itemPath>../ZeltaLib/src/Zelta/TileEngine/TiledLoader/ObjectLayer.cpp</itemPath>
+            <itemPath>../ZeltaLib/src/Zelta/TileEngine/TiledLoader/Tile.cpp</itemPath>
+            <itemPath>../ZeltaLib/src/Zelta/TileEngine/TiledLoader/TiledLoader.cpp</itemPath>
           </logicalFolder>
-          <itemPath>../ESE/src/ESE/TileEngine/TileSprite.cpp</itemPath>
-          <itemPath>../ESE/src/ESE/TileEngine/Tileset.cpp</itemPath>
+          <itemPath>../ZeltaLib/src/Zelta/TileEngine/TileSprite.cpp</itemPath>
+          <itemPath>../ZeltaLib/src/Zelta/TileEngine/Tileset.cpp</itemPath>
         </logicalFolder>
       </logicalFolder>
       <itemPath>Actor.cpp</itemPath>
@@ -159,8 +165,6 @@
       <itemPath>ParticleManager.cpp</itemPath>
       <itemPath>Player.cpp</itemPath>
       <itemPath>Spawn.cpp</itemPath>
-      <itemPath>Vector2f.cpp</itemPath>
-      <itemPath>Vector3f.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -176,7 +180,9 @@
     </logicalFolder>
   </logicalFolder>
   <sourceRootList>
-    <Elem>../ESE</Elem>
+    <Elem>../Zelta</Elem>
+    <Elem>../ZeltaLib/src/Zelta</Elem>
+    <Elem>../ZeltaLib/include</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -190,7 +196,7 @@
         <ccTool>
           <standard>8</standard>
           <incDir>
-            <pElem>../ESE/include/</pElem>
+            <pElem>../ZeltaLib/include/</pElem>
           </incDir>
           <commandLine>-pthread</commandLine>
         </ccTool>
@@ -204,331 +210,404 @@
           </linkerLibItems>
         </linkerTool>
       </compileType>
-      <item path="../ESE/include/ESE/AI/Pathfinding.hpp"
+      <item path="../ZeltaLib/include/Zelta/AI/Pathfinding.hpp"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../ESE/include/ESE/Concurrency/Task.hpp"
+      <item path="../ZeltaLib/include/Zelta/AI/Pathfinding.tpp"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../ESE/include/ESE/Concurrency/TaskPool.hpp"
+      <item path="../ZeltaLib/include/Zelta/Concurrency/Task.hpp"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../ESE/include/ESE/Concurrency/Worker.hpp"
+      <item path="../ZeltaLib/include/Zelta/Concurrency/TaskPool.hpp"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../ESE/include/ESE/Core/Animatable.hpp"
+      <item path="../ZeltaLib/include/Zelta/Concurrency/Worker.hpp"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../ESE/include/ESE/Core/AnimatableContainer.hpp"
+      <item path="../ZeltaLib/include/Zelta/Core/Animatable.hpp"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../ESE/include/ESE/Core/Application.hpp"
+      <item path="../ZeltaLib/include/Zelta/Core/AnimatableContainer.hpp"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../ESE/include/ESE/Core/Clock.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="../ESE/include/ESE/Core/Fonts.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="../ESE/include/ESE/Core/Layer.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="../ESE/include/ESE/Core/Loadable.hpp"
+      <item path="../ZeltaLib/include/Zelta/Core/Application.hpp"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../ESE/include/ESE/Core/Log.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="../ESE/include/ESE/Core/RenderManager.hpp"
+      <item path="../ZeltaLib/include/Zelta/Core/Clock.hpp"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../ESE/include/ESE/Core/ResourceLoader.hpp"
+      <item path="../ZeltaLib/include/Zelta/Core/Fonts.hpp"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../ESE/include/ESE/Core/ResourceManager.hpp"
+      <item path="../ZeltaLib/include/Zelta/Core/Layer.hpp"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../ESE/include/ESE/Core/Scene.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="../ESE/include/ESE/Core/SceneManager.hpp"
+      <item path="../ZeltaLib/include/Zelta/Core/Loadable.hpp"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../ESE/include/ESE/Core/ScreenDimensions.hpp"
+      <item path="../ZeltaLib/include/Zelta/Core/Log.hpp"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../ESE/include/ESE/Core/Singleton.hpp"
+      <item path="../ZeltaLib/include/Zelta/Core/RenderManager.hpp"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../ESE/include/ESE/Core/SoundBuffers.hpp"
+      <item path="../ZeltaLib/include/Zelta/Core/ResourceLoader.hpp"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../ESE/include/ESE/Core/Textures.hpp"
+      <item path="../ZeltaLib/include/Zelta/Core/ResourceManager.hpp"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../ESE/include/ESE/EntitySystem/Entity.hpp"
+      <item path="../ZeltaLib/include/Zelta/Core/Scene.hpp"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../ESE/include/ESE/EntitySystem/System.hpp"
+      <item path="../ZeltaLib/include/Zelta/Core/SceneManager.hpp"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../ESE/include/ESE/External/pugiconfig.hpp"
+      <item path="../ZeltaLib/include/Zelta/Core/ScreenDimensions.hpp"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../ESE/include/ESE/External/pugixml.hpp"
+      <item path="../ZeltaLib/include/Zelta/Core/Singleton.hpp"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../ESE/include/ESE/Mesh/Dijkstra.hpp"
+      <item path="../ZeltaLib/include/Zelta/Core/SoundBuffers.hpp"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../ESE/include/ESE/Mesh/Mesh.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="../ESE/include/ESE/Mesh/Node.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="../ESE/include/ESE/Mesh/NodeDistance.hpp"
+      <item path="../ZeltaLib/include/Zelta/Core/Textures.hpp"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../ESE/include/ESE/Mesh/NodeLink.hpp"
+      <item path="../ZeltaLib/include/Zelta/EntitySystem/Entity.hpp"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../ESE/include/ESE/Physics/AABBDetection.hpp"
+      <item path="../ZeltaLib/include/Zelta/EntitySystem/System.hpp"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../ESE/include/ESE/Physics/CicleCollisionDetection.hpp"
+      <item path="../ZeltaLib/include/Zelta/External/pugiconfig.hpp"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../ESE/include/ESE/Text/Text.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="../ESE/include/ESE/TileEngine/TileSprite.hpp"
+      <item path="../ZeltaLib/include/Zelta/External/pugixml.hpp"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../ESE/include/ESE/TileEngine/TiledLoader/FileNotFoundException.hpp"
+      <item path="../ZeltaLib/include/Zelta/Math/Vector2f.hpp"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../ESE/include/ESE/TileEngine/TiledLoader/Layer.hpp"
+      <item path="../ZeltaLib/include/Zelta/Math/Vector3f.hpp"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../ESE/include/ESE/TileEngine/TiledLoader/Map.hpp"
+      <item path="../ZeltaLib/include/Zelta/Mesh/Dijkstra.hpp"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../ESE/include/ESE/TileEngine/TiledLoader/Object.hpp"
+      <item path="../ZeltaLib/include/Zelta/Mesh/Mesh.hpp"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../ESE/include/ESE/TileEngine/TiledLoader/ObjectLayer.hpp"
+      <item path="../ZeltaLib/include/Zelta/Mesh/Node.hpp"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../ESE/include/ESE/TileEngine/TiledLoader/Tile.hpp"
+      <item path="../ZeltaLib/include/Zelta/Mesh/NodeDistance.hpp"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../ESE/include/ESE/TileEngine/TiledLoader/TiledLoader.hpp"
+      <item path="../ZeltaLib/include/Zelta/Mesh/NodeLink.hpp"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../ESE/include/ESE/TileEngine/TilemapLayer.hpp"
+      <item path="../ZeltaLib/include/Zelta/Physics/AABBDetection.hpp"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../ESE/include/ESE/TileEngine/TilemapRenderer.hpp"
+      <item path="../ZeltaLib/include/Zelta/Physics/CicleCollisionDetection.hpp"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../ESE/include/ESE/TileEngine/Tileset.hpp"
+      <item path="../ZeltaLib/include/Zelta/Text/Text.hpp"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../ESE/src/ESE/Concurrency/Task.cpp"
+      <item path="../ZeltaLib/include/Zelta/TileEngine/TileSprite.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/include/Zelta/TileEngine/TiledLoader/FileNotFoundException.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/include/Zelta/TileEngine/TiledLoader/Layer.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/include/Zelta/TileEngine/TiledLoader/Map.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/include/Zelta/TileEngine/TiledLoader/Object.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/include/Zelta/TileEngine/TiledLoader/ObjectLayer.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/include/Zelta/TileEngine/TiledLoader/Tile.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/include/Zelta/TileEngine/TiledLoader/TiledLoader.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/include/Zelta/TileEngine/TilemapLayer.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/include/Zelta/TileEngine/TilemapRenderer.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/include/Zelta/TileEngine/Tileset.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/src/Zelta/Concurrency/Task.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../ESE/src/ESE/Concurrency/TaskPool.cpp"
+      <item path="../ZeltaLib/src/Zelta/Concurrency/TaskPool.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../ESE/src/ESE/Concurrency/Worker.cpp"
+      <item path="../ZeltaLib/src/Zelta/Concurrency/Worker.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../ESE/src/ESE/Core/AnimatableContainer.cpp"
+      <item path="../ZeltaLib/src/Zelta/Core/AnimatableContainer.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../ESE/src/ESE/Core/Application.cpp"
+      <item path="../ZeltaLib/src/Zelta/Core/Application.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../ESE/src/ESE/Core/Clock.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="../ESE/src/ESE/Core/Layer.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="../ESE/src/ESE/Core/Log.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="../ESE/src/ESE/Core/RenderManager.cpp"
+      <item path="../ZeltaLib/src/Zelta/Core/Clock.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../ESE/src/ESE/Core/ResourceLoader.cpp"
+      <item path="../ZeltaLib/src/Zelta/Core/Layer.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../ESE/src/ESE/Core/Scene.cpp" ex="false" tool="1" flavor2="0">
+      <item path="../ZeltaLib/src/Zelta/Core/Log.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="../ESE/src/ESE/Core/SceneManager.cpp"
+      <item path="../ZeltaLib/src/Zelta/Core/RenderManager.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../ESE/src/ESE/Core/ScreenDimensions.cpp"
+      <item path="../ZeltaLib/src/Zelta/Core/ResourceLoader.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../ESE/src/ESE/EntitySystem/Entity.cpp"
+      <item path="../ZeltaLib/src/Zelta/Core/Scene.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../ESE/src/ESE/EntitySystem/System.cpp"
+      <item path="../ZeltaLib/src/Zelta/Core/SceneManager.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../ESE/src/ESE/External/pugixml.cpp"
+      <item path="../ZeltaLib/src/Zelta/Core/ScreenDimensions.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../ESE/src/ESE/Mesh/Dijkstra.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="../ESE/src/ESE/Mesh/Mesh.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="../ESE/src/ESE/Mesh/Node.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="../ESE/src/ESE/Mesh/NodeDistance.cpp"
+      <item path="../ZeltaLib/src/Zelta/EntitySystem/Entity.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../ESE/src/ESE/Mesh/NodeLink.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="../ESE/src/ESE/Physics/AABBDetection.cpp"
+      <item path="../ZeltaLib/src/Zelta/EntitySystem/System.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../ESE/src/ESE/Physics/CircleCollisionDetection.cpp"
+      <item path="../ZeltaLib/src/Zelta/External/pugixml.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../ESE/src/ESE/Text/Text.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="../ESE/src/ESE/TileEngine/TileSprite.cpp"
+      <item path="../ZeltaLib/src/Zelta/Math/Vector2f.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../ESE/src/ESE/TileEngine/TiledLoader/Layer.cpp"
+      <item path="../ZeltaLib/src/Zelta/Math/Vector3f.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../ESE/src/ESE/TileEngine/TiledLoader/Map.cpp"
+      <item path="../ZeltaLib/src/Zelta/Mesh/Dijkstra.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../ESE/src/ESE/TileEngine/TiledLoader/Object.cpp"
+      <item path="../ZeltaLib/src/Zelta/Mesh/Mesh.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../ESE/src/ESE/TileEngine/TiledLoader/ObjectLayer.cpp"
+      <item path="../ZeltaLib/src/Zelta/Mesh/Node.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../ESE/src/ESE/TileEngine/TiledLoader/Tile.cpp"
+      <item path="../ZeltaLib/src/Zelta/Mesh/NodeDistance.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../ESE/src/ESE/TileEngine/TiledLoader/TiledLoader.cpp"
+      <item path="../ZeltaLib/src/Zelta/Mesh/NodeLink.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../ESE/src/ESE/TileEngine/Tileset.cpp"
+      <item path="../ZeltaLib/src/Zelta/Physics/AABBDetection.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/src/Zelta/Physics/CircleCollisionDetection.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/src/Zelta/Text/Text.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/src/Zelta/TileEngine/TileSprite.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/src/Zelta/TileEngine/TiledLoader/Layer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/src/Zelta/TileEngine/TiledLoader/Map.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/src/Zelta/TileEngine/TiledLoader/Object.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/src/Zelta/TileEngine/TiledLoader/ObjectLayer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/src/Zelta/TileEngine/TiledLoader/Tile.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/src/Zelta/TileEngine/TiledLoader/TiledLoader.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/src/Zelta/TileEngine/Tileset.cpp"
             ex="false"
             tool="1"
             flavor2="0">
@@ -576,14 +655,6 @@
       <item path="Spawn.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Spawn.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Vector2f.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Vector2f.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Vector3f.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Vector3f.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -608,336 +679,404 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
-      <item path="../ESE/include/ESE/AI/Pathfinding.hpp"
+      <item path="../ZeltaLib/include/Zelta/AI/Pathfinding.hpp"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="../ESE/include/ESE/AI/Pathfinding.tpp"
+      <item path="../ZeltaLib/include/Zelta/AI/Pathfinding.tpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/include/Zelta/Concurrency/Task.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/include/Zelta/Concurrency/TaskPool.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/include/Zelta/Concurrency/Worker.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/include/Zelta/Core/Animatable.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/include/Zelta/Core/AnimatableContainer.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/include/Zelta/Core/Application.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/include/Zelta/Core/Clock.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/include/Zelta/Core/Fonts.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/include/Zelta/Core/Layer.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/include/Zelta/Core/Loadable.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/include/Zelta/Core/Log.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/include/Zelta/Core/RenderManager.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/include/Zelta/Core/ResourceLoader.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/include/Zelta/Core/ResourceManager.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/include/Zelta/Core/Scene.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/include/Zelta/Core/SceneManager.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/include/Zelta/Core/ScreenDimensions.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/include/Zelta/Core/Singleton.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/include/Zelta/Core/SoundBuffers.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/include/Zelta/Core/Textures.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/include/Zelta/EntitySystem/Entity.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/include/Zelta/EntitySystem/System.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/include/Zelta/External/pugiconfig.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/include/Zelta/External/pugixml.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/include/Zelta/Math/Vector2f.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/include/Zelta/Math/Vector3f.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/include/Zelta/Mesh/Dijkstra.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/include/Zelta/Mesh/Mesh.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/include/Zelta/Mesh/Node.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/include/Zelta/Mesh/NodeDistance.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/include/Zelta/Mesh/NodeLink.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/include/Zelta/Physics/AABBDetection.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/include/Zelta/Physics/CicleCollisionDetection.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/include/Zelta/Text/Text.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/include/Zelta/TileEngine/TileSprite.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/include/Zelta/TileEngine/TiledLoader/FileNotFoundException.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/include/Zelta/TileEngine/TiledLoader/Layer.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/include/Zelta/TileEngine/TiledLoader/Map.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/include/Zelta/TileEngine/TiledLoader/Object.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/include/Zelta/TileEngine/TiledLoader/ObjectLayer.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/include/Zelta/TileEngine/TiledLoader/Tile.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/include/Zelta/TileEngine/TiledLoader/TiledLoader.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/include/Zelta/TileEngine/TilemapLayer.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/include/Zelta/TileEngine/TilemapRenderer.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/include/Zelta/TileEngine/Tileset.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/src/Zelta/Concurrency/Task.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../ESE/include/ESE/Concurrency/Task.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../ESE/include/ESE/Concurrency/TaskPool.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../ESE/include/ESE/Concurrency/Worker.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../ESE/include/ESE/Core/Animatable.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../ESE/include/ESE/Core/AnimatableContainer.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../ESE/include/ESE/Core/Application.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../ESE/include/ESE/Core/Clock.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="../ESE/include/ESE/Core/Fonts.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="../ESE/include/ESE/Core/Layer.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="../ESE/include/ESE/Core/Loadable.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../ESE/include/ESE/Core/Log.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="../ESE/include/ESE/Core/RenderManager.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../ESE/include/ESE/Core/ResourceLoader.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../ESE/include/ESE/Core/ResourceManager.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../ESE/include/ESE/Core/Scene.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="../ESE/include/ESE/Core/SceneManager.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../ESE/include/ESE/Core/ScreenDimensions.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../ESE/include/ESE/Core/Singleton.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../ESE/include/ESE/Core/SoundBuffers.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../ESE/include/ESE/Core/Textures.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../ESE/include/ESE/EntitySystem/Entity.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../ESE/include/ESE/EntitySystem/System.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../ESE/include/ESE/External/pugiconfig.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../ESE/include/ESE/External/pugixml.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../ESE/include/ESE/Mesh/Dijkstra.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../ESE/include/ESE/Mesh/Mesh.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="../ESE/include/ESE/Mesh/Node.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="../ESE/include/ESE/Mesh/NodeDistance.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../ESE/include/ESE/Mesh/NodeLink.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../ESE/include/ESE/Physics/AABBDetection.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../ESE/include/ESE/Physics/CicleCollisionDetection.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../ESE/include/ESE/Text/Text.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="../ESE/include/ESE/TileEngine/TileSprite.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../ESE/include/ESE/TileEngine/TiledLoader/FileNotFoundException.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../ESE/include/ESE/TileEngine/TiledLoader/Layer.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../ESE/include/ESE/TileEngine/TiledLoader/Map.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../ESE/include/ESE/TileEngine/TiledLoader/Object.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../ESE/include/ESE/TileEngine/TiledLoader/ObjectLayer.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../ESE/include/ESE/TileEngine/TiledLoader/Tile.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../ESE/include/ESE/TileEngine/TiledLoader/TiledLoader.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../ESE/include/ESE/TileEngine/TilemapLayer.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../ESE/include/ESE/TileEngine/TilemapRenderer.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../ESE/include/ESE/TileEngine/Tileset.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../ESE/src/ESE/Concurrency/Task.cpp"
+      <item path="../ZeltaLib/src/Zelta/Concurrency/TaskPool.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../ESE/src/ESE/Concurrency/TaskPool.cpp"
+      <item path="../ZeltaLib/src/Zelta/Concurrency/Worker.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../ESE/src/ESE/Concurrency/Worker.cpp"
+      <item path="../ZeltaLib/src/Zelta/Core/AnimatableContainer.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../ESE/src/ESE/Core/AnimatableContainer.cpp"
+      <item path="../ZeltaLib/src/Zelta/Core/Application.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../ESE/src/ESE/Core/Application.cpp"
+      <item path="../ZeltaLib/src/Zelta/Core/Clock.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../ESE/src/ESE/Core/Clock.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="../ESE/src/ESE/Core/Layer.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="../ESE/src/ESE/Core/Log.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="../ESE/src/ESE/Core/RenderManager.cpp"
+      <item path="../ZeltaLib/src/Zelta/Core/Layer.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../ESE/src/ESE/Core/ResourceLoader.cpp"
+      <item path="../ZeltaLib/src/Zelta/Core/Log.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../ZeltaLib/src/Zelta/Core/RenderManager.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../ESE/src/ESE/Core/Scene.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="../ESE/src/ESE/Core/SceneManager.cpp"
+      <item path="../ZeltaLib/src/Zelta/Core/ResourceLoader.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../ESE/src/ESE/Core/ScreenDimensions.cpp"
+      <item path="../ZeltaLib/src/Zelta/Core/Scene.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../ESE/src/ESE/EntitySystem/Entity.cpp"
+      <item path="../ZeltaLib/src/Zelta/Core/SceneManager.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../ESE/src/ESE/EntitySystem/System.cpp"
+      <item path="../ZeltaLib/src/Zelta/Core/ScreenDimensions.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../ESE/src/ESE/External/pugixml.cpp"
+      <item path="../ZeltaLib/src/Zelta/EntitySystem/Entity.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../ESE/src/ESE/Mesh/Dijkstra.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="../ESE/src/ESE/Mesh/Mesh.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="../ESE/src/ESE/Mesh/Node.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="../ESE/src/ESE/Mesh/NodeDistance.cpp"
+      <item path="../ZeltaLib/src/Zelta/EntitySystem/System.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../ESE/src/ESE/Mesh/NodeLink.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="../ESE/src/ESE/Physics/AABBDetection.cpp"
+      <item path="../ZeltaLib/src/Zelta/External/pugixml.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../ESE/src/ESE/Physics/CircleCollisionDetection.cpp"
+      <item path="../ZeltaLib/src/Zelta/Math/Vector2f.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../ESE/src/ESE/Text/Text.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="../ESE/src/ESE/TileEngine/TileSprite.cpp"
+      <item path="../ZeltaLib/src/Zelta/Math/Vector3f.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../ESE/src/ESE/TileEngine/TiledLoader/Layer.cpp"
+      <item path="../ZeltaLib/src/Zelta/Mesh/Dijkstra.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../ESE/src/ESE/TileEngine/TiledLoader/Map.cpp"
+      <item path="../ZeltaLib/src/Zelta/Mesh/Mesh.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../ESE/src/ESE/TileEngine/TiledLoader/Object.cpp"
+      <item path="../ZeltaLib/src/Zelta/Mesh/Node.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../ESE/src/ESE/TileEngine/TiledLoader/ObjectLayer.cpp"
+      <item path="../ZeltaLib/src/Zelta/Mesh/NodeDistance.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../ESE/src/ESE/TileEngine/TiledLoader/Tile.cpp"
+      <item path="../ZeltaLib/src/Zelta/Mesh/NodeLink.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../ESE/src/ESE/TileEngine/TiledLoader/TiledLoader.cpp"
+      <item path="../ZeltaLib/src/Zelta/Physics/AABBDetection.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="../ESE/src/ESE/TileEngine/Tileset.cpp"
+      <item path="../ZeltaLib/src/Zelta/Physics/CircleCollisionDetection.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/src/Zelta/Text/Text.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/src/Zelta/TileEngine/TileSprite.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/src/Zelta/TileEngine/TiledLoader/Layer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/src/Zelta/TileEngine/TiledLoader/Map.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/src/Zelta/TileEngine/TiledLoader/Object.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/src/Zelta/TileEngine/TiledLoader/ObjectLayer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/src/Zelta/TileEngine/TiledLoader/Tile.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/src/Zelta/TileEngine/TiledLoader/TiledLoader.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/src/Zelta/TileEngine/Tileset.cpp"
             ex="false"
             tool="1"
             flavor2="0">
@@ -985,14 +1124,6 @@
       <item path="Spawn.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Spawn.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Vector2f.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Vector2f.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Vector3f.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Vector3f.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>

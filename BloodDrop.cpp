@@ -16,9 +16,8 @@
 #include <SFML/System/Clock.hpp>
 
 #include "BloodDrop.hpp"
-#include "Vector2f.hpp"
 
-BloodDrop::BloodDrop(const Vector2f& position, const Vector2f& speed, float alphaFactor) : Particle(position, speed) {
+BloodDrop::BloodDrop(const zt::Vector2f& position, const zt::Vector2f& speed, float alphaFactor) : Particle(position, speed) {
     time.restart();
     rnd = (rand() % 100) / 100.0;
     circle.setFillColor(sf::Color::Red);

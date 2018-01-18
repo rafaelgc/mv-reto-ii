@@ -14,11 +14,11 @@
 #ifndef APP_HPP
 #define APP_HPP
 
-#include <ESE/Core/Application.hpp>
+#include <Zelta/Core/Application.hpp>
 
 #include "GameScene.hpp"
 
-class App : public ESE::Application {
+class App : public zt::Application {
 public:
     App();
     virtual ~App();

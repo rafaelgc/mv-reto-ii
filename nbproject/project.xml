@@ -10,7 +10,9 @@
             <sourceEncoding>UTF-8</sourceEncoding>
             <make-dep-projects/>
             <sourceRootList>
-                <sourceRootElem>../ESE</sourceRootElem>
+                <sourceRootElem>../Zelta</sourceRootElem>
+                <sourceRootElem>../ZeltaLib/src/Zelta</sourceRootElem>
+                <sourceRootElem>../ZeltaLib/include</sourceRootElem>
             </sourceRootList>
             <confList>
                 <confElem>

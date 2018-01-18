@@ -16,7 +16,7 @@
 Particle::Particle() {
 }
 
-Particle::Particle(const Vector2f& position, const Vector2f& speed) {
+Particle::Particle(const zt::Vector2f& position, const zt::Vector2f& speed) {
     this->position = position;
     this->speed = speed;
 }
@@ -28,10 +28,10 @@ void Particle::advanceTime(float deltaTime) {
     position.add(speed.mult(deltaTime));
 }
 
-void Particle::setPosition(const Vector2f& position) {
+void Particle::setPosition(const zt::Vector2f& position) {
     this->position = position;
 }
 
-const Vector2f& Particle::getPosition() const {
+const zt::Vector2f& Particle::getPosition() const {
     return this->position;
 }

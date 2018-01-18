@@ -15,12 +15,12 @@
 #define PARTICLEMANAGER_HPP
 
 #include <SFML/Graphics/Drawable.hpp>
-#include <ESE/Core/Animatable.hpp>
+#include <Zelta/Core/Animatable.hpp>
 #include <SFML/System/Clock.hpp>
 
 #include "Particle.hpp"
 
-class ParticleManager : public sf::Drawable, public ESE::Animatable {
+class ParticleManager : public sf::Drawable, public zt::Animatable {
 public:
     ParticleManager();
     virtual ~ParticleManager();
