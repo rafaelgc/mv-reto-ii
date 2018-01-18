@@ -23,29 +23,10 @@
 
 GameScene::GameScene(sf::RenderWindow& window) : pathfinding(*this), player(*this->window, *this), ESE::Scene("GameScene", window), sp(*this) {
     /// CARGA DE RECURSOS ///
+    ESE::Textures::instance();
+    ESE::SoundBuffers::instance();
     ESE::ResourceLoader::load("resources.res");
-    
-    ESE::Textures::instance().loadFromFile("shoot_fire", "images/shoot.png");
-    
-    ESE::Textures::instance().loadFromFile("survivor_idle_feet", "images/feet/idle/survivor-idle_0.png");
-    for (int i = 0; i <= 19; i++) {
-        ESE::Textures::instance().loadFromFile("survivor_rifle_idle_" + std::to_string(i) ,"images/rifle/idle/survivor-idle_rifle_" + std::to_string(i) + ".png");
-        ESE::Textures::instance().loadFromFile("survivor_rifle_move_" + std::to_string(i) ,"images/rifle/move/survivor-move_rifle_" + std::to_string(i) + ".png");
-        
-        ESE::Textures::instance().loadFromFile("survivor_walk_" + std::to_string(i) ,"images/feet/run/survivor-run_" + std::to_string(i) + ".png");
-    }
-    
-    for (int i = 0; i <= 2; i++) {
-        ESE::Textures::instance().loadFromFile("survivor_shoot_rifle_" + std::to_string(i), "images/rifle/shoot/survivor-shoot_rifle_" + std::to_string(i) + ".png");
-    }
-    
-    for (int i = 0; i <= 16; i++) {
-        ESE::Textures::instance().loadFromFile("zombie_" + std::to_string(i), "images/zombie_walking/skeleton-move_" + std::to_string(i) + ".png");
-    }
-    
-    ESE::SoundBuffers::instance().loadFromFile("shot", "sounds/ren.ogg");
-    
-    
+   
     this->loadFromFile("maps/default.tmx");
 
     /// La capa del mapa que contiene los edificios es
@@ -152,26 +133,21 @@ bool GameScene::work() {
     /// El algoritmo de búsqueda se ejecuta periódicamente
     /// para asegurar que los zombies si dirijan a una posición
     /// actualizada del enemigo.
-    //std::cout << "Run task" << std::endl;
-    //if (pathfindingClock.getElapsedTime().asSeconds() > 1) {
-        std::cout << "Run algorithm" << std::endl;
-        for (auto &enemy : enemies) {
-            try {
-                std::vector<GridNode> path = 
-                pathfinding.getPath(GridNode(enemy->getPosition().x / 32, enemy->getPosition().y / 32),
-                    GridNode(player.getPosition().x / 32, player.getPosition().y / 32));
+    for (auto &enemy : enemies) {
+        try {
+            std::vector<GridNode> path = 
+            pathfinding.getPath(GridNode(enemy->getPosition().x / 32, enemy->getPosition().y / 32),
+                GridNode(player.getPosition().x / 32, player.getPosition().y / 32));
 
-                enemy->setPath(path, sf::Vector2f(32, 32));
+            enemy->setPath(path, sf::Vector2f(32, 32));
 
-            } catch (std::exception e) {
-                //El objetivo es inalcanzable.
-                enemy->setPath(std::vector<GridNode>(), sf::Vector2f(32, 32));
-            }
+        } catch (std::exception e) {
+            //El objetivo es inalcanzable.
+            enemy->setPath(std::vector<GridNode>(), sf::Vector2f(32, 32));
         }
-        
-    //    pathfindingClock.restart();
-    //}
-        std::this_thread::sleep_for(std::chrono::seconds(1));
+    }
+
+    std::this_thread::sleep_for(std::chrono::seconds(1));
     
     return false;
 }

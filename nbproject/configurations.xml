@@ -16,6 +16,7 @@
           <itemPath>../ESE/include/ESE/Core/Clock.hpp</itemPath>
           <itemPath>../ESE/include/ESE/Core/Fonts.hpp</itemPath>
           <itemPath>../ESE/include/ESE/Core/Layer.hpp</itemPath>
+          <itemPath>../ESE/include/ESE/Core/Loadable.hpp</itemPath>
           <itemPath>../ESE/include/ESE/Core/Log.hpp</itemPath>
           <itemPath>../ESE/include/ESE/Core/RenderManager.hpp</itemPath>
           <itemPath>../ESE/include/ESE/Core/ResourceLoader.hpp</itemPath>
@@ -99,6 +100,7 @@
           <itemPath>../ESE/src/ESE/Core/Layer.cpp</itemPath>
           <itemPath>../ESE/src/ESE/Core/Log.cpp</itemPath>
           <itemPath>../ESE/src/ESE/Core/RenderManager.cpp</itemPath>
+          <itemPath>../ESE/src/ESE/Core/ResourceLoader.cpp</itemPath>
           <itemPath>../ESE/src/ESE/Core/Scene.cpp</itemPath>
           <itemPath>../ESE/src/ESE/Core/SceneManager.cpp</itemPath>
           <itemPath>../ESE/src/ESE/Core/ScreenDimensions.cpp</itemPath>
@@ -223,6 +225,11 @@
       <item path="../ESE/include/ESE/Core/Fonts.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="../ESE/include/ESE/Core/Layer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../ESE/include/ESE/Core/Loadable.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="../ESE/include/ESE/Core/Log.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -391,6 +398,11 @@
       <item path="../ESE/src/ESE/Core/Log.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="../ESE/src/ESE/Core/RenderManager.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../ESE/src/ESE/Core/ResourceLoader.cpp"
             ex="false"
             tool="1"
             flavor2="0">
@@ -605,6 +617,11 @@
       </item>
       <item path="../ESE/include/ESE/Core/Layer.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="../ESE/include/ESE/Core/Loadable.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="../ESE/include/ESE/Core/Log.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="../ESE/include/ESE/Core/RenderManager.hpp"
@@ -772,6 +789,11 @@
       <item path="../ESE/src/ESE/Core/Log.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="../ESE/src/ESE/Core/RenderManager.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../ESE/src/ESE/Core/ResourceLoader.cpp"
             ex="false"
             tool="1"
             flavor2="0">

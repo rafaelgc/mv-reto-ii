@@ -42,6 +42,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/c1b4e769/Layer.o \
 	${OBJECTDIR}/_ext/c1b4e769/Log.o \
 	${OBJECTDIR}/_ext/c1b4e769/RenderManager.o \
+	${OBJECTDIR}/_ext/c1b4e769/ResourceLoader.o \
 	${OBJECTDIR}/_ext/c1b4e769/Scene.o \
 	${OBJECTDIR}/_ext/c1b4e769/SceneManager.o \
 	${OBJECTDIR}/_ext/c1b4e769/ScreenDimensions.o \
@@ -141,6 +142,11 @@ ${OBJECTDIR}/_ext/c1b4e769/RenderManager.o: ../ESE/src/ESE/Core/RenderManager.cp
 	${MKDIR} -p ${OBJECTDIR}/_ext/c1b4e769
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/c1b4e769/RenderManager.o ../ESE/src/ESE/Core/RenderManager.cpp
+
+${OBJECTDIR}/_ext/c1b4e769/ResourceLoader.o: ../ESE/src/ESE/Core/ResourceLoader.cpp
+	${MKDIR} -p ${OBJECTDIR}/_ext/c1b4e769
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/c1b4e769/ResourceLoader.o ../ESE/src/ESE/Core/ResourceLoader.cpp
 
 ${OBJECTDIR}/_ext/c1b4e769/Scene.o: ../ESE/src/ESE/Core/Scene.cpp
 	${MKDIR} -p ${OBJECTDIR}/_ext/c1b4e769
