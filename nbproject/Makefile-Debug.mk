@@ -40,6 +40,8 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/fc9f393e/Worker.o \
 	${OBJECTDIR}/_ext/d0c70054/AnimatableContainer.o \
 	${OBJECTDIR}/_ext/d0c70054/Application.o \
+	${OBJECTDIR}/_ext/d0c70054/Argument.o \
+	${OBJECTDIR}/_ext/d0c70054/Arguments.o \
 	${OBJECTDIR}/_ext/d0c70054/Clock.o \
 	${OBJECTDIR}/_ext/d0c70054/Layer.o \
 	${OBJECTDIR}/_ext/d0c70054/Log.o \
@@ -53,15 +55,12 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/c9605200/pugixml.o \
 	${OBJECTDIR}/_ext/d0cb57bd/Vector2f.o \
 	${OBJECTDIR}/_ext/d0cb57bd/Vector3f.o \
-	${OBJECTDIR}/_ext/d0cb66a2/Dijkstra.o \
 	${OBJECTDIR}/_ext/d0cb66a2/Mesh.o \
 	${OBJECTDIR}/_ext/d0cb66a2/Node.o \
 	${OBJECTDIR}/_ext/d0cb66a2/NodeDistance.o \
-	${OBJECTDIR}/_ext/d0cb66a2/NodeLink.o \
 	${OBJECTDIR}/_ext/4a28dd72/AABBDetection.o \
 	${OBJECTDIR}/_ext/4a28dd72/CircleCollisionDetection.o \
 	${OBJECTDIR}/_ext/d0ce95e2/Text.o \
-	${OBJECTDIR}/_ext/70e3385/TileSprite.o \
 	${OBJECTDIR}/_ext/17d2477f/Layer.o \
 	${OBJECTDIR}/_ext/17d2477f/Map.o \
 	${OBJECTDIR}/_ext/17d2477f/Object.o \
@@ -71,15 +70,13 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/70e3385/Tileset.o \
 	${OBJECTDIR}/Actor.o \
 	${OBJECTDIR}/App.o \
-	${OBJECTDIR}/BloodDrop.o \
-	${OBJECTDIR}/Enemy.o \
+	${OBJECTDIR}/Drop.o \
 	${OBJECTDIR}/GameScene.o \
 	${OBJECTDIR}/GridMesh.o \
 	${OBJECTDIR}/GridNode.o \
 	${OBJECTDIR}/Particle.o \
 	${OBJECTDIR}/ParticleManager.o \
 	${OBJECTDIR}/Player.o \
-	${OBJECTDIR}/Spawn.o \
 	${OBJECTDIR}/main.o
 
 
@@ -101,11 +98,11 @@ LDLIBSOPTIONS=-lsfml-graphics -lsfml-window -lsfml-system -lGL -lsfml-audio
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
-	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/mv-reto-i
+	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/mv-reto-ii
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/mv-reto-i: ${OBJECTFILES}
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/mv-reto-ii: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/mv-reto-i ${OBJECTFILES} ${LDLIBSOPTIONS}
+	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/mv-reto-ii ${OBJECTFILES} ${LDLIBSOPTIONS}
 
 ${OBJECTDIR}/_ext/fc9f393e/Task.o: ../ZeltaLib/src/Zelta/Concurrency/Task.cpp
 	${MKDIR} -p ${OBJECTDIR}/_ext/fc9f393e
@@ -131,6 +128,16 @@ ${OBJECTDIR}/_ext/d0c70054/Application.o: ../ZeltaLib/src/Zelta/Core/Application
 	${MKDIR} -p ${OBJECTDIR}/_ext/d0c70054
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I../ZeltaLib/include/ -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/d0c70054/Application.o ../ZeltaLib/src/Zelta/Core/Application.cpp
+
+${OBJECTDIR}/_ext/d0c70054/Argument.o: ../ZeltaLib/src/Zelta/Core/Argument.cpp
+	${MKDIR} -p ${OBJECTDIR}/_ext/d0c70054
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I../ZeltaLib/include/ -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/d0c70054/Argument.o ../ZeltaLib/src/Zelta/Core/Argument.cpp
+
+${OBJECTDIR}/_ext/d0c70054/Arguments.o: ../ZeltaLib/src/Zelta/Core/Arguments.cpp
+	${MKDIR} -p ${OBJECTDIR}/_ext/d0c70054
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I../ZeltaLib/include/ -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/d0c70054/Arguments.o ../ZeltaLib/src/Zelta/Core/Arguments.cpp
 
 ${OBJECTDIR}/_ext/d0c70054/Clock.o: ../ZeltaLib/src/Zelta/Core/Clock.cpp
 	${MKDIR} -p ${OBJECTDIR}/_ext/d0c70054
@@ -197,11 +204,6 @@ ${OBJECTDIR}/_ext/d0cb57bd/Vector3f.o: ../ZeltaLib/src/Zelta/Math/Vector3f.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I../ZeltaLib/include/ -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/d0cb57bd/Vector3f.o ../ZeltaLib/src/Zelta/Math/Vector3f.cpp
 
-${OBJECTDIR}/_ext/d0cb66a2/Dijkstra.o: ../ZeltaLib/src/Zelta/Mesh/Dijkstra.cpp
-	${MKDIR} -p ${OBJECTDIR}/_ext/d0cb66a2
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -I../ZeltaLib/include/ -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/d0cb66a2/Dijkstra.o ../ZeltaLib/src/Zelta/Mesh/Dijkstra.cpp
-
 ${OBJECTDIR}/_ext/d0cb66a2/Mesh.o: ../ZeltaLib/src/Zelta/Mesh/Mesh.cpp
 	${MKDIR} -p ${OBJECTDIR}/_ext/d0cb66a2
 	${RM} "$@.d"
@@ -217,11 +219,6 @@ ${OBJECTDIR}/_ext/d0cb66a2/NodeDistance.o: ../ZeltaLib/src/Zelta/Mesh/NodeDistan
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I../ZeltaLib/include/ -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/d0cb66a2/NodeDistance.o ../ZeltaLib/src/Zelta/Mesh/NodeDistance.cpp
 
-${OBJECTDIR}/_ext/d0cb66a2/NodeLink.o: ../ZeltaLib/src/Zelta/Mesh/NodeLink.cpp
-	${MKDIR} -p ${OBJECTDIR}/_ext/d0cb66a2
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -I../ZeltaLib/include/ -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/d0cb66a2/NodeLink.o ../ZeltaLib/src/Zelta/Mesh/NodeLink.cpp
-
 ${OBJECTDIR}/_ext/4a28dd72/AABBDetection.o: ../ZeltaLib/src/Zelta/Physics/AABBDetection.cpp
 	${MKDIR} -p ${OBJECTDIR}/_ext/4a28dd72
 	${RM} "$@.d"
@@ -236,11 +233,6 @@ ${OBJECTDIR}/_ext/d0ce95e2/Text.o: ../ZeltaLib/src/Zelta/Text/Text.cpp
 	${MKDIR} -p ${OBJECTDIR}/_ext/d0ce95e2
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I../ZeltaLib/include/ -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/d0ce95e2/Text.o ../ZeltaLib/src/Zelta/Text/Text.cpp
-
-${OBJECTDIR}/_ext/70e3385/TileSprite.o: ../ZeltaLib/src/Zelta/TileEngine/TileSprite.cpp
-	${MKDIR} -p ${OBJECTDIR}/_ext/70e3385
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -I../ZeltaLib/include/ -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/70e3385/TileSprite.o ../ZeltaLib/src/Zelta/TileEngine/TileSprite.cpp
 
 ${OBJECTDIR}/_ext/17d2477f/Layer.o: ../ZeltaLib/src/Zelta/TileEngine/TiledLoader/Layer.cpp
 	${MKDIR} -p ${OBJECTDIR}/_ext/17d2477f
@@ -287,15 +279,10 @@ ${OBJECTDIR}/App.o: App.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I../ZeltaLib/include/ -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/App.o App.cpp
 
-${OBJECTDIR}/BloodDrop.o: BloodDrop.cpp
+${OBJECTDIR}/Drop.o: Drop.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -I../ZeltaLib/include/ -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/BloodDrop.o BloodDrop.cpp
-
-${OBJECTDIR}/Enemy.o: Enemy.cpp
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -I../ZeltaLib/include/ -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Enemy.o Enemy.cpp
+	$(COMPILE.cc) -g -I../ZeltaLib/include/ -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Drop.o Drop.cpp
 
 ${OBJECTDIR}/GameScene.o: GameScene.cpp
 	${MKDIR} -p ${OBJECTDIR}
@@ -326,11 +313,6 @@ ${OBJECTDIR}/Player.o: Player.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I../ZeltaLib/include/ -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Player.o Player.cpp
-
-${OBJECTDIR}/Spawn.o: Spawn.cpp
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -I../ZeltaLib/include/ -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Spawn.o Spawn.cpp
 
 ${OBJECTDIR}/main.o: main.cpp
 	${MKDIR} -p ${OBJECTDIR}

@@ -20,7 +20,7 @@
 
 class App : public zt::Application {
 public:
-    App();
+    App(int argc, char** argv);
     virtual ~App();
 private:
     GameScene gameScene;

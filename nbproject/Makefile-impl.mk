@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=mv-reto-i
+PROJECTNAME=mv-reto-ii
 
 # Active Configuration
 DEFAULTCONF=Debug

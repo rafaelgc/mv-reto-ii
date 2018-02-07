@@ -17,6 +17,7 @@
 #include <Zelta/Core/Scene.hpp>
 #include <Zelta/AI/Pathfinding.hpp>
 
+#include <Zelta/TileEngine/Tileset.hpp>
 #include <Zelta/TileEngine/TilemapRenderer.hpp>
 #include <Zelta/TileEngine/TiledLoader/TiledLoader.hpp>
 
@@ -24,22 +25,11 @@
 #include <Zelta/Concurrency/Task.hpp>
 
 #include "Player.hpp"
-#include "Spawn.hpp"
-#include "Enemy.hpp"
 
 #include "GridMesh.hpp"
 #include "GridNode.hpp"
-#include "Spawn.hpp"
-
-class Tile : public zt::TileSprite {
-protected:
-    int type;
-public:
-    Tile() { type = 0; };
-    void setType(int type) { this->type = type; }
-    int getType() { return type; }
-    
-};
+#include "ParticleManager.hpp"
+#include "Tile.hpp"
 
 class GameScene : public zt::Scene, public zt::IMesh<GridNode>, public zt::Tiled::TiledLoader, public zt::Task {
 public:
@@ -53,12 +43,16 @@ public:
     void logic(float deltaTime);
     void render();
     
-    std::vector<Enemy*>& getEnemies();
     Player& getPlayer();
     
+    zt::TilemapLayer<Tile>& getSolidLayer();
+    
     sf::IntRect getWorldDimensions() const;
+    const sf::Vector2u& getMapSize() const;
     sf::IntRect getVisibleArea() const;
     bool isValidPosition(const sf::Vector2f&) const;
+    Tile& getTileAt(float x, float y);
+    Tile& getTileAtT(unsigned int x, unsigned int y);
     
     sf::Vector2f& getOrigin();
     
@@ -77,11 +71,20 @@ protected:
     float cost(const GridNode& node1, const GridNode& node2) const;
     float estimate(const GridNode &node1, const GridNode& node2) const;
     
+    /// HELPER FLOAT ///
+    // Cálculos del agua.
+    bool fequal(float f1, float f2, float tolerance = 0.0001f);
+    bool fbigger(float f1, float f2, float tolerance = 0.0001f);
+    bool flessEq(float f1, float f2, float tolerance = 0.0001f);
+    
     /// TILEMAP LOADER ///
     void sizeLoaded(sf::Vector2u mapSize, const sf::Vector2u& tileSize);
     void layerLoaded(zt::Tiled::Layer);
     void objectLayerLoaded(zt::Tiled::ObjectLayer objectGroup);
     
+    /// UI ///
+    //zt::ui::VBox layout;
+    //zt::ui::TextField textfield;
 private:
     // Punto central de la cámara. La clase Player se encarga de
     // mantenerla centrada en el jugador.
@@ -89,11 +92,8 @@ private:
     
     Player player;
     
-    // Enemigos
-    std::vector<Enemy*> enemies;
-    Spawn sp;
-    std::vector<Spawn> spawnPoints;
     
+    sf::Sprite background;
     zt::Pathfinding<GridNode> pathfinding;
     sf::Clock pathfindingClock;
     zt::TaskPool taskPool;
@@ -101,12 +101,25 @@ private:
     ParticleManager particleManager;
     
     zt::TilemapRenderer<Tile> tilemap;
-    zt::TilemapLayer<Tile>* buildingsLayer;
+    zt::TilemapLayer<Tile>* solidLayer;
     sf::Texture tilesetTexture;
     zt::Tileset tileset;
     
     sf::IntRect worldDimensions;
-    sf::Vector2u tileSize;
+    sf::Vector2u tileSize, mapSize;
+    
+    sf::Clock waterPropagationClock;
+    
+    sf::FloatRect backgroundDimensions;
+    
+    /// LLUVIA ///
+    sf::Clock rainGenerationClock;
+    float rainMovementAngle;
+    zt::Vector2f rainMovementVector;
+    
+    /// FPS ///
+    sf::Clock updateFPS;
+    int fps;
     
     /// TILEMAP LOADER ///
     zt::TilemapLayer<Tile> currentLayer;

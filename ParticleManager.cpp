@@ -46,7 +46,7 @@ void ParticleManager::advanceTime(float deltaTime) {
         
     }
     
-    if (removeInterval.getElapsedTime().asSeconds() > 1) {
+    //if (removeInterval.getElapsedTime().asSeconds() > 0.1) {
         for (auto it = particles.begin(); it != particles.end();) {
             if ((*it)->isRemovable()) {
                 particles.erase(it);
@@ -56,6 +56,6 @@ void ParticleManager::advanceTime(float deltaTime) {
             }
         }
         
-        removeInterval.restart();
-    }
+        //removeInterval.restart();
+    //}
 }

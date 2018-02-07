@@ -18,6 +18,8 @@
 #include "Actor.hpp"
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Audio/Sound.hpp>
+#include <SFML/Graphics/RectangleShape.hpp>
+#include <SFML/Graphics/Text.hpp>
 
 class GameScene;
 
@@ -27,6 +29,23 @@ public:
     sf::Vector2f pos;
     bool visible;
     Trail() { visible = false; }
+};
+
+class Sensor {
+public:
+    Sensor() : x(0), y(0), on(false) { }
+    Sensor(float x, float y) : x(x), y(y) {}
+    
+    void setX(float x) { this->x = x; }
+    void setY(float y) { this->y = y; }
+    float getX() const { return x; }
+    float getY() const { return y; }
+    bool isOn() const { return on; }
+    void setOn(bool on) { this->on = on; }
+    
+private:
+    float x, y;
+    bool on;
 };
 
 class Player : public Actor {
@@ -47,38 +66,31 @@ private:
     
     zt::Vector2f lookAt;
     
-    float speed;
+    float speedMagnitude;
+    bool jumping;
+    bool flipped;
     bool moving;
+    bool released;
     
-    /// DISPARO ///
-    
-    sf::Clock lastShoot, shootSpriteClock;
-    bool shooting;
-    sf::Sprite shootSprite;
-    sf::Sound shotSound;
+    /// FISICA
+    sf::Vector2f gravity;
+    sf::Vector2f speed;
+    std::vector<Sensor> sensors;
     
     /// ANIMACION ///
-    int currentFrame, currentFeetFrame;
-    sf::Clock animationClock, feetAnimationClock;
+    int currentFrame;
+    sf::Clock animationClock;
     std::vector<sf::Texture*>* currentAnimation;
-    std::vector<sf::Texture*>* currentFeetAnimation;
-    std::vector<sf::Texture*> rifleMovingTextures;
-    std::vector<sf::Texture*> rifleShootingTextures;
     std::vector<sf::Texture*> idleTextures;
-    std::vector<sf::Texture*> feetWalkingTextures;
-    sf::Sprite playerSprite, feetSprite;
-    sf::Sprite shadowPlayerSprite;
+    std::vector<sf::Texture*> runningTextures;
+    sf::Sprite playerSprite;
     
-    /// TELETRANSPORTE ///
-    sf::RectangleShape movementRect;
-    sf::CircleShape triangle;
-    zt::Vector2f originalPosition; // Posición del jugador al inicial el teletransporte.
-    sf::Clock teleportingClock; //Se inicia al iniciar el teletransporte.
-    float teleportSpeed; //Velocidad de teletransporte.
-    float maxTeleport; //Máxima distancia de teletransporte.
-    float teleportDistance; //Distancia a la que se teletransporta.
-    zt::Vector2f teleportVector; //Vector unitario con la dirección del telegransporte.
-    bool teleporting;
+    /// CUERDA ///
+    sf::RectangleShape rope;
+    bool ropeThrowed;
+    sf::Vector2f ropeMovementVector;
+    zt::Vector2f ropeTarget;
+    
     
     /// ESTELA DE TELETRANSPORTE ///
     std::vector<Trail> trails;
@@ -89,6 +101,8 @@ private:
     
     sf::RenderWindow& renderWindow;
     GameScene& gameScene;
+    
+    sf::Text text;
     
 };
 

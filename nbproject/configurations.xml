@@ -18,6 +18,8 @@
           <itemPath>../ZeltaLib/include/Zelta/Core/Animatable.hpp</itemPath>
           <itemPath>../ZeltaLib/include/Zelta/Core/AnimatableContainer.hpp</itemPath>
           <itemPath>../ZeltaLib/include/Zelta/Core/Application.hpp</itemPath>
+          <itemPath>../ZeltaLib/include/Zelta/Core/Argument.hpp</itemPath>
+          <itemPath>../ZeltaLib/include/Zelta/Core/Arguments.hpp</itemPath>
           <itemPath>../ZeltaLib/include/Zelta/Core/Clock.hpp</itemPath>
           <itemPath>../ZeltaLib/include/Zelta/Core/Fonts.hpp</itemPath>
           <itemPath>../ZeltaLib/include/Zelta/Core/Layer.hpp</itemPath>
@@ -48,11 +50,9 @@
           <itemPath>../ZeltaLib/include/Zelta/Math/Vector3f.hpp</itemPath>
         </logicalFolder>
         <logicalFolder name="Mesh" displayName="Mesh" projectFiles="true">
-          <itemPath>../ZeltaLib/include/Zelta/Mesh/Dijkstra.hpp</itemPath>
           <itemPath>../ZeltaLib/include/Zelta/Mesh/Mesh.hpp</itemPath>
           <itemPath>../ZeltaLib/include/Zelta/Mesh/Node.hpp</itemPath>
           <itemPath>../ZeltaLib/include/Zelta/Mesh/NodeDistance.hpp</itemPath>
-          <itemPath>../ZeltaLib/include/Zelta/Mesh/NodeLink.hpp</itemPath>
         </logicalFolder>
         <logicalFolder name="Physics" displayName="Physics" projectFiles="true">
           <itemPath>../ZeltaLib/include/Zelta/Physics/AABBDetection.hpp</itemPath>
@@ -71,7 +71,6 @@
             <itemPath>../ZeltaLib/include/Zelta/TileEngine/TiledLoader/Tile.hpp</itemPath>
             <itemPath>../ZeltaLib/include/Zelta/TileEngine/TiledLoader/TiledLoader.hpp</itemPath>
           </logicalFolder>
-          <itemPath>../ZeltaLib/include/Zelta/TileEngine/TileSprite.hpp</itemPath>
           <itemPath>../ZeltaLib/include/Zelta/TileEngine/TilemapLayer.hpp</itemPath>
           <itemPath>../ZeltaLib/include/Zelta/TileEngine/TilemapRenderer.hpp</itemPath>
           <itemPath>../ZeltaLib/include/Zelta/TileEngine/Tileset.hpp</itemPath>
@@ -79,19 +78,19 @@
       </logicalFolder>
       <itemPath>Actor.hpp</itemPath>
       <itemPath>App.hpp</itemPath>
-      <itemPath>BloodDrop.hpp</itemPath>
-      <itemPath>Enemy.hpp</itemPath>
+      <itemPath>Drop.hpp</itemPath>
       <itemPath>GameScene.hpp</itemPath>
       <itemPath>GridMesh.hpp</itemPath>
       <itemPath>GridNode.hpp</itemPath>
       <itemPath>Particle.hpp</itemPath>
       <itemPath>ParticleManager.hpp</itemPath>
       <itemPath>Player.hpp</itemPath>
-      <itemPath>Spawn.hpp</itemPath>
+      <itemPath>Tile.hpp</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
                    projectFiles="true">
+      <itemPath>resources.res</itemPath>
     </logicalFolder>
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
@@ -105,6 +104,8 @@
         <logicalFolder name="Core" displayName="Core" projectFiles="true">
           <itemPath>../ZeltaLib/src/Zelta/Core/AnimatableContainer.cpp</itemPath>
           <itemPath>../ZeltaLib/src/Zelta/Core/Application.cpp</itemPath>
+          <itemPath>../ZeltaLib/src/Zelta/Core/Argument.cpp</itemPath>
+          <itemPath>../ZeltaLib/src/Zelta/Core/Arguments.cpp</itemPath>
           <itemPath>../ZeltaLib/src/Zelta/Core/Clock.cpp</itemPath>
           <itemPath>../ZeltaLib/src/Zelta/Core/Layer.cpp</itemPath>
           <itemPath>../ZeltaLib/src/Zelta/Core/Log.cpp</itemPath>
@@ -128,11 +129,9 @@
           <itemPath>../ZeltaLib/src/Zelta/Math/Vector3f.cpp</itemPath>
         </logicalFolder>
         <logicalFolder name="Mesh" displayName="Mesh" projectFiles="true">
-          <itemPath>../ZeltaLib/src/Zelta/Mesh/Dijkstra.cpp</itemPath>
           <itemPath>../ZeltaLib/src/Zelta/Mesh/Mesh.cpp</itemPath>
           <itemPath>../ZeltaLib/src/Zelta/Mesh/Node.cpp</itemPath>
           <itemPath>../ZeltaLib/src/Zelta/Mesh/NodeDistance.cpp</itemPath>
-          <itemPath>../ZeltaLib/src/Zelta/Mesh/NodeLink.cpp</itemPath>
         </logicalFolder>
         <logicalFolder name="Physics" displayName="Physics" projectFiles="true">
           <itemPath>../ZeltaLib/src/Zelta/Physics/AABBDetection.cpp</itemPath>
@@ -150,21 +149,18 @@
             <itemPath>../ZeltaLib/src/Zelta/TileEngine/TiledLoader/Tile.cpp</itemPath>
             <itemPath>../ZeltaLib/src/Zelta/TileEngine/TiledLoader/TiledLoader.cpp</itemPath>
           </logicalFolder>
-          <itemPath>../ZeltaLib/src/Zelta/TileEngine/TileSprite.cpp</itemPath>
           <itemPath>../ZeltaLib/src/Zelta/TileEngine/Tileset.cpp</itemPath>
         </logicalFolder>
       </logicalFolder>
       <itemPath>Actor.cpp</itemPath>
       <itemPath>App.cpp</itemPath>
-      <itemPath>BloodDrop.cpp</itemPath>
-      <itemPath>Enemy.cpp</itemPath>
+      <itemPath>Drop.cpp</itemPath>
       <itemPath>GameScene.cpp</itemPath>
       <itemPath>GridMesh.cpp</itemPath>
       <itemPath>GridNode.cpp</itemPath>
       <itemPath>Particle.cpp</itemPath>
       <itemPath>ParticleManager.cpp</itemPath>
       <itemPath>Player.cpp</itemPath>
-      <itemPath>Spawn.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -180,9 +176,7 @@
     </logicalFolder>
   </logicalFolder>
   <sourceRootList>
-    <Elem>../Zelta</Elem>
-    <Elem>../ZeltaLib/src/Zelta</Elem>
-    <Elem>../ZeltaLib/include</Elem>
+    <Elem>../ZeltaLib</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -250,6 +244,16 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="../ZeltaLib/include/Zelta/Core/Argument.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/include/Zelta/Core/Arguments.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="../ZeltaLib/include/Zelta/Core/Clock.hpp"
             ex="false"
             tool="3"
@@ -350,11 +354,6 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="../ZeltaLib/include/Zelta/Mesh/Dijkstra.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
       <item path="../ZeltaLib/include/Zelta/Mesh/Mesh.hpp"
             ex="false"
             tool="3"
@@ -370,11 +369,6 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="../ZeltaLib/include/Zelta/Mesh/NodeLink.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
       <item path="../ZeltaLib/include/Zelta/Physics/AABBDetection.hpp"
             ex="false"
             tool="3"
@@ -386,11 +380,6 @@
             flavor2="0">
       </item>
       <item path="../ZeltaLib/include/Zelta/Text/Text.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../ZeltaLib/include/Zelta/TileEngine/TileSprite.hpp"
             ex="false"
             tool="3"
             flavor2="0">
@@ -470,6 +459,16 @@
             tool="1"
             flavor2="0">
       </item>
+      <item path="../ZeltaLib/src/Zelta/Core/Argument.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/src/Zelta/Core/Arguments.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
       <item path="../ZeltaLib/src/Zelta/Core/Clock.cpp"
             ex="false"
             tool="1"
@@ -532,11 +531,6 @@
             tool="1"
             flavor2="0">
       </item>
-      <item path="../ZeltaLib/src/Zelta/Mesh/Dijkstra.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
       <item path="../ZeltaLib/src/Zelta/Mesh/Mesh.cpp"
             ex="false"
             tool="1"
@@ -552,11 +546,6 @@
             tool="1"
             flavor2="0">
       </item>
-      <item path="../ZeltaLib/src/Zelta/Mesh/NodeLink.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
       <item path="../ZeltaLib/src/Zelta/Physics/AABBDetection.cpp"
             ex="false"
             tool="1"
@@ -568,11 +557,6 @@
             flavor2="0">
       </item>
       <item path="../ZeltaLib/src/Zelta/Text/Text.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="../ZeltaLib/src/Zelta/TileEngine/TileSprite.cpp"
             ex="false"
             tool="1"
             flavor2="0">
@@ -620,13 +604,9 @@
       </item>
       <item path="App.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="BloodDrop.cpp" ex="false" tool="1" flavor2="0">
+      <item path="Drop.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="BloodDrop.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Enemy.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Enemy.hpp" ex="false" tool="3" flavor2="0">
+      <item path="Drop.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="GameScene.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -652,11 +632,11 @@
       </item>
       <item path="Player.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Spawn.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Spawn.hpp" ex="false" tool="3" flavor2="0">
+      <item path="Tile.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="resources.res" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
     <conf name="Release" type="1">
@@ -719,6 +699,16 @@
             tool="3"
             flavor2="0">
       </item>
+      <item path="../ZeltaLib/include/Zelta/Core/Argument.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/include/Zelta/Core/Arguments.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="../ZeltaLib/include/Zelta/Core/Clock.hpp"
             ex="false"
             tool="3"
@@ -819,11 +809,6 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="../ZeltaLib/include/Zelta/Mesh/Dijkstra.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
       <item path="../ZeltaLib/include/Zelta/Mesh/Mesh.hpp"
             ex="false"
             tool="3"
@@ -839,11 +824,6 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="../ZeltaLib/include/Zelta/Mesh/NodeLink.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
       <item path="../ZeltaLib/include/Zelta/Physics/AABBDetection.hpp"
             ex="false"
             tool="3"
@@ -855,11 +835,6 @@
             flavor2="0">
       </item>
       <item path="../ZeltaLib/include/Zelta/Text/Text.hpp"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="../ZeltaLib/include/Zelta/TileEngine/TileSprite.hpp"
             ex="false"
             tool="3"
             flavor2="0">
@@ -939,6 +914,16 @@
             tool="1"
             flavor2="0">
       </item>
+      <item path="../ZeltaLib/src/Zelta/Core/Argument.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="../ZeltaLib/src/Zelta/Core/Arguments.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
       <item path="../ZeltaLib/src/Zelta/Core/Clock.cpp"
             ex="false"
             tool="1"
@@ -1001,11 +986,6 @@
             tool="1"
             flavor2="0">
       </item>
-      <item path="../ZeltaLib/src/Zelta/Mesh/Dijkstra.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
       <item path="../ZeltaLib/src/Zelta/Mesh/Mesh.cpp"
             ex="false"
             tool="1"
@@ -1021,11 +1001,6 @@
             tool="1"
             flavor2="0">
       </item>
-      <item path="../ZeltaLib/src/Zelta/Mesh/NodeLink.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
       <item path="../ZeltaLib/src/Zelta/Physics/AABBDetection.cpp"
             ex="false"
             tool="1"
@@ -1037,11 +1012,6 @@
             flavor2="0">
       </item>
       <item path="../ZeltaLib/src/Zelta/Text/Text.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="../ZeltaLib/src/Zelta/TileEngine/TileSprite.cpp"
             ex="false"
             tool="1"
             flavor2="0">
@@ -1089,13 +1059,9 @@
       </item>
       <item path="App.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="BloodDrop.cpp" ex="false" tool="1" flavor2="0">
+      <item path="Drop.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="BloodDrop.hpp" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Enemy.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Enemy.hpp" ex="false" tool="3" flavor2="0">
+      <item path="Drop.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="GameScene.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -1121,11 +1087,11 @@
       </item>
       <item path="Player.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Spawn.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Spawn.hpp" ex="false" tool="3" flavor2="0">
+      <item path="Tile.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="resources.res" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
   </confs>

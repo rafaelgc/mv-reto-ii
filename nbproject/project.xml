@@ -3,16 +3,14 @@
     <type>org.netbeans.modules.cnd.makeproject</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/make-project/1">
-            <name>Pathfinding</name>
+            <name>tile-based-fluid-simulation</name>
             <c-extensions/>
             <cpp-extensions>cpp</cpp-extensions>
             <header-extensions>hpp</header-extensions>
             <sourceEncoding>UTF-8</sourceEncoding>
             <make-dep-projects/>
             <sourceRootList>
-                <sourceRootElem>../Zelta</sourceRootElem>
-                <sourceRootElem>../ZeltaLib/src/Zelta</sourceRootElem>
-                <sourceRootElem>../ZeltaLib/include</sourceRootElem>
+                <sourceRootElem>../ZeltaLib</sourceRootElem>
             </sourceRootList>
             <confList>
                 <confElem>
