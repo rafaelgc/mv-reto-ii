@@ -16,15 +16,15 @@
 #include "App.hpp"
 
 App::App(int argc, char** argv) : zt::Application(argc, argv), gameScene(this->window) {
-    int width = 800;
-    int height = 600;
+    int width = 1024;
+    int height = 768;
     
     if (getArguments().size() == 3) {
         width = getArguments().get(1).toInt();
         height = getArguments().get(2).toInt();
     }
     
-    window.create(sf::VideoMode(width,height), "mediavida-reto-ii");
+    window.create(sf::VideoMode(width,height), "mediavida-reto-ii", sf::Style::Close | sf::Style::Titlebar);
     
     gameScene.setup();
     

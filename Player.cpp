@@ -78,7 +78,7 @@ void Player::setup() {
     
     ///////////////////////////////////////
     /// BORRAR XD
-    text.setColor(sf::Color::Black);
+    text.setFillColor(sf::Color::Black);
     text.setString("Hola mundo");
     
     
@@ -118,6 +118,8 @@ void Player::advanceTime(float deltaTime) {
     
     
     sf::Vector2f fS = speed * deltaTime;
+    
+    
     
     ///////////////////////////////////////////////////////////
     /// DETECCION DE COLISIONES CON PREVENCION DE TUNNELING ///
@@ -252,7 +254,7 @@ void Player::advanceTime(float deltaTime) {
     //position.y = finalPositionIncrY.y;
     
     //std::cout << position.x << ", " << position.y << " -> " << fS.x << ", " << fS.y << std::endl;
-    sf::Vector2f finalPosition = position + speed * deltaTime;
+    /*sf::Vector2f finalPosition = position + speed * deltaTime;
     
     for (Sensor& sensor : sensors) {
         
@@ -311,17 +313,14 @@ void Player::advanceTime(float deltaTime) {
         }
     }
     
-    position = finalPosition;
+    position = finalPosition;*/
     
     gameScene.getOrigin().x = position.x;
     gameScene.getOrigin().y = position.y;
     
-    //gameScene.getOrigin().x = 800 / 2;
-    //gameScene.getOrigin().y = gameScene.getWorldDimensions().height - 300;
-    
     // El incremento de la x y la y se debe hacer por separado
     // para responder bien a la colisión.
-    /*position.y += speed.y * deltaTime;
+    position.y += speed.y * deltaTime;
     if (!gameScene.isValidPosition(position)) {
         position.y -= speed.y * deltaTime;
         speed.y = 0.f;
@@ -331,7 +330,7 @@ void Player::advanceTime(float deltaTime) {
     position.x += speed.x * deltaTime;
     if (!gameScene.isValidPosition(position)) {
         position.x -= speed.x * deltaTime;
-    }*/
+    }
     
     // La cuerda ya está enganchada a alguna superficie y el jugador
     // se está acercando hacia el objetivo.
@@ -355,11 +354,11 @@ void Player::advanceTime(float deltaTime) {
     playerSprite.setPosition(position);
     
     if (animationClock.getElapsedTime().asSeconds() > (0.03)) {
-        /*currentFrame++;
+        currentFrame++;
         
         if (currentFrame >= currentAnimation->size()) { currentFrame = 0; }
         
-        playerSprite.setTexture(*currentAnimation->at(currentFrame), true);*/
+        playerSprite.setTexture(*currentAnimation->at(currentFrame), true);
         animationClock.restart();
     }
     

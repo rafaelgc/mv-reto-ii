@@ -20,50 +20,49 @@
 #include <cmath>
 #include <Zelta/TileEngine/TiledLoader/TiledLoader.hpp>
 
-GameScene::GameScene(sf::RenderWindow& window) : pathfinding(*this), player(*this->window, *this), zt::Scene("GameScene", window) {
+GameScene::GameScene(sf::RenderWindow& window) : player(*this->window, *this), zt::Scene("GameScene", window) {
     /// CARGA DE RECURSOS ///
     zt::Textures::instance();
     zt::SoundBuffers::instance();
     zt::ResourceLoader::load("resources.res");
    
-    
     this->loadFromFile("maps/default.tmx");
 
-    /// La capa del mapa que contiene los edificios es
-    /// importante tanto por las colisiones como para el
-    /// algoritmo de búsqueda. Por eso se guarda.
+    /// La capa del mapa que contiene los tiles sólidos es
+    /// importante tenerla a mano.
     solidLayer = &tilemap.getLayerByName(L"Solid");
     
     rainMovementVector.set(-200, 2000);
     rainMovementAngle = rainMovementVector.getAngle();
-    
-    //std::cout << solidLayer->isEmpty(0, 0) << std::endl;
 }
 
-GameScene::~GameScene() {    
-    taskPool.stop();
-    
-    taskPool.join();
+GameScene::~GameScene() {
 }
 
 void GameScene::setup() {
     
     player.setup();
     
-    pathfindingClock.restart();
-    
     sf::Texture& bgTex = *zt::Textures::instance().getResource("background");
     backgroundDimensions = sf::FloatRect(0, 0, bgTex.getSize().x, bgTex.getSize().y);
     
-    
     background.setTexture(bgTex);
-    std::cout << "Window H: " << window->getSize().y << " Tex: " << bgTex.getSize().y << std::endl;
-    //std::cout << (float)window->getSize().y / bgTex.getSize().y << std::endl;
-    //background.setScale((float)window->getSize().y / bgTex.getSize().y, (float)window->getSize().y / bgTex.getSize().y);
+    backgroundThunder.setTexture(*zt::Textures::instance().getResource("background_thunder"));
     
-    taskPool.addTask(*this);
+    grass.setTexture(*zt::Textures::instance().getResource("grass"));
+    grass.setPosition(0, window->getSize().y - zt::Textures::instance().getResource("grass")->getSize().y);
+    std::cout << window->getSize().y << " - " << zt::Textures::instance().getResource("grass")->getSize().y << std::endl;
     
     rainGenerationClock.restart();
+    
+    rainSound.setBuffer(*zt::SoundBuffers::instance().getResource("rain"));
+    rainSound.setLoop(true);
+    rainSound.play();
+    
+    thunderSound.setBuffer(*zt::SoundBuffers::instance().getResource("thunder"));
+    thunderSound2.setBuffer(*zt::SoundBuffers::instance().getResource("thunder2"));
+    
+    nextThunderTime = 5 + rand() % 10;
     
     //layout.setAvailableArea(sf::FloatRect(0, 0, 200, 200));
     //layout.add(textfield);
@@ -86,7 +85,6 @@ void GameScene::manageEvents(float deltaTime) {
         if (events.type == sf::Event::Closed) {
             zt::SceneManager::instance().deactivateAllScenes();
             
-            
         }
     }
 }
@@ -97,8 +95,30 @@ void GameScene::logic(float deltaTime) {
     /// en el jugador. Si el jugador está en los límites del mapa la
     /// cámara podría quedar fuera de este, así que es necesario
     /// arreglar las coordenadas de esta.
-    //fixCamera();
+    fixCamera();
+    
+    
+    grass.setPosition(-(origin.x - window->getSize().x / 2) * ((float) (zt::Textures::instance().getResource("grass")->getSize().x - window->getSize().x) / (this->worldDimensions.width - window->getSize().x)),
+                grass.getPosition().y);
+    
+    
+    backgroundThunder.setColor(sf::Color(255, 255, 255, 255 * this->thunderAlpha(14 * thunderClock.getElapsedTime().asSeconds())));
 
+    if (thunderClock.getElapsedTime().asSeconds() > nextThunderTime) {
+        thunderClock.restart();
+        
+        if (rand() % 2 == 0) {
+            thunderSound.play();
+        }
+        else {
+            thunderSound2.play();
+        }
+        
+        nextThunderTime = 5 + rand() % 10;
+    }
+    
+    /*
+     * He deshabilitado la simulación de fluidos.
     if (waterPropagationClock.getElapsedTime().asSeconds() > 0.1) {
         float avg;
         for (int y = 0; y < mapSize.y; y++) {
@@ -126,10 +146,7 @@ void GameScene::logic(float deltaTime) {
                     
                 }
                 
-                /*if (fbigger(solidLayer->getTile(x, y).getWater(), 0.f) && y < mapSize.y - 1) {
-                    
-                    continue;
-                }*/
+                //if (fbigger(solidLayer->getTile(x, y).getWater(), 0.f) && y < mapSize.y - 1) continue;
             
                 /// EXPANSIÓN HORIZONTAL DEL FLUIDO
                 // Básicamente hay que traspasar agua a las casillas
@@ -179,24 +196,14 @@ void GameScene::logic(float deltaTime) {
         
         waterPropagationClock.restart();
     }
+    */
     
-    
-    if (rainGenerationClock.getElapsedTime().asMilliseconds() > 50) {
-        
-        /*for (int k = 0; k < 25; k++) {
-            particleManager.addParticle(
-                    new Drop(*this, zt::Vector2f(this->getVisibleArea().left + rand() % this->getVisibleArea().width, this->getVisibleArea().top - rand() % this->getVisibleArea().height), 
-                    rainMovementVector.mult(0.2), rainMovementAngle, 100, false));
-        
-        }*/
-        
-        for (int k = 0; k < 25; k++) {
+    /// GENERACION DE GOTAS ///
+    if (rainGenerationClock.getElapsedTime().asMilliseconds() > 25) {
+        for (int k = 0; k < 50; k++) {
             particleManager.addParticle(
                     new Drop(*this, zt::Vector2f(this->getVisibleArea().left + rand() % this->getVisibleArea().width, this->getVisibleArea().top - rand() % this->getVisibleArea().height), 
                     rainMovementVector, rainMovementAngle, 255, true));
-            /*particleManager.addParticle(
-                    new Drop(*this, zt::Vector2f(this->getVisibleArea().left + this->getVisibleArea().width, this->getVisibleArea().top), 
-                    rainMovementVector, rainMovementAngle));*/
         
         }
         rainGenerationClock.restart();
@@ -216,6 +223,7 @@ void GameScene::logic(float deltaTime) {
 void GameScene::render() {
     window->setView(sf::View(backgroundDimensions));
     draw(background);
+    draw(backgroundThunder);
     
     sf::View view(origin, sf::Vector2f(window->getSize()));
     window->setView(view);
@@ -229,14 +237,33 @@ void GameScene::render() {
     
     draw(particleManager);
     
-    window->setView(sf::View());
+    window->setView(sf::View(sf::FloatRect(0, 0, window->getSize().x, window->getSize().y)));
+    
+    draw(grass);
+    
     //draw(layout);
 }
 
-bool GameScene::work() {
-    std::this_thread::sleep_for(std::chrono::seconds(1));
-    
-    return false;
+float GameScene::thunderAlpha(float time) {
+    if (time < 3.1415f) {
+        // Destello fuerte.
+        return std::sin(time);
+    }
+    else if (time < 2.f * 3.1415f) {
+        // Destello medio.
+        return std::abs(std::sin(time) * 0.5f);
+    }
+    else if (time < 3.f * 3.1415f) {
+        // Destello fuerte.
+        return std::abs(std::sin(time));
+    }
+    else if (time < 4.f * 3.1415f) {
+        // Destello flojo.
+        return std::abs(std::sin(time) * 0.4f);
+    }
+    else {
+        return 0.f;
+    }
 }
 
 Player& GameScene::getPlayer() {
@@ -251,15 +278,15 @@ void GameScene::fixCamera() {
     if (origin.x - window->getSize().x / 2 < 0) {
         origin.x = window->getSize().x / 2;
     }
-    else if (origin.x + window->getSize().x / 2 > tilemap.getSize().x * 32) {
-        origin.x = tilemap.getSize().x * 32 - window->getSize().x / 2;
+    else if (origin.x + window->getSize().x / 2 > tilemap.getSize().x * tileSize.x) {
+        origin.x = tilemap.getSize().x * tileSize.x - window->getSize().x / 2;
     }
     
     if (origin.y - window->getSize().y / 2 < 0) {
         origin.y = window->getSize().y / 2;
     }
-    else if (origin.y + window->getSize().y / 2 > tilemap.getSize().y * 32) {
-        origin.y = tilemap.getSize().y * 32 - window->getSize().y / 2;
+    else if (origin.y + window->getSize().y / 2 > tilemap.getSize().y * tileSize.y) {
+        origin.y = tilemap.getSize().y * tileSize.y - window->getSize().y / 2;
     }
 }
 
@@ -317,60 +344,6 @@ bool GameScene::fbigger(float f1, float f2, float tolerance) {
 
 bool GameScene::flessEq(float f1, float f2, float tolerance) {
     return fequal(f1, f2, tolerance) || f1 < f2;
-}
-
-/// MESH ///
-
-std::vector<GridNode> GameScene::getAdjacents(const GridNode& node) const {
-    std::vector<GridNode> res;
-    int x = node.getPosition().x;
-    int y = node.getPosition().y;
-
-    for (int rx = x - 1; rx <= x + 1; rx++) {
-        for (int ry = y - 1; ry <= y + 1; ry++) {
-
-            if (rx < 0 || ry < 0 || rx >= tilemap.getSize().x || ry >= tilemap.getSize().y) continue;
-            // Una casilla no es adyacente a si misma:
-            if (rx == x && ry == y) continue;
-            // Si es sólido no es adyacente:
-            if (solidLayer->getTile(rx,ry).getType() > 0) continue;
-            
-            // Un elemento en las casillas diagonales no será
-            // adyacente si en las laterales hay algún obstáculo.
-            if ((rx == x - 1 && ry == y - 1)) {
-                if (solidLayer->getTile(rx, ry + 1).getType() > 0) continue;
-                if (solidLayer->getTile(rx + 1, ry).getType() > 0) continue;
-            }
-
-            if ((rx == x + 1 && ry == y - 1)) {
-                if (solidLayer->getTile(x, y - 1).getType() > 0) continue;
-                if (solidLayer->getTile(x + 1, y).getType() > 0) continue;
-            }
-
-            if ((rx == x + 1 && ry == y + 1)) {
-                if (solidLayer->getTile(x, y + 1).getType() > 0) continue;
-                if (solidLayer->getTile(x + 1, y).getType() > 0) continue;
-            }
-
-            if ((rx == x - 1 && ry == y + 1)) {
-                if (solidLayer->getTile(x, y + 1).getType() > 0) continue;
-                if (solidLayer->getTile(x - 1, y).getType() > 0) continue;
-            }
-            
-            res.push_back(GridNode(rx, ry));
-        }
-    }
-
-    return res;
-}
-
-float GameScene::cost(const GridNode& node1, const GridNode& node2) const {
-    return (node1.getPosition().x == node2.getPosition().x || node1.getPosition().y == node2.getPosition().y) ? 10 : 14.1421356237;
-}
-
-float GameScene::estimate(const GridNode &node1, const GridNode& node2) const {
-    return std::sqrt((node1.getPosition().x - node2.getPosition().x) * 10 * (node1.getPosition().x - node2.getPosition().x) * 10 +
-            (node1.getPosition().y - node2.getPosition().y) * 10 * (node1.getPosition().y - node2.getPosition().y) * 10);
 }
 
 /// TILEMAP LOADER ///

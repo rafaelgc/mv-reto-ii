@@ -31,7 +31,7 @@
 #include "ParticleManager.hpp"
 #include "Tile.hpp"
 
-class GameScene : public zt::Scene, public zt::IMesh<GridNode>, public zt::Tiled::TiledLoader, public zt::Task {
+class GameScene : public zt::Scene, public zt::Tiled::TiledLoader {
 public:
     GameScene(sf::RenderWindow& windwow);
     GameScene(const GameScene& orig);
@@ -61,15 +61,9 @@ public:
 protected:
     void fixCamera();
     
-    /// TASK PARA EJECUTAR EL PATHFINDING EN OTRO HILO ///
-    bool work();
+    /// EFECTRO TRUENO ///
+    float thunderAlpha(float time);
     
-    /// MESH ///
-    /// Hay que implementar estos métodos para poder ejecutar el
-    /// algoritmo de búsqueda.
-    std::vector<GridNode> getAdjacents(const GridNode& node) const;
-    float cost(const GridNode& node1, const GridNode& node2) const;
-    float estimate(const GridNode &node1, const GridNode& node2) const;
     
     /// HELPER FLOAT ///
     // Cálculos del agua.
@@ -92,11 +86,7 @@ private:
     
     Player player;
     
-    
-    sf::Sprite background;
-    zt::Pathfinding<GridNode> pathfinding;
-    sf::Clock pathfindingClock;
-    zt::TaskPool taskPool;
+    sf::Sprite background, grass;
     
     ParticleManager particleManager;
     
@@ -116,6 +106,13 @@ private:
     sf::Clock rainGenerationClock;
     float rainMovementAngle;
     zt::Vector2f rainMovementVector;
+    sf::Sound rainSound;
+    
+    /// EFECTRO TRUENO ///
+    sf::Sprite backgroundThunder;
+    int nextThunderTime;
+    sf::Clock thunderClock;
+    sf::Sound thunderSound, thunderSound2;
     
     /// FPS ///
     sf::Clock updateFPS;

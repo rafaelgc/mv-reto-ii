@@ -75,9 +75,9 @@ Drop::~Drop() {
 void Drop::draw(sf::RenderTarget& rt, sf::RenderStates rs) const {
     rt.draw(rect, rs);
     
-    if (hasEnd) {
+    /*if (hasEnd) {
         rt.draw(target, rs);
-    }
+    }*/
 }
 
 void Drop::advanceTime(float deltaTime) {
