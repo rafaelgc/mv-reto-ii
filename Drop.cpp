@@ -31,7 +31,7 @@ Drop::Drop(GameScene& gameScene, const zt::Vector2f& position, const zt::Vector2
     hasEnd = false;
     
     if (calcIntersection) {
-    
+
         int left = std::max(0, gameScene.getVisibleArea().left) / gameScene.getSolidLayer().getTileSize().x;
         int right = std::min(gameScene.getSolidLayer().getSize().x, left + gameScene.getVisibleArea().width / gameScene.getSolidLayer().getTileSize().x);
 
@@ -41,10 +41,9 @@ Drop::Drop(GameScene& gameScene, const zt::Vector2f& position, const zt::Vector2
         float minF;
         bool found = false;
 
+        for (int y = top; y < bottom; y++) {
 
-        for (int y = top; y <= bottom; y++) {
-
-            for (int x = left; x <= right; x++) {
+            for (int x = left; x < right; x++) {
 
                 if (!gameScene.getSolidLayer().isEmpty(x, y)) {
                     std::tuple<bool, float, Tile::Side> res = gameScene.getSolidLayer().getTile(x, y).raycast(position.toSfml(), speed.toSfml());
@@ -58,7 +57,6 @@ Drop::Drop(GameScene& gameScene, const zt::Vector2f& position, const zt::Vector2
             }
 
         }
-
         if (found) {
             end = position.plus(speed.mult(minF));
 

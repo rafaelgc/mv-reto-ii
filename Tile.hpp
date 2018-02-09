@@ -18,8 +18,6 @@
 #include <SFML/System/Vector2.hpp>
 #include <tuple>
 
-
-
 class Tile : public sf::Transformable, public sf::Drawable {
 protected:
     int type;
@@ -143,6 +141,7 @@ public:
             }
         }
 
+
         // BOTTOM
         k = getBottomLeft().minus(zt::Vector2f(position)).cross(getHorizontalVector()).getZ() / vector.cross(getHorizontalVector()).getZ();
         p = zt::Vector2f(position).minus(getBottomLeft()).cross(vector).getZ() / getHorizontalVector().cross(vector).getZ();
@@ -178,7 +177,7 @@ public:
                 found = true;
             }
         }
-        
+
         return std::make_tuple(found, minK, side);
     }
 };

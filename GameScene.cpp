@@ -206,6 +206,7 @@ void GameScene::logic(float deltaTime) {
                     rainMovementVector, rainMovementAngle, 255, true));
         
         }
+
         rainGenerationClock.restart();
     }
     
