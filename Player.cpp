@@ -116,208 +116,6 @@ void Player::draw(sf::RenderTarget& rt, sf::RenderStates rs) const {
 
 void Player::advanceTime(float deltaTime) {
     
-    
-    sf::Vector2f fS = speed * deltaTime;
-    
-    
-    
-    ///////////////////////////////////////////////////////////
-    /// DETECCION DE COLISIONES CON PREVENCION DE TUNNELING ///
-    ///////////////////////////////////////////////////////////
-    
-    // El personaje tiene un conjunto de sensores repartidos por su cuerpo.
-    // Cuando éste se mueve se comprueba si esos sensores están en casillas
-    // sólidas (hay colisión).
-    
-    // Destacar que un sensor puede estar en una posición no válida
-    // y a la vez el resto podrían estar en una correcta. Por este motivo habrá
-    // que comprobar cada uno de ellos y realizar el movimiento más "conservador"
-    // para que todos ellos estén en un buen lugar.
-    
-    // Se separa el movimiento vertical y horizontal para analizarlos por
-    // separado.
-    
-    /*for (Sensor& sensor : sensors) {
-    
-        sf::Vector2f sensorPosition = position + sf::Vector2f(sensor.getX(), sensor.getY());
-        
-        // finalPositionIncrX contiene la posición final del sensor considerando
-        // únicamente la componente x de la velocidad.
-        sf::Vector2f finalPositionIncrX = sf::Vector2f(position.x + sensor.getX() + speed.x * deltaTime, position.y + sensor.getY());
-        sf::Vector2f finalPositionIncrY = sf::Vector2f(position.x + sensor.getX(), position.y + sensor.getY() + speed.y * deltaTime);
-        
-        // Se comprueba si la posición final es una posición válida.
-        if (!gameScene.isValidPosition(finalPositionIncrX)) { // <--- CON ESTA COMPROBACION PODRIA HABER TUNNELING ¿?
-
-            // Para prevenir el tunneling habrá que comprobar si alguno de los tiles
-            // que hay entre la posición actual y la final es sólido.
-
-            unsigned int px0 = sensorPosition.x / gameScene.getSolidLayer().getTileSize().x;
-            unsigned int px1 = finalPositionIncrX.x / gameScene.getSolidLayer().getTileSize().x;
-
-            unsigned int py0 = sensorPosition.y / gameScene.getSolidLayer().getTileSize().y;
-            unsigned int py1 = finalPositionIncrX.y / gameScene.getSolidLayer().getTileSize().y;
-
-            float minD;
-            bool found = false;
-
-
-            for (unsigned int y = std::min(py0, py1); y <= std::max(py0, py1); y++) {
-
-                for (unsigned int x = std::min(px0, px1); x <= std::max(px0, px1); x++) {
-
-                    if (!gameScene.getSolidLayer().isEmpty(x, y)) {
-
-                        std::tuple<bool, float, Tile::Side> res = gameScene.getSolidLayer().getTile(x, y).raycast(sensorPosition, speed);
-
-                        //std::cout << "Pepe " << x << ", " << y << std::endl;
-                        if (std::get<0>(res)) {
-                            if (!found || std::get<1>(res) < minD) {
-
-                                minD = std::get<1>(res);
-                                found = true;
-                            }
-
-                        }
-
-                    }
-                }
-            }
-
-            if (found) {
-                sf::Vector2f intersection = position + minD * speed * deltaTime;
-
-                finalPositionIncrX = intersection;
-
-
-            }
-
-        }
-
-        // Se comprueba si la posición final es una posición válida.
-        if (!gameScene.isValidPosition(finalPositionIncrY)) {
-
-            unsigned int px0 = sensorPosition.x / gameScene.getSolidLayer().getTileSize().x;
-            unsigned int px1 = finalPositionIncrY.x / gameScene.getSolidLayer().getTileSize().x;
-
-            unsigned int py0 = sensorPosition.y / gameScene.getSolidLayer().getTileSize().y;
-            unsigned int py1 = finalPositionIncrY.y / gameScene.getSolidLayer().getTileSize().y;
-
-            float minD;
-            bool found = false;
-
-
-            for (unsigned int y = std::min(py0, py1); y <= std::max(py0, py1); y++) {
-
-                for (unsigned int x = std::min(px0, px1); x <= std::max(px0, px1); x++) {
-
-                    if (!gameScene.getSolidLayer().isEmpty(x, y)) {
-
-                        std::tuple<bool, float, Tile::Side> res = gameScene.getSolidLayer().getTile(x, y).raycast(sensorPosition, speed);
-
-                        //std::cout << "Pepe " << x << ", " << y << std::endl;
-                        if (std::get<0>(res)) {
-                            if (!found || std::get<1>(res) < minD) {
-
-                                minD = std::get<1>(res);
-                                found = true;
-                            }
-
-                        }
-
-                    }
-                }
-            }
-
-            if (found) {
-                sf::Vector2f intersection = position + minD * speed * deltaTime;
-
-                finalPositionIncrY = intersection;
-
-                jumping = false;
-                speed.y = 0;
-
-
-            }
-
-        }
-    
-    }*/
-    
-    
-    //finalPosition.x = (int)finalPosition.x;
-    //finalPosition.y = (int)finalPosition.y;
-    
-    //position = finalPosition;
-    
-    ////position.x = finalPositionIncrX.x;
-    //position.y = finalPositionIncrY.y;
-    
-    //std::cout << position.x << ", " << position.y << " -> " << fS.x << ", " << fS.y << std::endl;
-    /*sf::Vector2f finalPosition = position + speed * deltaTime;
-    
-    for (Sensor& sensor : sensors) {
-        
-        // Punto inicial del sensor.
-        zt::Vector2f start = zt::Vector2f(this->getPosition()).plus(zt::Vector2f(sensor.getX(), sensor.getY()));
-        
-        // Punto final (tras aplicar el movimiento).
-        zt::Vector2f end = start.plus(zt::Vector2f(speed * deltaTime));
-        
-        unsigned int px0 = start.getX() / gameScene.getSolidLayer().getTileSize().x;
-        unsigned int px1 = end.getX() / gameScene.getSolidLayer().getTileSize().x;
-
-        unsigned int py0 = start.getY() / gameScene.getSolidLayer().getTileSize().y;
-        unsigned int py1 = end.getY() / gameScene.getSolidLayer().getTileSize().y;
-
-        float minD;
-        bool found = false;
-        zt::Vector2f sideVector;
-
-        for (unsigned int y = std::min(py0, py1); y <= std::max(py0, py1); y++) {
-            for (unsigned int x = std::min(px0, px1); x <= std::max(px0, px1); x++) {
-
-                if (!gameScene.getSolidLayer().isEmpty(x, y)) {
-
-                    std::tuple<bool, float, Tile::Side> res = gameScene.getSolidLayer().getTile(x, y).raycast(start.toSfml(), speed);
-
-                    if (std::get<0>(res)) {
-                        if (!found || std::get<1>(res) < minD) {
-
-                            minD = std::get<1>(res);
-                            sideVector = gameScene.getSolidLayer().getTile(x, y).getSideVector(std::get<2>(res));
-                            found = true;
-                        }
-
-                    }
-
-                }
-            }
-        }
-
-        if (found) {
-            zt::Vector2f intersection = start.plus(zt::Vector2f(speed).mult(minD * deltaTime)); // + minD * speed * deltaTime;
-            
-            zt::Vector2f s = intersection.to(end);
-            
-            float l = s.dot(sideVector) / sideVector.length();
-            
-            //std::cout << l << std::endl;
-            
-            finalPosition = intersection.plus(sideVector.normalized().mult(l)).toSfml();
-            
-            jumping = false;
-            speed.y = 0;
-
-
-        }
-    }
-    
-    position = finalPosition;*/
-    
-    gameScene.getOrigin().x = position.x;
-    gameScene.getOrigin().y = position.y;
-    
     // El incremento de la x y la y se debe hacer por separado
     // para responder bien a la colisión.
     position.y += speed.y * deltaTime;
@@ -331,6 +129,9 @@ void Player::advanceTime(float deltaTime) {
     if (!gameScene.isValidPosition(position)) {
         position.x -= speed.x * deltaTime;
     }
+    
+    gameScene.getOrigin().x = position.x;
+    gameScene.getOrigin().y = position.y;
     
     // La cuerda ya está enganchada a alguna superficie y el jugador
     // se está acercando hacia el objetivo.
@@ -397,11 +198,6 @@ void Player::manageEvents(float deltaTime) {
     /// ROTACIÓN DEL JUGADOR ///
     lookAt = a.minus(b);
     
-    
-    /// ACTUALIZACIÓN DE LA POSICION DE LA CAMARA ///
-    //this->gameScene.getOrigin().x = position.x + (currMousePos.x - position.x) / 4;
-    //this->gameScene.getOrigin().y = position.y + (currMousePos.y - position.y) / 4;
-    
     moving = false;
 
     if (!ropeThrowed) {
@@ -427,19 +223,6 @@ void Player::manageEvents(float deltaTime) {
             speed.x = 0;
         }
         
-        /*if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
-            speed.y = -speedMagnitude;
-            moving = true;
-        }
-        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
-            speed.y = speedMagnitude;
-            moving = true;
-        }
-        else {
-            speed.y = 0;
-        }*/
-        
-    
     }
     
     if (moving) {
@@ -449,6 +232,7 @@ void Player::manageEvents(float deltaTime) {
         currentAnimation = &idleTextures;
     }
     
+    /* He deshabilitado el dash.
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
         if (released) {
             released = false;
@@ -502,7 +286,7 @@ void Player::manageEvents(float deltaTime) {
     else {
         released = true;
     }
-    
+    */
     
     
 }
